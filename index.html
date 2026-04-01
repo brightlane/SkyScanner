@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skyscanner Flight Deals & Global Lookup</title>
+<meta name="description" content="Find cheap flights, explore cities, and get daily travel tips. Skyscanner affiliate deals available worldwide.">
+<meta name="robots" content="index, follow">
+<style>
+/* Base Styles */
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#0b1d3a; color:#f1f1f1; cursor:pointer; }
+header, section, footer { max-width:900px; margin:0 auto; padding:20px; transition: transform 0.2s ease; }
+h1,h2,h3,h4 { margin:10px 0; }
+h1 { font-size:2.5rem; color:#ffd700; transition: color 0.3s ease; }
+h1:hover { color:#ffcc00; }
+p { margin:10px 0; line-height:1.6; }
+.btn-cta { background:#ffd700; color:#0b1d3a; padding:20px 40px; font-weight:bold; text-decoration:none; border-radius:8px; display:inline-block; margin:20px 0; box-shadow:0 0 15px rgba(255, 204, 0, 0.7); transition: transform 0.2s ease, box-shadow 0.3s ease; }
+.btn-cta:hover { transform: scale(1.05); box-shadow:0 0 25px rgba(255, 204, 0, 1); }
+.tip-box, .date-box, footer { background:#11254d; padding:25px; border-radius:10px; margin:20px 0; box-shadow:0 4px 12px rgba(0,0,0,0.5); transition: background 0.3s ease; }
+.tip-box:hover, .date-box:hover, footer:hover { background:#1a3260; }
+#stickyCTA { position:fixed; bottom:20px; right:20px; z-index:9999; box-shadow:0 0 20px rgba(255,204,0,0.7); }
+#progressBar { position:fixed; top:0; left:0; width:0%; height:5px; background:#ffd700; z-index:9999; transition: width 0.25s ease; }
+
+/* Hero Gradient Background */
+header {
+  background: linear-gradient(135deg, #0b1d3a, #11254d);
+  text-align:center;
+  padding:80px 20px;
+  border-radius:10px;
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="progressBar"></div>
+
+<!-- HERO SECTION -->
+<header id="heroSection">
+  <h1 id="headline">Skyscanner Flight Deals & Global Lookup</h1>
+  <p>Find cheap flights worldwide, explore cities, and get daily travel tips with Skyscanner affiliate deals.</p>
+  <a href="https://is.gd/et9lWW" class="btn-cta" id="mainCTA" target="_blank">Take Action →</a>
+</header>
+
+<section>
+  <!-- Current Date -->
+  <div class="date-box" id="dateBox">
+    📅 Today's Date: <span id="currentDate"></span>
+  </div>
+
+  <!-- Daily Tip -->
+  <div class="tip-box" id="tipBox">
+    💡 Daily Tip: <span id="dailyTip"></span>
+  </div>
+</section>
+
+<!-- STICKY CTA -->
+<a href="https://is.gd/et9lWW" id="stickyCTA" class="btn-cta" target="_blank">Take Action →</a>
+
+<footer id="footerSection">
+  <p>Dynamic interactive content worldwide. Fully multilingual with Skyscanner flight deals.</p>
+  <p>&copy; <span id="currentYear"></span> DynamicLookup.com</p>
+</footer>
+
+<script>
+// Scroll Progress
+window.onscroll = function() {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (scrollTop / scrollHeight) * 100;
+  document.getElementById("progressBar").style.width = scrolled + "%";
+};
+
+// Current Date & Year
+const today = new Date();
+document.getElementById("currentDate").textContent = today.toLocaleDateString(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+document.getElementById("currentYear").textContent = today.getFullYear();
+
+// Daily Tips
+const tips = [
+  "Explore new regions for insight.",
+  "Check local coverage regularly.",
+  "Discover top destinations this week.",
+  "Plan your trip with flexible dates."
+];
+document.getElementById("dailyTip").textContent = tips[today.getDate() % tips.length];
+
+// Make everything clickable to affiliate URL
+const affiliateURL = "https://is.gd/et9lWW";
+document.body.addEventListener("click", function(e){
+  // Avoid triggering multiple clicks if a link is already clicked
+  if(e.target.tagName !== "A"){
+    window.open(affiliateURL,"_blank");
+  }
+});
+
+// CTA buttons open affiliate URL
+document.getElementById("mainCTA").onclick = ()=>window.open(affiliateURL,"_blank");
+document.getElementById("stickyCTA").onclick = ()=>window.open(affiliateURL,"_blank");
+
+// Headline clickable
+document.getElementById("headline").onclick = ()=>window.open(affiliateURL,"_blank");
+
+// Hero, tip box, date box, footer all clickable
+document.getElementById("heroSection").onclick = ()=>window.open(affiliateURL,"_blank");
+document.getElementById("tipBox").onclick = ()=>window.open(affiliateURL,"_blank");
+document.getElementById("dateBox").onclick = ()=>window.open(affiliateURL,"_blank");
+document.getElementById("footerSection").onclick = ()=>window.open(affiliateURL,"_blank");
+</script>
+
+</body>
+</html>
