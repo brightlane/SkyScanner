@@ -3,66 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Explore countries, cities, area codes, and more. Interactive lookup and tips to discover global coverage instantly!">
-<meta name="keywords" content="global lookup, city coverage, country lookup, postal code lookup, service lookup, international lookup, coverage checker, country guide">
-<title>Global Lookup & Interactive Tips</title>
+<meta name="description" content="Explore countries, cities, postal codes, and more. Interactive global lookup tool with Skyscanner flight deals worldwide.">
+<meta name="keywords" content="global lookup, city coverage, country lookup, postal code lookup, travel deals, Skyscanner flights, international lookup, travel planning, coverage checker, country guide">
+<title>Global Lookup & Flight Deals | Skyscanner Affiliate</title>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Dynamic Global Lookup",
+  "url": "https://yourdomain.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885&q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "description": "Interactive global lookup tool to explore countries, cities, postal codes and plan flights with Skyscanner."
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Dynamic Global Lookup",
+  "url": "https://yourdomain.com",
+  "sameAs": [
+    "https://www.facebook.com/yourpage",
+    "https://twitter.com/yourprofile",
+    "https://www.linkedin.com/company/yourcompany"
+  ],
+  "logo": "https://yourdomain.com/logo.png",
+  "description": "Interactive global lookup tool to explore countries, cities, postal codes, and book flights via Skyscanner."
+}
+</script>
+
 <style>
-body { font-family: Arial, sans-serif; margin:0; padding:0; background:#0b1f3f; color:#fff; }
-section, header, footer { max-width:900px; margin:0 auto; }
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#0b1f3f; color:#fff; line-height:1.6; }
+section, header, footer { max-width:900px; margin:0 auto; padding:0 15px; }
 h1,h2,h3,h4,p { margin:10px 0; cursor:pointer; }
+h1 { font-size:2em; }
+h2 { font-size:1.5em; margin-top:30px; }
+h3 { font-size:1.2em; }
 .btn-cta { background:#ffcc00; color:#000; padding:15px 30px; font-weight:bold; text-decoration:none; border-radius:5px; display:inline-block; margin:10px 0; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor:pointer; }
 .btn-cta:hover { transform: scale(1.05); box-shadow:0 4px 15px rgba(0,0,0,0.3); }
 .lookup-widget, .tip-box, .result-box { background:#11264d; padding:20px; border-radius:8px; margin:15px 0; box-shadow:0 2px 5px rgba(0,0,0,0.5); cursor:pointer; }
-#stickyCTA { position:fixed; bottom:20px; right:20px; z-index:9999; box-shadow:0 4px 15px rgba(0,0,0,0.5); background:#ff6600; }
+#stickyCTA { position:fixed; bottom:20px; right:20px; z-index:9999; box-shadow:0 4px 15px rgba(0,0,0,0.5); background:#ff6600; color:#fff; font-weight:bold; }
 #progressBar { position:fixed; top:0; left:0; width:0%; height:5px; background:#ffcc00; z-index:9999; transition:width 0.25s ease; }
 table { width:100%; border-collapse:collapse; color:#fff; }
 th, td { padding:10px; border:1px solid #fff; text-align:center; }
 .lookup-widget ul { padding-left:20px; }
-
-/* Pulse animation for sticky CTA */
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-  50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,102,0,0.7); }
-  100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-}
+img { max-width:100%; height:auto; }
+a { color:#ffcc00; text-decoration:none; }
+a:hover { color:#ff6600; }
+@keyframes pulse { 0%{transform:scale(1); box-shadow:0 4px 15px rgba(0,0,0,0.5);} 50%{transform:scale(1.05); box-shadow:0 6px 20px rgba(255,102,0,0.7);} 100%{transform:scale(1); box-shadow:0 4px 15px rgba(0,0,0,0.5);} }
 #stickyCTA.pulse { animation: pulse 2s infinite; }
 </style>
 </head>
+
 <body>
 <div id="progressBar"></div>
 
 <header style="background:#11264d; color:#fff; padding:60px 20px; text-align:center;">
-<h1 id="heroTitle"></h1>
-<p id="heroDesc"></p>
-<a href="https://github.com/brightlane/SkyScanner" class="btn-cta" id="heroCTA" target="_blank"></a>
+<h1>Global Lookup & Interactive Tips</h1>
+<p>Explore countries, cities, postal codes, and more — everything is clickable! Plan your flights with Skyscanner and get the best deals worldwide.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-cta" target="_blank">Start Searching Flights →</a>
+
 <div style="margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-<div class="lookup-widget" id="widget1"></div>
-<div class="lookup-widget" id="widget2"></div>
-<div class="lookup-widget" id="widget3"></div>
-<div class="lookup-widget" id="widget4"></div>
+<div class="lookup-widget">✅ Global Coverage</div>
+<div class="lookup-widget">✅ Dynamic Lookup</div>
+<div class="lookup-widget">✅ Instant Results</div>
+<div class="lookup-widget">✅ Mobile Friendly</div>
 </div>
 </header>
 
 <section>
-<div class="lookup-widget" id="countryWidget"></div>
-<div class="lookup-widget" style="margin-top:5px; font-size:12px; color:#ffcc00;">
-Looking for flights? Start with <a href="https://github.com/brightlane/SkyScanner" style="color:#ff6600;" target="_blank">Skyscanner</a>!
-</div>
-<div class="lookup-widget" id="cityWidget"></div>
-<div class="lookup-widget" style="margin-top:5px; font-size:12px; color:#ffcc00;">
-Find your city’s best deals with <a href="https://github.com/brightlane/SkyScanner" style="color:#ff6600;" target="_blank">Skyscanner</a>!
-</div>
-<div class="lookup-widget" id="postalWidget"></div>
-<div class="tip-box" id="dailyTip"></div>
-<div class="lookup-widget" id="languagesWidget"></div>
+<div class="lookup-widget">Check Country Availability: Instantly see if your country is fully supported across regions.</div>
+<div class="lookup-widget">Check City Coverage: Verify service availability in your city.</div>
+<div class="lookup-widget">Postal Code Lookup: Find out if your postal code is covered.</div>
+<div class="tip-box">💡 Daily Tip: Always double-check your location for accurate results.</div>
+<div class="lookup-widget">Supported Languages: English, Spanish, French, Chinese, Arabic, Hindi</div>
 
-<h2 id="faqTitle"></h2>
-<div class="lookup-widget" id="faq1"></div>
-<div class="lookup-widget" id="faq2"></div>
-<div class="lookup-widget" id="faq3"></div>
+<h2>Frequently Asked Questions</h2>
+<div class="lookup-widget">FAQ 1: How does this lookup work?</div>
+<div class="lookup-widget">FAQ 2: Is it free to use?</div>
+<div class="lookup-widget">FAQ 3: How often is the data updated?</div>
 
-<h2 id="compareTitle"></h2>
-<div class="lookup-widget" id="compareBox">
+<h2>Compare Plans/Options</h2>
+<div class="lookup-widget">
 <table>
 <tr style="background:#0d2b5c;">
 <th>Feature</th><th>Basic Plan</th><th>Premium Plan</th>
@@ -74,48 +103,40 @@ Find your city’s best deals with <a href="https://github.com/brightlane/SkySca
 </table>
 </div>
 
-<h2 id="testimonialsTitle"></h2>
+<h2>Testimonials</h2>
 <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
 <div class="lookup-widget" style="flex:1 1 250px; text-align:center;">
-<img src="https://via.placeholder.com/60" style="border-radius:50%; margin-bottom:10px;">
+<img src="https://via.placeholder.com/60" alt="User 1" style="border-radius:50%; margin-bottom:10px;">
 <p>"User 1: Awesome tool, helped me travel smarter!"</p>
 </div>
 <div class="lookup-widget" style="flex:1 1 250px; text-align:center;">
-<img src="https://via.placeholder.com/60" style="border-radius:50%; margin-bottom:10px;">
+<img src="https://via.placeholder.com/60" alt="User 2" style="border-radius:50%; margin-bottom:10px;">
 <p>"User 2: Very helpful and reliable!"</p>
 </div>
 </div>
 
-<h2 id="newsTitle"></h2>
-<div class="lookup-widget" id="newsBox">
-<ul><li><a href="#" style="color:#ffcc00;">Loading news...</a></li></ul>
-</div>
+<h2>Daily Travel News</h2>
+<div class="lookup-widget" id="newsBox"><ul><li><a href="#" style="color:#ffcc00;">Loading news...</a></li></ul></div>
 
-<!-- Skyscanner Promo -->
-<section id="skyscannerPromoSection" style="margin:30px 0; text-align:center; background:#11264d; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.5);">
-<h2 id="skyscannerTitle"></h2>
-<p id="skyscannerPromoText"></p>
-<a href="https://github.com/brightlane/SkyScanner" class="btn-cta" id="skyscannerPromoCTA" target="_blank">
-✅ Compare Flights Instantly on Skyscanner →
-</a>
-<p style="font-size:12px; color:#ccc; margin-top:5px;">Official Skyscanner integration – trusted worldwide.</p>
+<section style="margin:30px 0; text-align:center; background:#11264d; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.5);">
+<h2>Plan Your Travel with Skyscanner</h2>
+<p id="skyscannerPromoText">Compare global flights instantly and save big on your next trip.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-cta" target="_blank">✅ Compare Flights Instantly →</a>
+<p style="font-size:12px; color:#ccc; margin-top:5px;">Official Skyscanner affiliate – trusted worldwide.</p>
 </section>
 
-<!-- Social Share -->
 <section style="text-align:center; margin:30px 0;">
-<h2 id="shareTitleSocial"></h2>
+<h2>Share This Tool</h2>
 <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-<a href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/brightlane/SkyScanner" target="_blank" class="btn-cta">Facebook</a>
-<a href="https://twitter.com/intent/tweet?url=https://github.com/brightlane/SkyScanner&text=Check+this+amazing+Global+Lookup+tool!" target="_blank" class="btn-cta">Twitter</a>
-<a href="https://www.linkedin.com/shareArticle?mini=true&url=https://github.com/brightlane/SkyScanner" target="_blank" class="btn-cta">LinkedIn</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" class="btn-cta">Facebook</a>
+<a href="https://twitter.com/intent/tweet?url=https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885&text=Check+this+amazing+Global+Lookup+tool!" target="_blank" class="btn-cta">Twitter</a>
+<a href="https://www.linkedin.com/shareArticle?mini=true&url=https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" class="btn-cta">LinkedIn</a>
 </div>
 </section>
 
-<a href="https://github.com/brightlane/SkyScanner" id="stickyCTA" class="btn-cta">
-🚀 Find Flights on Skyscanner →
-</a>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" id="stickyCTA" class="btn-cta">🚀 Find Flights on Skyscanner →</a>
 
-<footer style="text-align:center; padding:30px 20px;" id="footerText"></footer>
+<footer style="text-align:center; padding:30px 20px;">&copy; 2026 DynamicLookup.com</footer>
 
 <script>
 // Scroll progress
@@ -125,48 +146,7 @@ const scrollHeight = document.documentElement.scrollHeight - document.documentEl
 document.getElementById("progressBar").style.width = (scrollTop / scrollHeight * 100) + "%";
 };
 
-// Multilingual content
-const content = {
-en:{
-heroTitle:"Global Lookup & Interactive Tips",
-heroDesc:"Explore countries, cities, area codes, and more — everything is clickable!",
-heroCTA:"Start Searching Flights on Skyscanner →",
-widget1:"✅ Global Coverage",
-widget2:"✅ Dynamic Lookup",
-widget3:"✅ Instant Results",
-widget4:"✅ Mobile Friendly",
-countryWidget:"Check Country Availability: Instantly see if your country is fully supported across regions.",
-cityWidget:"Check City Coverage: Verify service availability in your city.",
-postalWidget:"Postal Code Lookup: Find out if your postal code is covered.",
-dailyTip:"💡 Daily Tip: Always double-check your location for accurate results.",
-languagesWidget:"Supported Languages: English, Spanish, French, Chinese, Arabic, Hindi",
-faqTitle:"Frequently Asked Questions",
-faq1:"FAQ 1: How does this lookup work?",
-faq2:"FAQ 2: Is it free to use?",
-faq3:"FAQ 3: How often is the data updated?",
-compareTitle:"Compare Plans/Options",
-testimonialsTitle:"Testimonials",
-newsTitle:"Daily Travel News",
-skyscannerTitle:"Plan Your Travel with Skyscanner",
-shareTitleSocial:"Share This Tool",
-footerText:"&copy; 2026 DynamicLookup.com"
-}
-};
-const lang = content[navigator.language.slice(0,2)] ? navigator.language.slice(0,2) : 'en';
-Object.keys(content[lang]).forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML=content[lang][id]; });
-
-// Skyscanner promo rotation
-const skyscannerArticles = [
-"Compare global flights instantly and save big on your next trip.",
-"Looking for the best travel deals? Skyscanner helps you find flights, hotels, and car rentals.",
-"Plan smarter, travel cheaper! Skyscanner provides real-time flight comparisons worldwide.",
-"Discover unbeatable deals on flights across the globe. Start planning your dream trip today!",
-"Instant flight comparisons, savings, and hassle-free booking—Skyscanner is your travel companion!"
-];
-const today = new Date();
-document.getElementById('skyscannerPromoText').textContent = skyscannerArticles[today.getDate()%skyscannerArticles.length];
-
-// Daily news
+// Daily news fetch
 async function fetchNews(){
     try {
         const rssUrl = "https://www.travel-advisory.info/rss";
@@ -182,21 +162,10 @@ async function fetchNews(){
 }
 fetchNews();
 
-// Pulse effect on sticky CTA
+// Sticky CTA pulse
 window.addEventListener('load', () => {
   const cta = document.getElementById('stickyCTA');
   if(cta) cta.classList.add('pulse');
-
-  // Hero CTA temporary highlight
-  const heroCTA = document.getElementById('heroCTA');
-  if(heroCTA) {
-    heroCTA.style.border = '2px solid #ff6600';
-    heroCTA.style.boxShadow = '0 0 20px #ff6600';
-    setTimeout(() => {
-      heroCTA.style.border = '';
-      heroCTA.style.boxShadow = '';
-    }, 3000); // highlight for 3 seconds
-  }
 });
 </script>
 </body>
