@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Explore countries, cities, area codes, and more. Interactive lookup and tips to discover global coverage instantly!">
 <meta name="keywords" content="global lookup, city coverage, country lookup, postal code lookup, service lookup, international lookup, coverage checker, country guide">
-<meta name="robots" content="index, follow">
 <title>Global Lookup & Interactive Tips</title>
 <style>
 body { font-family: Arial, sans-serif; margin:0; padding:0; background:#0b1f3f; color:#fff; }
@@ -17,9 +15,11 @@ h1,h2,h3,h4,p { margin:10px 0; cursor:pointer; }
 .lookup-widget, .tip-box, .result-box { background:#11264d; padding:20px; border-radius:8px; margin:15px 0; box-shadow:0 2px 5px rgba(0,0,0,0.5); cursor:pointer; }
 #stickyCTA { position:fixed; bottom:20px; right:20px; z-index:9999; box-shadow:0 4px 15px rgba(0,0,0,0.5); }
 #progressBar { position:fixed; top:0; left:0; width:0%; height:5px; background:#ffcc00; z-index:9999; transition:width 0.25s ease; }
+table { width:100%; border-collapse:collapse; color:#fff; }
+th, td { padding:10px; border:1px solid #fff; text-align:center; }
+.lookup-widget ul { padding-left:20px; }
 </style>
 </head>
-
 <body>
 <div id="progressBar"></div>
 
@@ -48,41 +48,53 @@ h1,h2,h3,h4,p { margin:10px 0; cursor:pointer; }
 <div class="lookup-widget" id="faq3"></div>
 
 <h2 id="compareTitle"></h2>
-<div class="lookup-widget" id="compareBox"></div>
+<div class="lookup-widget" id="compareBox">
+<table>
+<tr style="background:#0d2b5c;">
+<th>Feature</th><th>Basic Plan</th><th>Premium Plan</th>
+</tr>
+<tr><td>Country Lookup</td><td>✅</td><td>✅</td></tr>
+<tr><td>City Coverage</td><td>✅</td><td>✅</td></tr>
+<tr><td>Postal Code Lookup</td><td>❌</td><td>✅</td></tr>
+<tr><td>Real-time Updates</td><td>❌</td><td>✅</td></tr>
+</table>
+</div>
 
 <h2 id="testimonialsTitle"></h2>
-<div class="lookup-widget" id="testimonial1"></div>
-<div class="lookup-widget" id="testimonial2"></div>
+<div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
+<div class="lookup-widget" style="flex:1 1 250px; text-align:center;">
+<img src="https://via.placeholder.com/60" style="border-radius:50%; margin-bottom:10px;">
+<p>"User 1: Awesome tool, helped me travel smarter!"</p>
+</div>
+<div class="lookup-widget" style="flex:1 1 250px; text-align:center;">
+<img src="https://via.placeholder.com/60" style="border-radius:50%; margin-bottom:10px;">
+<p>"User 2: Very helpful and reliable!"</p>
+</div>
+</div>
 
 <h2 id="newsTitle"></h2>
-<div class="lookup-widget" id="newsBox">Loading daily news...</div>
+<div class="lookup-widget" id="newsBox">
+<ul><li><a href="#" style="color:#ffcc00;">Loading news...</a></li></ul>
+</div>
 
 <!-- Skyscanner Promo -->
 <section id="skyscannerPromoSection" style="margin:30px 0; text-align:center; background:#11264d; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.5);">
-<h2 id="skyscannerTitle">Plan Your Travel with Skyscanner</h2>
+<h2 id="skyscannerTitle"></h2>
 <p id="skyscannerPromoText"></p>
 <a href="https://is.gd/et9lWW" class="btn-cta" id="skyscannerPromoCTA">Check Flights →</a>
 </section>
 
 <!-- Social Share -->
 <section style="text-align:center; margin:30px 0;">
-<h2 id="shareTitleSocial">Share This Tool</h2>
+<h2 id="shareTitleSocial"></h2>
 <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
 <a href="https://www.facebook.com/sharer/sharer.php?u=https://is.gd/et9lWW" target="_blank" class="btn-cta">Facebook</a>
 <a href="https://twitter.com/intent/tweet?url=https://is.gd/et9lWW&text=Check+this+amazing+Global+Lookup+tool!" target="_blank" class="btn-cta">Twitter</a>
 <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://is.gd/et9lWW" target="_blank" class="btn-cta">LinkedIn</a>
 </div>
 </section>
-</section>
 
 <a href="https://is.gd/et9lWW" id="stickyCTA" class="btn-cta">Start Your Global Lookup →</a>
-
-<!-- Popup CTA -->
-<div id="popupCTA" style="position:fixed; bottom:50px; right:50px; background:#ffcc00; color:#000; padding:20px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.5); display:none; z-index:10000;">
-<p style="margin:0; font-weight:bold;">Start Your Free Global Lookup Now!</p>
-<a href="https://is.gd/et9lWW" class="btn-cta" style="margin-top:10px; display:block;">Click Here →</a>
-<span id="closePopup" style="position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold;">×</span>
-</div>
 
 <footer style="text-align:center; padding:30px 20px;" id="footerText"></footer>
 
@@ -95,23 +107,34 @@ document.getElementById("progressBar").style.width = (scrollTop / scrollHeight *
 };
 
 // Multilingual content
-const content = {/* insert multilingual content object from previous snippet */};
-const userLang = navigator.language.slice(0,2);
-const lang = content[userLang] ? userLang : 'en';
-const c = content[lang];
-Object.keys(c).forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = c[id]; });
-
-// Daily news
-async function fetchNews() {
-    const rssUrl = "https://www.travel-advisory.info/rss";
-    try {
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`);
-        const data = await response.json();
-        document.getElementById('newsBox').innerHTML = "<ul>" + data.items.slice(0,3).map(item =>
-            `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`).join("") + "</ul>";
-    } catch(e) { document.getElementById('newsBox').textContent = "Unable to load news."; }
+const content = {
+en:{
+heroTitle:"Global Lookup & Interactive Tips",
+heroDesc:"Explore countries, cities, area codes, and more — everything is clickable!",
+heroCTA:"Start Your Global Lookup →",
+widget1:"✅ Global Coverage",
+widget2:"✅ Dynamic Lookup",
+widget3:"✅ Instant Results",
+widget4:"✅ Mobile Friendly",
+countryWidget:"Check Country Availability: Instantly see if your country is fully supported across regions.",
+cityWidget:"Check City Coverage: Verify service availability in your city.",
+postalWidget:"Postal Code Lookup: Find out if your postal code is covered.",
+dailyTip:"💡 Daily Tip: Always double-check your location for accurate results.",
+languagesWidget:"Supported Languages: English, Spanish, French, Chinese, Arabic, Hindi",
+faqTitle:"Frequently Asked Questions",
+faq1:"FAQ 1: How does this lookup work?",
+faq2:"FAQ 2: Is it free to use?",
+faq3:"FAQ 3: How often is the data updated?",
+compareTitle:"Compare Plans/Options",
+testimonialsTitle:"Testimonials",
+newsTitle:"Daily Travel News",
+skyscannerTitle:"Plan Your Travel with Skyscanner",
+shareTitleSocial:"Share This Tool",
+footerText:"&copy; 2026 DynamicLookup.com"
 }
-fetchNews();
+};
+const lang = content[navigator.language.slice(0,2)] ? navigator.language.slice(0,2) : 'en';
+Object.keys(content[lang]).forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML=content[lang][id]; });
 
 // Skyscanner promo rotation
 const skyscannerArticles = [
@@ -122,11 +145,18 @@ const skyscannerArticles = [
 "Instant flight comparisons, savings, and hassle-free booking—Skyscanner is your travel companion!"
 ];
 const today = new Date();
-document.getElementById('skyscannerPromoText').textContent = skyscannerArticles[today.getDate() % skyscannerArticles.length];
+document.getElementById('skyscannerPromoText').textContent = skyscannerArticles[today.getDate()%skyscannerArticles.length];
 
-// Popup CTA
-setTimeout(()=>{ document.getElementById('popupCTA').style.display='block'; },10000);
-document.getElementById('closePopup').onclick = ()=>{ document.getElementById('popupCTA').style.display='none'; };
+// Daily news
+async function fetchNews(){
+try{
+const rssUrl="https://www.travel-advisory.info/rss";
+const res=await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`);
+const data=await res.json();
+document.getElementById('newsBox').innerHTML="<ul>"+data.items.slice(0,3).map(item=>`<li><a href='${item.link}' target='_blank'>${item.title}</a></li>`).join("")+"</ul>";
+}catch(e){document.getElementById('newsBox').textContent="Unable to load news.";}
+}
+fetchNews();
 </script>
 </body>
 </html>
