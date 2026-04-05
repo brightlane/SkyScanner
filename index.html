@@ -4,194 +4,222 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Primary Keywords in Title & Meta Description -->
-  <meta name="description" content="Find cheap flights, exclusive travel deals, and tips using Skyscanner. Book flights to your dream destination with the best prices available. Save on flight tickets today!">
+  <!-- Meta Tags for SEO -->
+  <meta name="description" content="Find unbeatable flight deals, travel tips, and book flights at the best prices using Skyscanner. Compare fares across airlines, save money, and travel smarter today!">
   <meta name="robots" content="index, follow">
-  <title>Skyscanner Flight Deals | Book Cheap Flights Online</title>
-
-  <!-- Open Graph Tags for Social Sharing -->
+  <meta name="keywords" content="Skyscanner, cheap flights, flight deals, affordable flights, book flights, flight comparison, travel tips, airline deals, Skyscanner flight search, best flight prices">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Skyscanner Flight Deals | Cheap Flights and Travel Tips">
-  <meta property="og:description" content="Find the best flight deals, top travel tips, and book your next trip at unbeatable prices with Skyscanner. Save on flights today!">
+  <meta property="og:title" content="Skyscanner Flight Deals | Book Cheap Flights Online">
+  <meta property="og:description" content="Book your next flight through Skyscanner and get the best deals across airlines and destinations. Find cheap flights and travel smart today!">
   <meta property="og:image" content="https://yourwebsite.com/images/social-image.jpg">
   <meta property="og:url" content="https://yourwebsite.com">
-
+  
   <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Skyscanner Flight Deals | Cheap Flights and Travel Tips">
-  <meta name="twitter:description" content="Find the best flight deals, travel tips, and book flights to top destinations at the lowest prices. Save on flights with Skyscanner!">
+  <meta name="twitter:title" content="Skyscanner Flight Deals | Book Cheap Flights Online">
+  <meta name="twitter:description" content="Find unbeatable flight deals and save on your next trip. Book cheap flights with Skyscanner and travel smarter!">
   <meta name="twitter:image" content="https://yourwebsite.com/images/twitter-card.jpg">
-
-  <!-- hreflang Tags for Multi-language Support (Adjust as per language versions) -->
-  <link rel="alternate" href="https://yourwebsite.com" hreflang="en">
-  <link rel="alternate" href="https://yourwebsite.com/es" hreflang="es">
-  <link rel="alternate" href="https://yourwebsite.com/fr" hreflang="fr">
-  <link rel="alternate" href="https://yourwebsite.com/de" hreflang="de">
-  <link rel="alternate" href="https://yourwebsite.com/it" hreflang="it">
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+  <title>Skyscanner Flight Deals | Book Cheap Flights Online</title>
+
   <style>
-    /* Basic styles for the landing page */
+    /* Base styles for the page */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7fb;
+      color: #333;
       margin: 0;
       padding: 0;
-      background-color: #f8f9fa;
-      color: #333;
     }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
     }
-    h1, h2 {
-      color: #0077cc;
-      text-align: center;
+
+    h1, h2, h3 {
+      color: #0056b3;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 10px;
     }
+
+    h1 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-top: 30px;
+    }
+
     h2 {
       font-size: 2em;
+      color: #333;
+      text-align: center;
       margin-top: 20px;
     }
-    .post, .deal, .social-post {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+
+    h3 {
+      font-size: 1.5em;
+      color: #0077cc;
+      margin-top: 15px;
     }
-    .post:hover, .deal:hover, .social-post:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    .section {
+      margin-bottom: 50px;
     }
+
     .btn {
       display: inline-block;
-      background: #0077cc;
+      background-color: #0077cc;
       color: white;
       padding: 12px 25px;
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 20px;
       transition: background 0.3s ease-in-out;
     }
+
     .btn:hover {
-      background: #005fa3;
+      background-color: #005fa3;
     }
+
+    .testimonials {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .testimonial {
+      background-color: #ffffff;
+      border-left: 5px solid #28a745;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-style: italic;
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+    }
+
+    .trust-signals {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .trust-signals img {
+      max-width: 120px;
+      height: auto;
+    }
+
+    /* Responsive Design */
+    @media(max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+
+      .testimonials {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    /* Countdown Timer */
     .countdown {
-      text-align: center;
-      font-size: 1.5em;
       background: #ff6b00;
       color: white;
       padding: 15px;
-      border-radius: 5px;
-      margin-top: 30px;
-    }
-    /* FAQ Section */
-    .faq-item {
-      background-color: #e9ecef;
-      padding: 15px;
       border-radius: 8px;
-      margin: 10px 0;
-    }
-    .faq-item h3 {
-      color: #0077cc;
-      font-size: 1.2em;
-    }
-    .faq-item p {
-      font-size: 1em;
-      color: #555;
-    }
-    .testimonial {
-      background: #fff5e1;
-      border-left: 5px solid #ff6b00;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 8px;
-    }
-    .testimonial p {
-      font-style: italic;
-      color: #555;
-    }
-    .testimonial .author {
-      font-weight: bold;
+      font-size: 1.5em;
+      margin-top: 20px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <!-- Header -->
     <header>
-      <!-- Clickable Headline with dynamic current year -->
       <h1><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" style="color:#0077cc;text-decoration:none;">🚀 Skyscanner Flight Deals & Travel Tips</a></h1>
-      <p>Find unbeatable flight deals, expert travel tips, and customer testimonials. Book your next trip easily with exclusive offers!</p>
+      <p>Find unbeatable flight deals, expert travel tips, and book your next trip at the best prices with Skyscanner. Travel smart, save big!</p>
       <p><strong>&copy; <span id="current-year"></span> Skyscanner Deals</strong></p>
     </header>
+
+    <!-- Urgency Section with Countdown Timer -->
+    <section id="urgent-offer" class="section">
+      <div class="countdown">
+        <p>⏳ Limited Time Offer: Save up to 40% on Flights! Book now before it's too late!</p>
+        <div id="timer"></div>
+      </div>
+    </section>
 
     <!-- FAQ Section -->
     <section id="faq-section" class="section">
       <h2>Frequently Asked Questions (FAQ)</h2>
       <div class="faq-item">
         <h3>How can I book a cheap flight with Skyscanner?</h3>
-        <p>Use Skyscanner's flight comparison tools and price alerts to find affordable flights for your trips. Be flexible with dates to get the best deals on flight tickets.</p>
+        <p>Use Skyscanner's powerful flight comparison tools to find the best deals on flights. Set up price alerts to monitor fare drops and book when prices are lowest!</p>
       </div>
       <div class="faq-item">
         <h3>What are the best times to book cheap flights?</h3>
-        <p>The best time to book a cheap flight is generally 6-8 weeks in advance. Monday through Thursday usually offers the lowest prices for domestic and international flights.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Are there any hidden fees with Skyscanner bookings?</h3>
-        <p>Skyscanner displays all fees upfront, including taxes and booking charges, so you can make an informed decision when booking your flight.</p>
+        <p>The best time to book is typically 6-8 weeks in advance, especially for international flights. Avoid weekends and try flying mid-week for the best rates.</p>
       </div>
     </section>
 
-    <!-- Comparison Section -->
-    <section id="comparison-section" class="section">
-      <h2>Flight Comparison: Find Cheap Flights</h2>
-      <div class="deal">
-        <h3>New York to Paris - $499</h3>
-        <p>Compare prices across major airlines and online travel agents to get the best flight deal to Paris.</p>
-        <a href="https://skyscanner.com/deal/new-york-to-paris" class="btn">Compare Flight Deals</a>
-      </div>
-      <div class="deal">
-        <h3>Los Angeles to Tokyo - $399</h3>
-        <p>Find affordable flights from Los Angeles to Tokyo with Skyscanner. Book today and save big!</p>
-        <a href="https://skyscanner.com/deal/los-angeles-to-tokyo" class="btn">Compare Flight Deals</a>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
+    <!-- Customer Testimonials Section -->
     <section id="testimonial-section" class="section">
-      <h2>What Others Are Saying</h2>
-      <div class="testimonial">
-        <p>"I saved over $300 on my flight to Europe by using Skyscanner! Best deals out there!"</p>
-        <div class="author">- Sarah, Traveler</div>
+      <h2>What Our Customers Are Saying</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <p>"Skyscanner helped me save $500 on my flight to Europe! I'll never book a flight without it again."</p>
+          <div class="author">- Sarah, Traveler</div>
+        </div>
+        <div class="testimonial">
+          <p>"I was skeptical at first, but after using Skyscanner, I booked my flight to Asia for 50% off. Highly recommend!"</p>
+          <div class="author">- John, Adventure Seeker</div>
+        </div>
       </div>
-      <div class="testimonial">
-        <p>"Skyscanner's price alerts helped me book flights to Asia for 50% off! Highly recommend."</p>
-        <div class="author">- John, Travel Enthusiast</div>
+    </section>
+
+    <!-- Trust Signals Section -->
+    <section id="trust-signals" class="section">
+      <h2>Trusted by Leading Airlines & Partners</h2>
+      <div class="trust-signals">
+        <img src="https://yourwebsite.com/images/airline1-logo.png" alt="Airline 1 Logo">
+        <img src="https://yourwebsite.com/images/airline2-logo.png" alt="Airline 2 Logo">
+        <img src="https://yourwebsite.com/images/airline3-logo.png" alt="Airline 3 Logo">
       </div>
     </section>
 
-    <!-- Blog & Social Media Sections -->
-    <section id="blog-container" class="section">
-      <h2>Latest Blog Posts on Cheap Flights</h2>
-      <!-- Blog Posts Load Here -->
+    <!-- Call-to-Action Section -->
+    <section id="cta-section" class="section">
+      <h2>Book Your Flight Today and Save Big!</h2>
+      <p>Don’t miss out on exclusive deals! Book your next flight now and enjoy huge savings on top destinations worldwide.</p>
+      <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn">Get Your Flight Deal Now!</a>
     </section>
 
-    <section id="social-media-container" class="section">
-      <h2>Follow Us on Social Media</h2>
-      <!-- Social Media Posts Load Here -->
-    </section>
-
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; <span id="footer-year"></span> Skyscanner Deals | All rights reserved.</p>
+    </footer>
   </div>
 
   <script>
     // Set the current year dynamically
     document.getElementById("current-year").textContent = new Date().getFullYear();
+    document.getElementById("footer-year").textContent = new Date().getFullYear();
   </script>
 
 </body>
