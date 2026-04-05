@@ -33,33 +33,9 @@
   <link rel="alternate" hreflang="ja" href="https://yourwebsite.com/ja" />
   <link rel="alternate" hreflang="ru" href="https://yourwebsite.com/ru" />
 
-  <!-- Language Detection Script -->
-  <script>
-    const userLang = navigator.language || navigator.userLanguage;
-    const languageRedirects = {
-      'en': 'https://yourwebsite.com',
-      'es': 'https://yourwebsite.com/es',
-      'fr': 'https://yourwebsite.com/fr',
-      'de': 'https://yourwebsite.com/de',
-      'it': 'https://yourwebsite.com/it',
-      'pt': 'https://yourwebsite.com/pt',
-      'zh': 'https://yourwebsite.com/zh',
-      'ja': 'https://yourwebsite.com/ja',
-      'ru': 'https://yourwebsite.com/ru'
-    };
-    const langCode = userLang.substring(0, 2);
-    if (languageRedirects[langCode]) {
-      window.location.href = languageRedirects[langCode];
-    } else {
-      window.location.href = languageRedirects['en'];
-    }
-  </script>
-
-  <title>Skyscanner Flight Deals | Book Cheap Flights Online</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  
+  <!-- Critical Inline CSS (for faster load) -->
   <style>
-    /* Basic Styling */
+    /* Critical CSS */
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f7fb;
@@ -112,10 +88,103 @@
       border-left: 5px solid #28a745;
       font-weight: bold;
     }
+    /* Social Media Section */
+    .social-buttons {
+      margin-top: 50px;
+      text-align: center;
+    }
+    .social-buttons a {
+      display: inline-block;
+      background-color: #3b5998;
+      color: white;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+    .social-buttons a:hover {
+      background-color: #4b7fce;
+    }
+    .social-buttons a.twitter {
+      background-color: #1DA1F2;
+    }
+    .social-buttons a.twitter:hover {
+      background-color: #1A91DA;
+    }
+    .social-buttons a.linkedin {
+      background-color: #0077b5;
+    }
+    .social-buttons a.linkedin:hover {
+      background-color: #005682;
+    }
+    .social-buttons a.pinterest {
+      background-color: #E60023;
+    }
+    .social-buttons a.pinterest:hover {
+      background-color: #d3c5cb;
+    }
+    .social-buttons a.reddit {
+      background-color: #FF4500;
+    }
+    .social-buttons a.reddit:hover {
+      background-color: #c1440e;
+    }
+    .social-buttons a.whatsapp {
+      background-color: #25D366;
+    }
+    .social-buttons a.whatsapp:hover {
+      background-color: #128C7E;
+    }
+    .social-buttons a.email {
+      background-color: #D44638;
+    }
+    .social-buttons a.email:hover {
+      background-color: #AC3321;
+    }
+    .article {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+    .article h2 {
+      color: #0077cc;
+    }
   </style>
+
+  <!-- Asynchronous Loading for Non-Critical JS -->
+  <script defer>
+    // Language redirection logic
+    (function() {
+      const userLang = navigator.language || navigator.userLanguage;
+      const languageRedirects = {
+        'en': 'https://yourwebsite.com',
+        'es': 'https://yourwebsite.com/es',
+        'fr': 'https://yourwebsite.com/fr',
+        'de': 'https://yourwebsite.com/de',
+        'it': 'https://yourwebsite.com/it',
+        'pt': 'https://yourwebsite.com/pt',
+        'zh': 'https://yourwebsite.com/zh',
+        'ja': 'https://yourwebsite.com/ja',
+        'ru': 'https://yourwebsite.com/ru'
+      };
+
+      const langCode = userLang.substring(0, 2);
+      if (languageRedirects[langCode]) {
+        window.location.href = languageRedirects[langCode];
+      } else {
+        window.location.href = languageRedirects['en'];
+      }
+    })();
+  </script>
+  
+  <title>Skyscanner Flight Deals | Book Cheap Flights Online</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-  
+
   <header>
     <h1>🚀 Skyscanner Flight Deals & Travel Tips</h1>
     <p>Find unbeatable flight deals, expert travel tips, and book your next trip at the best prices with Skyscanner. Travel smart, save big!</p>
@@ -152,7 +221,32 @@
 
   <footer>
     <p>&copy; <span id="current-year"></span> Skyscanner Deals | All rights reserved.</p>
+    
+    <!-- Social Media Buttons -->
+    <div class="social-buttons">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com" target="_blank" class="facebook">Share on Facebook</a>
+      <a href="https://twitter.com/intent/tweet?url=https://yourwebsite.com&text=Check%20out%20these%20amazing%20Skyscanner%20flight%20deals!" target="_blank" class="twitter">Share on Twitter</a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://yourwebsite.com" target="_blank" class="linkedin">Share on LinkedIn</a>
+      <a href="https://www.pinterest.com/pin/create/button/?url=https://yourwebsite.com" target="_blank" class="pinterest">Share on Pinterest</a>
+      <a href="https://www.reddit.com/submit?url=https://yourwebsite.com&title=Skyscanner Flight Deals" target="_blank" class="reddit">Share on Reddit</a>
+      <a href="https://wa.me/?text=Check%20out%20these%20amazing%20Skyscanner%20flight%20deals!%20https://yourwebsite.com" target="_blank" class="whatsapp">Share on WhatsApp</a>
+      <a href="mailto:?subject=Check%20out%20this%20amazing%20Skyscanner%20deal&body=I%20found%20this%20great%20Skyscanner%20deal%20%3A%20https%3A%2F%2Fyourwebsite.com" target="_blank" class="email">Share via Email</a>
+    </div>
   </footer>
+
+  <section class="article">
+    <h2>Why You Should Use Skyscanner for Your Next Flight Booking</h2>
+    <p>Skyscanner is the ultimate flight search engine that compares prices from hundreds of airlines, travel agencies, and booking sites to bring you the best deals. Here's why you should choose Skyscanner:</p>
+    <ul>
+      <li><strong>Comprehensive Search:</strong> Search flights from multiple airlines, agencies, and booking sites at once.</li>
+      <li><strong>Best Price Guarantee:</strong> Find the lowest prices available for your flights.</li>
+      <li><strong>Easy to Use:</strong> Our user-friendly interface allows you to filter, compare, and book flights in just a few clicks.</li>
+      <li><strong>Travel Tips & Alerts:</strong> Get personalized tips and price alerts to help you save even more.</li>
+      <li><strong>Affiliate Partner Deals:</strong> By booking through our affiliate links, you help support the site and get the best deals at no extra cost to you!</li>
+    </ul>
+    <p>So why wait? Start your search now and book your next adventure with Skyscanner!</p>
+    <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn">Book Now with Skyscanner!</a>
+  </section>
 
   <script>
     // Set current year dynamically
@@ -170,7 +264,7 @@
 
     // Display daily tip
     const today = new Date();
-    const dailyTip = tips[today.getDate() % tips.length]; // Get a new tip each day
+    const dailyTip = tips[today.getDate() % tips.length];
     document.getElementById("tip").textContent = dailyTip;
   </script>
 
