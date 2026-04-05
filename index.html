@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Find the best flight deals with Skyscanner. Book flights at unbeatable prices, discover travel tips, and save with our exclusive offers.">
+  <meta name="description" content="Discover unbeatable flight deals, expert travel tips, and customer testimonials. Book your next trip with ease and save big!">
   <meta name="robots" content="index, follow">
-  <title>Skyscanner Flight Deals & Travel Tips | Book Cheap Flights</title>
+  <title>Skyscanner Deals & Travel Tips | Book Cheap Flights</title>
 
   <!-- Open Graph Tags for Social Sharing -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Skyscanner Flight Deals & Travel Tips">
-  <meta property="og:description" content="Discover unbeatable flight deals with Skyscanner, travel tips, and special offers to save on your next flight.">
+  <meta property="og:title" content="Skyscanner Deals & Travel Tips">
+  <meta property="og:description" content="Find the best flight deals and travel tips with Skyscanner. Book your next trip easily with our exclusive offers!">
   <meta property="og:image" content="https://yourwebsite.com/images/social-image.jpg">
   <meta property="og:url" content="https://yourwebsite.com">
-  
+
   <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Skyscanner Flight Deals & Travel Tips">
-  <meta name="twitter:description" content="Find the best flight deals with Skyscanner and exclusive travel tips to save big on your next trip!">
+  <meta name="twitter:title" content="Skyscanner Deals & Travel Tips">
+  <meta name="twitter:description" content="Find the best flight deals and travel tips with Skyscanner. Book your next trip easily with our exclusive offers!">
   <meta name="twitter:image" content="https://yourwebsite.com/images/twitter-card.jpg">
 
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
@@ -35,9 +36,6 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
-    }
-    .section {
-      margin-bottom: 40px;
     }
     h1, h2 {
       color: #0077cc;
@@ -74,13 +72,29 @@
     .btn:hover {
       background: #005fa3;
     }
-    #tip-of-the-day {
-      font-size: 1.2em;
-      background: #f1f1f1;
-      padding: 20px;
+    .countdown {
       text-align: center;
-      border-radius: 10px;
-      margin-top: 20px;
+      font-size: 1.5em;
+      background: #ff6b00;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 30px;
+    }
+    /* FAQ Section */
+    .faq-item {
+      background-color: #e9ecef;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    .faq-item h3 {
+      color: #0077cc;
+      font-size: 1.2em;
+    }
+    .faq-item p {
+      font-size: 1em;
+      color: #555;
     }
     .testimonial {
       background: #fff5e1;
@@ -96,15 +110,6 @@
     .testimonial .author {
       font-weight: bold;
     }
-    .countdown {
-      text-align: center;
-      font-size: 1.5em;
-      background: #ff6b00;
-      color: white;
-      padding: 15px;
-      border-radius: 5px;
-      margin-top: 30px;
-    }
   </style>
 </head>
 <body>
@@ -112,28 +117,50 @@
   <div class="container">
     <header>
       <h1>🚀 Skyscanner Flight Deals & Travel Tips</h1>
-      <p>Find unbeatable flight deals, exclusive offers, and expert travel tips to save on your next flight!</p>
+      <p>Find unbeatable flight deals, expert travel tips, and customer testimonials. Book your next trip easily with exclusive offers!</p>
     </header>
 
-    <section id="flight-deals-container" class="section">
-      <h2>Latest Flight Deals</h2>
-      <div id="flight-deals"></div>
+    <!-- FAQ Section -->
+    <section id="faq-section" class="section">
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div class="faq-item">
+        <h3>How can I book a cheap flight?</h3>
+        <p>Use Skyscanner's flexible search options and set price alerts to find the best deals. Check for deals on weekdays, and book in advance to save more!</p>
+      </div>
+      <div class="faq-item">
+        <h3>What are the best times to book flights?</h3>
+        <p>The best time to book is usually 6-8 weeks before your departure. Flights are generally cheaper during mid-week (Tuesday to Thursday).</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are there any hidden fees with Skyscanner bookings?</h3>
+        <p>Skyscanner shows transparent pricing, including taxes and fees, from multiple airlines and travel agents.</p>
+      </div>
     </section>
 
-    <section id="blog-container" class="section">
-      <h2>Latest Blog Posts</h2>
-      <div id="blog-posts"></div>
+    <!-- Comparison Section -->
+    <section id="comparison-section" class="section">
+      <h2>Flight Comparison</h2>
+      <div class="deal">
+        <h3>New York to Paris - $499</h3>
+        <p>Compare the prices from top airlines.</p>
+        <a href="https://skyscanner.com/deal/new-york-to-paris" class="btn">Compare Prices</a>
+      </div>
+      <div class="deal">
+        <h3>Los Angeles to Tokyo - $399</h3>
+        <p>Check out the best offers for flights to Tokyo.</p>
+        <a href="https://skyscanner.com/deal/los-angeles-to-tokyo" class="btn">Compare Prices</a>
+      </div>
     </section>
 
-    <section id="social-media-container" class="section">
-      <h2>Latest Social Media Posts</h2>
-      <div id="social-media"></div>
-    </section>
-
+    <!-- Daily Tip Section -->
     <section id="tip-of-the-day" class="section">
-      <div id="tip"></div>
+      <h2>Daily Travel Tip</h2>
+      <div class="countdown">
+        <p>Limited Time Offer: Get up to 40% off select flight bookings! <span id="timer"></span></p>
+      </div>
     </section>
 
+    <!-- Testimonials Section -->
     <section id="testimonial-section" class="section">
       <h2>What Others Are Saying</h2>
       <div class="testimonial">
@@ -146,16 +173,21 @@
       </div>
     </section>
 
-    <section id="countdown" class="section">
-      <div class="countdown">
-        <p>Limited Time Offer: Get up to 40% off select flight bookings! <span id="timer"></span></p>
-      </div>
+    <!-- Articles, Blog Posts, Social Media Posts Section -->
+    <section id="blog-container" class="section">
+      <h2>Latest Blog Posts</h2>
+      <div id="blog-posts"></div>
+    </section>
+
+    <section id="social-media-container" class="section">
+      <h2>Latest Social Media Posts</h2>
+      <div id="social-media"></div>
     </section>
 
   </div>
 
   <script>
-    // Sample flight deals (Replace this with actual API calls)
+    // Sample flight deals (Replace with actual API calls)
     const flightDeals = [
       { destination: "New York to Paris", price: "499", affiliateLink: "https://skyscanner.com/deal/new-york-to-paris" },
       { destination: "Los Angeles to Tokyo", price: "399", affiliateLink: "https://skyscanner.com/deal/los-angeles-to-tokyo" }
@@ -172,15 +204,6 @@
       { content: "Just booked a flight to London with Skyscanner! #TravelDeals", link: "https://twitter.com/example/status/12345" },
       { content: "Check out these amazing travel tips! #Skyscanner #TravelHacks", link: "https://instagram.com/example/status/54321" }
     ];
-
-    // Generate Tip of the Day
-    const tips = [
-      "Book your flights on weekdays for the best deals!",
-      "Set up price alerts on Skyscanner to catch the best prices!",
-      "Flying mid-week is often cheaper than weekends!"
-    ];
-    const randomTip = tips[Math.floor(Math.random() * tips.length)];
-    document.getElementById('tip').innerText = randomTip;
 
     // Countdown Timer (Limited Time Offer)
     function startCountdown() {
@@ -208,7 +231,7 @@
         flightDealsContainer.innerHTML += `
           <div class="deal">
             <h3>${deal.destination} - $${deal.price}</h3>
-            <a href="${deal.affiliateLink}" class="btn">Book Now</a>
+            <a href="${deal.affiliateLink}" class="btn">Compare Prices</a>
           </div>
         `;
       });
