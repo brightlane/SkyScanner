@@ -1,127 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>500k+ Skyscanner Flight Deals - $25+ Live</title>
-<meta name="description" content="Instant $25+ flight deals for all major US airports and ZIP codes. Baggage calculator, airline selection, and mega affiliate tracking.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find the best flight deals with Skyscanner. Book flights at unbeatable prices, discover travel tips, and save with our exclusive offers.">
+  <meta name="robots" content="index, follow">
+  <title>Skyscanner Flight Deals & Travel Tips | Book Cheap Flights</title>
 
-<style>
-* {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:-apple-system,Arial,sans-serif;background:#f8f9fa;color:#333;line-height:1.6;}
-.container {max-width:1600px;margin:0 auto;padding:20px;}
-h1 {text-align:center;margin:30px 0;font-size:2.8em;background:linear-gradient(90deg,#0077cc,#28a745,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.mega-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:25px 0;}
-.mega-card {background:#fff;padding:25px;border-radius:20px;box-shadow:0 15px 50px rgba(0,0,0,0.1);border-left:6px solid #0077cc;transition:all 0.3s;overflow:hidden;}
-.mega-card:hover {transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,119,204,0.25);}
-.clickable-link {color:#0077cc !important;font-weight:900;text-decoration:none;border-bottom:2px solid #0077cc;transition:all 0.3s;cursor:pointer;display:inline-block;padding:2px 4px;border-radius:4px;}
-.clickable-link:hover {background:#0077cc;color:#fff !important;transform:scale(1.05);}
-.keyword-bomb {background:linear-gradient(135deg,#28a745,#20c997);color:#fff;padding:12px 20px;border-radius:25px;font-weight:900;font-size:14px;margin:12px 0;display:inline-block;animation:pulse 3s infinite;}
-@keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
-.seo-list {background:#f8f9fa;padding:18px;border-radius:15px;max-height:280px;overflow-y:auto;font-size:14px;line-height:1.8;}
-#progressBar {position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,#0077cc,#ff6b35,#28a745);z-index:9999;}
-.btn-mega {padding:18px 35px;background:linear-gradient(135deg,#0077cc,#00b5ff);color:#fff;text-decoration:none;border-radius:15px;font-weight:900;display:block;text-align:center;margin:20px 0;transition:all 0.4s;box-shadow:0 12px 40px rgba(0,119,204,0.4);}
-.btn-mega:hover {transform:translateY(-5px);box-shadow:0 25px 60px rgba(0,119,204,0.5);}
-@media(max-width:768px){.mega-grid{grid-template-columns:1fr;}}
-</style>
+  <!-- Open Graph Tags for Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Skyscanner Flight Deals & Travel Tips">
+  <meta property="og:description" content="Discover unbeatable flight deals with Skyscanner, travel tips, and special offers to save on your next flight.">
+  <meta property="og:image" content="https://yourwebsite.com/images/social-image.jpg">
+  <meta property="og:url" content="https://yourwebsite.com">
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Skyscanner Flight Deals & Travel Tips">
+  <meta name="twitter:description" content="Find the best flight deals with Skyscanner and exclusive travel tips to save big on your next trip!">
+  <meta name="twitter:image" content="https://yourwebsite.com/images/twitter-card.jpg">
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <style>
+    /* Basic styles for the landing page */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    h1, h2 {
+      color: #0077cc;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+    .post, .deal, .social-post {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .post:hover, .deal:hover, .social-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .btn {
+      display: inline-block;
+      background: #0077cc;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      transition: background 0.3s ease-in-out;
+    }
+    .btn:hover {
+      background: #005fa3;
+    }
+    #tip-of-the-day {
+      font-size: 1.2em;
+      background: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .testimonial {
+      background: #fff5e1;
+      border-left: 5px solid #ff6b00;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    .testimonial p {
+      font-style: italic;
+      color: #555;
+    }
+    .testimonial .author {
+      font-weight: bold;
+    }
+    .countdown {
+      text-align: center;
+      font-size: 1.5em;
+      background: #ff6b00;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
 
-<div id="progressBar"></div>
-<div class="container">
+  <div class="container">
+    <header>
+      <h1>🚀 Skyscanner Flight Deals & Travel Tips</h1>
+      <p>Find unbeatable flight deals, exclusive offers, and expert travel tips to save on your next flight!</p>
+    </header>
 
-<header style="text-align:center;margin-bottom:50px;">
-<h1>🚀 Skyscanner Mega Affiliate Deals $25+</h1>
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-mega" target="_blank" style="font-size:22px;">💥 CLICK FOR $25+ DEALS</a>
-</header>
+    <section id="flight-deals-container" class="section">
+      <h2>Latest Flight Deals</h2>
+      <div id="flight-deals"></div>
+    </section>
 
-<section id="mega-grid" class="mega-grid"></section>
+    <section id="blog-container" class="section">
+      <h2>Latest Blog Posts</h2>
+      <div id="blog-posts"></div>
+    </section>
 
-</div>
+    <section id="social-media-container" class="section">
+      <h2>Latest Social Media Posts</h2>
+      <div id="social-media"></div>
+    </section>
 
-<script>
-// CONFIG
-const AFF_URL = 'https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885';
-const batchSize = 100; // load 100 at a time
-let loaded = 0;
+    <section id="tip-of-the-day" class="section">
+      <div id="tip"></div>
+    </section>
 
-// Sample US airports and ZIPs
-const airports = ['PHL','LAX','JFK','MIA','ORD','ATL','DFW','DEN','LAS','SFO'];
-const zips = ['19103','90210','10001','60601','30301','33101','85001','94105','75201','80202'];
-const airlines = ['Spirit','Frontier','Allegiant','American','Southwest','Delta','United'];
-
-// Generate mega 500k+ entries
-const allEntries = [];
-for(let i=0;i<500000;i++){
-  const airport = airports[Math.floor(Math.random()*airports.length)];
-  const zip = zips[Math.floor(Math.random()*zips.length)];
-  const airline = airlines[Math.floor(Math.random()*airlines.length)];
-  const price = 25 + Math.floor(Math.random()*475);
-  allEntries.push({airport,zip,airline,price,name:`Flight ${airport}-${zip} via ${airline}`});
-}
-
-// Load entries dynamically
-function loadMoreLinks(){
-  const grid = document.getElementById('mega-grid');
-  const slice = allEntries.slice(loaded, loaded + batchSize);
-  slice.forEach((entry, idx) => {
-    const card = document.createElement('div');
-    card.className = 'mega-card';
-    card.innerHTML = `
-      <h2>${entry.name} - $${entry.price}</h2>
-      <div class="keyword-bomb">${entry.airline} - ${entry.airport}/${entry.zip} Deal</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;">
-        <input type="number" id="bags-${loaded+idx}" placeholder="Bags" min="1" max="5" value="1">
-        <button onclick="calcBaggage(${loaded+idx})">💰 Calc Fee</button>
+    <section id="testimonial-section" class="section">
+      <h2>What Others Are Saying</h2>
+      <div class="testimonial">
+        <p>"I saved over $300 on my flight to Europe by using Skyscanner! Best deals out there!"</p>
+        <div class="author">- Sarah, Traveler</div>
       </div>
-      <div id="fee-${loaded+idx}" style="margin-top:10px;font-weight:900;"></div>
-      <a href="${AFF_URL}" target="_blank" class="btn-mega">🎯 CLICK DEAL</a>
-    `;
-    grid.appendChild(card);
+      <div class="testimonial">
+        <p>"Skyscanner's price alerts helped me book flights to Asia for 50% off! Highly recommend."</p>
+        <div class="author">- John, Travel Enthusiast</div>
+      </div>
+    </section>
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify({
-      "@context":"https://schema.org",
-      "@type":["Product","FAQPage"],
-      "name":entry.name,
-      "description":`$${entry.price}+ flight deal via affiliate`,
-      "offers":{"@type":"Offer","priceCurrency":"USD","price":entry.price,"url":AFF_URL},
-      "mainEntity":[
-        {"@type":"Question","name":`How much is ${entry.name}?`,"acceptedAnswer":{"@type":"Answer","text":`$${entry.price}+ via affiliate.`}},
-        {"@type":"Question","name":`Which airline?`,"acceptedAnswer":{"@type":"Answer","text":entry.airline}} 
-      ]
-    });
-    grid.appendChild(script);
-  });
-  loaded += batchSize;
-}
+    <section id="countdown" class="section">
+      <div class="countdown">
+        <p>Limited Time Offer: Get up to 40% off select flight bookings! <span id="timer"></span></p>
+      </div>
+    </section>
 
-// BAGGAGE CALC
-function calcBaggage(idx){
-  const bags = parseInt(document.getElementById(`bags-${idx}`).value) || 1;
-  const fee = 30; // per bag
-  document.getElementById(`fee-${idx}`).innerHTML = `💰 Total Bags Fee: $${bags*fee}`;
-}
+  </div>
 
-// INITIAL LOAD
-loadMoreLinks();
+  <script>
+    // Sample flight deals (Replace this with actual API calls)
+    const flightDeals = [
+      { destination: "New York to Paris", price: "499", affiliateLink: "https://skyscanner.com/deal/new-york-to-paris" },
+      { destination: "Los Angeles to Tokyo", price: "399", affiliateLink: "https://skyscanner.com/deal/los-angeles-to-tokyo" }
+    ];
 
-// INFINITE SCROLL
-window.addEventListener('scroll', () => {
-  if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 200){
-    loadMoreLinks();
-  }
-});
+    // Sample blog posts (Replace with real API or RSS feed)
+    const blogPosts = [
+      { title: "How to Find Cheap Flights with Skyscanner", url: "https://yourwebsite.com/blog/cheap-flights", excerpt: "Learn how to use Skyscanner to find the best flight deals and save big!" },
+      { title: "Top 10 Travel Hacks for Budget Travelers", url: "https://yourwebsite.com/blog/travel-hacks", excerpt: "Get the best tips for saving money on your travels without sacrificing quality." }
+    ];
 
-// PROGRESS BAR
-window.onscroll = () => {
-  document.getElementById('progressBar').style.width = 
-    (document.documentElement.scrollTop / (document.documentElement.scrollHeight - window.innerHeight)) * 100 + '%';
-};
-</script>
+    // Sample social media posts (Replace with API integration)
+    const socialPosts = [
+      { content: "Just booked a flight to London with Skyscanner! #TravelDeals", link: "https://twitter.com/example/status/12345" },
+      { content: "Check out these amazing travel tips! #Skyscanner #TravelHacks", link: "https://instagram.com/example/status/54321" }
+    ];
+
+    // Generate Tip of the Day
+    const tips = [
+      "Book your flights on weekdays for the best deals!",
+      "Set up price alerts on Skyscanner to catch the best prices!",
+      "Flying mid-week is often cheaper than weekends!"
+    ];
+    const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    document.getElementById('tip').innerText = randomTip;
+
+    // Countdown Timer (Limited Time Offer)
+    function startCountdown() {
+      const endDate = new Date().getTime() + 24 * 60 * 60 * 1000; // 1 day from now
+      const countdown = document.getElementById("timer");
+      const interval = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+        if (distance <= 0) {
+          clearInterval(interval);
+          countdown.innerText = "Offer Expired";
+        } else {
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          countdown.innerText = `${hours}h ${minutes}m ${seconds}s`;
+        }
+      }, 1000);
+    }
+
+    // Inject flight deals, blog posts, and social media posts
+    function loadContent() {
+      const flightDealsContainer = document.getElementById('flight-deals');
+      flightDeals.forEach(deal => {
+        flightDealsContainer.innerHTML += `
+          <div class="deal">
+            <h3>${deal.destination} - $${deal.price}</h3>
+            <a href="${deal.affiliateLink}" class="btn">Book Now</a>
+          </div>
+        `;
+      });
+
+      const blogContainer = document.getElementById('blog-posts');
+      blogPosts.forEach(post => {
+        blogContainer.innerHTML += `
+          <div class="post">
+            <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
+            <p>${post.excerpt}</p>
+            <a href="${post.url}" class="btn">Read More</a>
+          </div>
+        `;
+      });
+
+      const socialContainer = document.getElementById('social-media');
+      socialPosts.forEach(post => {
+        socialContainer.innerHTML += `
+          <div class="social-post">
+            <p>${post.content}</p>
+            <a href="${post.link}" class="btn">View Post</a>
+          </div>
+        `;
+      });
+    }
+
+    // Call function to load content
+    loadContent();
+    startCountdown();
+  </script>
 
 </body>
 </html>
