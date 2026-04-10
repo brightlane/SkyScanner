@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Factory | SoftLife 2026 AI Automation</title>
+    <style>
+        :root { --industrial-gray: #334155; --electric-blue: #3b82f6; --bg: #f1f5f9; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: #1e293b; padding: 40px 20px; }
+        
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { margin-bottom: 40px; border-bottom: 4px solid var(--electric-blue); padding-bottom: 20px; }
+        .header h1 { font-size: 2rem; color: var(--industrial-gray); }
+
+        .prompt-card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .prompt-label { font-weight: 800; color: var(--electric-blue); font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 10px; }
+        
+        .prompt-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 6px; font-family: 'Courier New', monospace; font-size: 0.85rem; position: relative; cursor: pointer; }
+        .prompt-box:hover { background: #eff6ff; }
+        .copy-hint { font-size: 0.65rem; color: #94a3b8; margin-top: 10px; font-family: 'Inter', sans-serif; }
+
+        .workflow { display: flex; gap: 15px; margin-top: 40px; }
+        .node { flex: 1; background: var(--industrial-gray); color: white; padding: 20px; border-radius: 8px; text-align: center; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>The SoftLife Content Factory</h1>
+            <p>Master Prompts for 2026 Scale</p>
+        </div>
+
+        <div class="prompt-card">
+            <span class="prompt-label">Prompt Type: Long-Form Blog (SEO)</span>
+            <div class="prompt-box">
+                "Write a 1,200-word travel guide for [LOCATION] in 2026. Focus on 'Soft Life' travel—high-end, low-stress, and regenerative. Mention specific 2026 trends like Noctourism or AI-logistics. Tone: Sophisticated, helpful, slightly witty. Format in clean HTML for our SoftLife network."
+            </div>
+            <p class="copy-hint">Click to copy text (simulated)</p>
+        </div>
+
+        <div class="prompt-card">
+            <span class="prompt-label">Prompt Type: TikTok/Pinterest Viral Hook</span>
+            <div class="prompt-box">
+                "Generate 10 viral hooks for a travel video about [TOPIC]. The hooks must challenge a common travel belief (e.g., 'Stop staying in Paris, try...'). The goal is to drive clicks to our community.html bridge."
+            </div>
+        </div>
+
+        <div class="prompt-card">
+            <span class="prompt-label">Prompt Type: Daily Deal Writer</span>
+            <div class="prompt-box">
+                "Summarize these 5 flight deals into a high-urgency table. Highlight the savings for a 'Soft Life' traveler. Include a CTA link to our affiliate partner 21885."
+            </div>
+        </div>
+
+        <div class="workflow">
+            <div class="node">1. Input Prompt to Gemini</div>
+            <div class="node">2. Clean Output in Editor</div>
+            <div class="node">3. Push Live to Network</div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 60px; color: #94a3b8; font-size: 0.75rem;">
+        OPERATIONAL EFFICIENCY v2.6 | SOFTLIFE AUTOMATION MODULE
+    </footer>
+
+</body>
+</html>
