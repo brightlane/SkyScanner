@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Master Event Calendar | Flights, Stays & Gear Hub</title>
+    <style>
+        :root { --sky-blue: #00b4d8; --b-blue: #003580; --stub-red: #ff4d4d; --ali-orange: #ff4747; --bg: #f8fafc; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        body { background: var(--bg); color: #1e293b; line-height: 1.6; }
+
+        /* URGENCY HEADER */
+        .alert-bar { background: #0f172a; color: #38bdf8; text-align: center; padding: 10px; font-size: 0.8rem; font-weight: 800; border-bottom: 2px solid var(--sky-blue); }
+
+        header { background: white; padding: 60px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        header h1 { font-size: 2.8rem; font-weight: 900; color: var(--b-blue); letter-spacing: -1px; }
+        .hero-sub { color: #64748b; max-width: 600px; margin: 10px auto; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+        /* SKYSCANNER HACK BOX */
+        .hack-box { background: #e0f2fe; border: 2px dashed var(--sky-blue); padding: 20px; border-radius: 12px; margin-bottom: 40px; display: flex; align-items: center; gap: 20px; }
+        .hack-icon { font-size: 2rem; }
+
+        /* CALENDAR CARDS */
+        .event-card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 25px; display: grid; grid-template-columns: 100px 1fr 280px; gap: 30px; align-items: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border: 1px solid #f1f5f9; }
+        .date-side { text-align: center; border-right: 2px solid #f1f5f9; }
+        .date-side .m { font-size: 1.8rem; font-weight: 900; color: var(--b-blue); }
+        .date-side .y { font-size: 0.9rem; font-weight: 600; color: #94a3b8; }
+
+        .info-side h3 { font-size: 1.4rem; color: #0f172a; margin-bottom: 8px; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+        .tag-f1 { background: #fee2e2; color: #ef4444; }
+        .tag-worldcup { background: #fef3c7; color: #d97706; }
+        .tag-tennis { background: #dcfce7; color: #16a34a; }
+
+        /* BUTTON STACK */
+        .btn-stack { display: flex; flex-direction: column; gap: 10px; }
+        .btn { padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.85rem; text-align: center; transition: 0.2s; }
+        .btn-sky { background: var(--sky-blue); color: white; }
+        .btn-stub { background: #fff; border: 2px solid var(--stub-red); color: var(--stub-red); }
+        .btn-book { background: #fff; border: 2px solid var(--b-blue); color: var(--b-blue); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        /* ALIEXPRESS GEAR WIDGET */
+        .gear-widget { background: white; border-radius: 20px; padding: 30px; border: 2px solid var(--ali-orange); margin-top: 50px; text-align: center; }
+        .gear-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+        .gear-item { padding: 15px; border: 1px solid #f1f5f9; border-radius: 12px; }
+        .gear-btn { display: block; background: var(--ali-orange); color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.8rem; margin-top: 10px; }
+
+        @media (max-width: 850px) {
+            .event-card { grid-template-columns: 1fr; text-align: center; }
+            .date-side { border-right: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alert-bar">🔥 2026 PEAK SEASON ALERT: AIRFARE TO NORTH AMERICA INCREASING 15% WEEK-OVER-WEEK</div>
+
+    <header>
+        <p style="font-weight: 800; color: var(--sky-blue);">OFFICIAL 2026 TRAVEL COMMAND</p>
+        <h1>Global Event Calendar</h1>
+        <p class="hero-sub">The master schedule for 2026. We sync live <strong>Skyscanner</strong> flight inventory with <strong>StubHub</strong> venue access.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- THE SKYSCANNER HACK -->
+        <div class="hack-box">
+            <div class="hack-icon">💡</div>
+            <div>
+                <h4 style="color: var(--b-blue);">The "Everywhere" Hack</h4>
+                <p style="font-size: 0.85rem;">Can't find a direct flight to an event? <a href="https://skyscanner.pxf.io/c/21885/..." style="color: var(--sky-blue); font-weight: 800;">Click here to search "Everywhere"</a> and find the cheapest entry airport into the host country.</p>
+            </div>
+        </div>
+
+        <!-- MAY 2026: MIAMI F1 -->
+        <div class="event-card">
+            <div class="date-side">
+                <p class="m">MAY</p>
+                <p class="y">2026</p>
+            </div>
+            <div class="info-side">
+                <span class="tag tag-f1">Formula 1</span>
+                <h3>Miami Grand Prix 2026</h3>
+                <p style="font-size: 0.85rem; color: #64748b;">The 2026 US leg begins. High flight demand for MIA and FLL airports.</p>
+                <div style="background: #f1f5f9; padding: 10px; border-radius: 8px; margin-top: 10px; font-size: 0.75rem;">
+                    <strong>Flight Sync:</strong> Best routes via Skyscanner "Price Alerts" now active.
+                </div>
+            </div>
+            <div class="btn-stack">
+                <a href="https://skyscanner.pxf.io/c/21885/..." class="btn btn-sky">Compare MIA Flights</a>
+                <a href="https://stubhub.prf.hn/click/camref:1100l5mzXr" class="btn btn-stub">Search Tickets</a>
+                <a href="https://www.booking.com/?aid=1858279" class="btn btn-book">Miami Hotel Map</a>
+            </div>
+        </div>
+
+        <!-- JUNE 2026: WORLD CUP -->
+        <div class="event-card" style="border: 2px solid var(--gold);">
+            <div class="date-side">
+                <p class="m">JUN</p>
+                <p class="y">2026</p>
+            </div>
+            <div class="info-side">
+                <span class="tag tag-worldcup">Mega Event</span>
+                <h3>FIFA World Cup 2026 (Openers)</h3>
+                <p style="font-size: 0.85rem; color: #64748b;">Global hub cities: MEX, LAX, JFK. Multi-city searches recommended for best value.</p>
+                <p style="font-size: 0.75rem; margin-top: 10px; color: var(--stub-red);"><strong>Note:</strong> Most hotels near stadiums are now 70% booked.</p>
+            </div>
+            <div class="btn-stack">
+                <a href="https://skyscanner.pxf.io/c/21885/..." class="btn btn-sky">World Cup Airfare Hub</a>
+                <a href="https://stubhub.prf.hn/click/camref:1100l5mzXr" class="btn btn-stub">Check Match Tickets</a>
+                <a href="https://www.booking.com/?aid=1858279" class="btn btn-book">Find Available Rooms</a>
+            </div>
+        </div>
+
+        <!-- OCTOBER 2026: AUSTIN F1 -->
+        <div class="event-card">
+            <div class="date-side">
+                <p class="m">OCT</p>
+                <p class="y">2026</p>
+            </div>
+            <div class="info-side">
+                <span class="tag tag-f1">Formula 1</span>
+                <h3>United States Grand Prix</h3>
+                <p style="font-size: 0.85rem; color: #64748b;">Austin (COTA). Flights to AUS are spiking. Consider San Antonio (SAT) on Skyscanner.</p>
+            </div>
+            <div class="btn-stack">
+                <a href="https://skyscanner.pxf.io/c/21885/..." class="btn btn-sky">Flights to Austin</a>
+                <a href="https://stubhub.prf.hn/click/camref:1100l5mzXr" class="btn btn-stub">Race Tickets</a>
+                <a href="https://www.booking.com/?aid=1858279" class="btn btn-book">Austin Stays</a>
+            </div>
+        </div>
+
+        <!-- MANDATORY GEAR WIDGET (AliExpress/Awin) -->
+        <div class="gear-widget">
+            <h2 style="color: var(--ali-orange);">🎒 2026 Stadium Survival Kit</h2>
+            <p style="font-size: 0.9rem; color: #64748b;">Official 2026 venue policies require specific gear. Get yours via AliExpress before your flight.</p>
+            <div class="gear-grid">
+                <div class="gear-item">
+                    <strong>Clear Stadium Bag</strong>
+                    <p style="font-size: 0.7rem;">Mandatory for US Stadiums</p>
+                    <a href="https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692" class="gear-btn">View on AliExpress</a>
+                </div>
+                <div class="gear-item">
+                    <strong>Universal GaN Charger</strong>
+                    <p style="font-size: 0.7rem;">Fast-Charge in any Hotel</p>
+                    <a href="https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692" class="gear-btn">Get the Deal</a>
+                </div>
+                <div class="gear-item">
+                    <strong>Noise-Canceling Pods</strong>
+                    <p style="font-size: 0.7rem;">For Long-Haul Flights</p>
+                    <a href="https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692" class="gear-btn">Check Price</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer style="background: #0f172a; color: white; padding: 60px 20px; text-align: center; margin-top: 80px;">
+        <p style="font-size: 0.8rem; opacity: 0.6;">Affiliate Tracking Active: Skyscanner (21885) | StubHub (1100l5mzXr) | Booking (1858279) | Ali (1166692)</p>
+        <p style="margin-top: 20px; font-size: 0.7rem;">We cross-reference billions of data points to provide 2026 logistics. Safe travels.</p>
+    </footer>
+
+</body>
+</html>
