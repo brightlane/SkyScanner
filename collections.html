@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Curated Travel Collections | SoftLife Signature Trips</title>
+    <style>
+        :root { --soft-gold: #c5a358; --dark-slate: #1e293b; --cream: #fdfbf7; --sky: #0072b2; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--cream); color: var(--dark-slate); }
+        
+        .nav { background: #fff; padding: 20px; text-align: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
+        .nav a { color: var(--dark-slate); text-decoration: none; margin: 0 15px; font-weight: 700; font-size: 0.8rem; }
+
+        .hero { padding: 80px 20px; text-align: center; background: white; }
+        .hero h1 { font-size: 2.8rem; color: var(--dark-slate); margin-bottom: 15px; letter-spacing: -1px; }
+
+        .persona-grid { max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        
+        .collection-card { background: white; border-radius: 25px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; transition: 0.4s; }
+        .collection-card:hover { transform: translateY(-10px); border-color: var(--soft-gold); }
+        
+        .card-img { height: 250px; background-size: cover; background-position: center; position: relative; }
+        .card-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.6)); }
+        .card-tag { position: absolute; top: 20px; left: 20px; background: var(--soft-gold); color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.7rem; font-weight: 900; }
+
+        .card-body { padding: 30px; flex-grow: 1; }
+        .card-body h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .card-body p { color: #64748b; font-size: 0.95rem; margin-bottom: 20px; }
+
+        .btn-link { color: var(--sky); text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; }
+        .btn-link:after { content: ' →'; }
+
+        .footer { background: white; padding: 60px 20px; text-align: center; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #94a3b8; }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html">SEARCH</a>
+        <a href="guide.html">GUIDE</a>
+        <a href="hub.html">GLOBAL HUB</a>
+        <a href="deals.html">LIVE DEALS</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Travel Collections <span style="color: var(--soft-gold);">2026</span></h1>
+        <p>Curated flight paths for your specific lifestyle and goals.</p>
+    </header>
+
+    <div class="persona-grid">
+        <!-- Collection 1 -->
+        <div class="collection-card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=60');">
+                <div class="card-overlay"></div>
+                <span class="card-tag">NEW TREND</span>
+            </div>
+            <div class="card-body">
+                <h3>The Digital Nomad Path</h3>
+                <p>Reliable Wi-Fi hubs, low cost of living, and aesthetic workspaces in Lisbon, Chiang Mai, and Medellín.</p>
+                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-link">EXPLORE NOMAD DEALS</a>
+            </div>
+        </div>
+
+        <!-- Collection 2 -->
+        <div class="collection-card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=600&q=60');">
+                <div class="card-overlay"></div>
+                <span class="card-tag">SAFETY FIRST</span>
+            </div>
+            <div class="card-body">
+                <h3>Solo Female Signature</h3>
+                <p>The safest, most welcoming routes for independent women. Focusing on Scandinavia, Japan, and New Zealand.</p>
+                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-link">VIEW SAFE ROUTES</a>
+            </div>
+        </div>
+
+        <!-- Collection 3 -->
+        <div class="collection-card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=60');">
+                <div class="card-overlay"></div>
+                <span class="card-tag">LUXURY HACK</span>
+            </div>
+            <div class="card-body">
+                <h3>Champagne Taste, Soda Budget</h3>
+                <p>Experience First and Business class luxury for Economy prices using error fares and regional hub-stitching.</p>
+                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-link">REVEAL LUXURY DEALS</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 SoftLife Travel Network | <a href="hub.html" style="color:inherit;">Global Directory</a> | <a href="deals.html" style="color:inherit;">Live Tracker</a></p>
+    </footer>
+
+</body>
+</html>
