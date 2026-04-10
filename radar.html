@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Travel Radar | World Cup, Set-Jetting & Coolcations</title>
+    <style>
+        :root { --neon-blue: #00f2ff; --dark-depth: #0a0a0c; --glass: rgba(255, 255, 255, 0.05); }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--dark-depth); color: #e2e8f0; line-height: 1.6; }
+        
+        .nav { padding: 20px; text-align: center; border-bottom: 1px solid #1e293b; background: #000; }
+        .nav a { color: #94a3b8; text-decoration: none; margin: 0 15px; font-size: 0.8rem; font-weight: 600; }
+
+        .header { padding: 80px 20px; text-align: center; background: radial-gradient(circle at center, #1e293b 0%, #0a0a0c 100%); }
+        .live-tag { background: #ef4444; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 15px; display: inline-block; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .radar-grid { max-width: 1100px; margin: -40px auto 60px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        
+        .event-card { background: var(--glass); border: 1px solid #334155; border-radius: 24px; padding: 30px; backdrop-filter: blur(10px); transition: 0.3s; }
+        .event-card:hover { border-color: var(--neon-blue); transform: translateY(-5px); }
+        
+        .date-badge { color: var(--neon-blue); font-weight: 800; font-size: 0.85rem; display: block; margin-bottom: 10px; }
+        h3 { font-size: 1.6rem; margin-bottom: 15px; color: #fff; }
+        .trend-meta { font-size: 0.8rem; color: #64748b; margin-bottom: 20px; display: block; }
+        
+        .cta-btn { display: inline-block; width: 100%; text-align: center; padding: 14px; background: #fff; color: #000; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 0.9rem; transition: 0.2s; }
+        .cta-btn:hover { background: var(--neon-blue); }
+
+        footer { text-align: center; padding: 60px; border-top: 1px solid #1e293b; font-size: 0.8rem; color: #475569; }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html">DASHBOARD</a>
+        <a href="routes.html">FLIGHTS</a>
+        <a href="vault.html">THE VAULT</a>
+    </nav>
+
+    <div class="header">
+        <div class="live-tag">● 2026 LIVE RADAR</div>
+        <h1>The Cultural Migration</h1>
+        <p>Where the world is moving this year. Based on search volume and global event scheduling.</p>
+    </div>
+
+    <div class="radar-grid">
+        <!-- Event 1: World Cup -->
+        <div class="event-card">
+            <span class="date-badge">JUNE - JULY 2026</span>
+            <h3>FIFA World Cup: North America</h3>
+            <span class="trend-meta">Niches: Sports, Logistics, Short-term Rentals</span>
+            <p>The largest sporting event in history. Demand for flights to NYC, LA, Mexico City, and Toronto is peaking. Use our route finder to secure "Adjacent City" arrivals.</p>
+            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="cta-btn">View Route Availability</a>
+        </div>
+
+        <!-- Trend 2: Coolcations -->
