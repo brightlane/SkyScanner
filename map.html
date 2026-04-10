@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Discovery Map 2026 | SoftLife Hidden Gems</title>
+    <style>
+        :root { --electric: #00f2ff; --bg-dark: #0a0a0b; --card-dark: #161618; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg-dark); color: #fff; overflow-x: hidden; }
+        
+        .nav { padding: 20px; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #888; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-left: 20px; }
+        .nav a:hover { color: var(--electric); }
+
+        .map-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .map-header { margin-bottom: 40px; border-left: 2px solid var(--electric); padding-left: 20px; }
+        .map-header h1 { font-size: 2.5rem; font-weight: 200; }
+        .map-header p { color: #666; font-size: 0.9rem; margin-top: 5px; }
+
+        .discovery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gem-card { background: var(--card-dark); border: 1px solid #222; border-radius: 4px; overflow: hidden; transition: 0.3s; cursor: crosshair; }
+        .gem-card:hover { border-color: var(--electric); transform: translateY(-5px); }
+        
+        .gem-img { width: 100%; height: 200px; background: #111; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .gem-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .coord-tag { position: absolute; top: 10px; right: 10px; font-family: monospace; font-size: 0.6rem; color: var(--electric); background: rgba(0,0,0,0.7); padding: 2px 6px; }
+
+        .gem-info { padding: 20px; }
+        .gem-info h3 { font-size: 1.2rem; margin-bottom: 8px; font-weight: 400; }
+        .vibe-tag { display: inline-block; font-size: 0.6rem; font-weight: 900; background: #222; padding: 3px 8px; border-radius: 2px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; }
+
+        .filter-bar { display: flex; gap: 10px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 10px; }
+        .filter-btn { padding: 8px 20px; border: 1px solid #222; background: none; color: #666; border-radius: 20px; font-size: 0.7rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .filter-btn.active { border-color: var(--electric); color: var(--electric); }
+
+        .booking-cta { margin-top: 60px; text-align: center; border-top: 1px solid #222; padding-top: 60px; }
+        .btn-glow { display: inline-block; padding: 15px 40px; background: var(--electric); color: #000; text-decoration: none; font-weight: 900; border-radius: 2px; box-shadow: 0 0 20px rgba(0,242,255,0.2); transition: 0.3s; }
+        .btn-glow:hover { box-shadow: 0 0 40px rgba(0,242,255,0.5); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <span style="font-weight: 900; color: #fff;">SOFTLIFE <span style="color: var(--electric);">26</span></span>
+        <div>
+            <a href="index.html">DASHBOARD</a>
+            <a href="packing.html">GEAR</a>
+            <a href="eco.html">ECO</a>
+        </div>
+    </nav>
+
+    <div class="map-container">
+        <div class="map-header">
+            <h1>Discovery Index</h1>
+            <p>Non-Algorithmic destinations for the intentional traveler.</p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn active">ALL REGIONS</button>
+            <button class="filter-btn">REWILDING ZONES</button>
+            <button class="filter-btn">SILENT CITIES</button>
+            <button class="filter-btn">ARCHIPELAGO LOGIC</button>
+        </div>
+
+        <div class="discovery-grid">
+            <!-- Gem 1 -->
+            <div class="gem-card">
+                <div class="gem-img">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=600&q=80" alt="Italy">
+                    <span class="coord-tag">40.6333° N, 14.6027° E</span>
+                </div>
+                <div class="gem-info">
+                    <span class="vibe-tag">Silent Luxury</span>
+                    <h3>The Cilento Coast, Italy</h3>
+                    <p style="color: #888; font-size: 0.8rem;">Beyond Amalfi. Zero crowds, ancient olive groves, and 2026's best farm-to-table "Blue Zone" retreats.</p>
+                </div>
+            </div>
+
+            <!-- Gem 2 -->
+            <div class="gem-card">
+                <div class="gem-img">
+                    <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80" alt="Vietnam">
+                    <span class="coord-tag">22.3364° N, 103.8438° E</span>
+                </div>
+                <div class="gem-info">
+                    <span class="vibe-tag">Rewilding</span>
+                    <h3>Ha Giang Loop, Vietnam</h3>
+                    <p style="color: #888; font-size: 0.8rem;">The 2026 upgrade: New eco-lodges that fund local Hmong reforestation efforts.</p>
+                </div>
+            </div>
+
+            <!-- Gem 3 -->
+            <div class="gem-card">
+                <div class="gem-img">
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80" alt="Greece">
+                    <span class="coord-tag">36.3932° N, 25.4615° E</span>
+                </div>
+                <div class="gem-info">
+                    <span class="vibe-tag">Archipelago Logic</span>
+                    <h3>Sifnos, Cyclades</h3>
+                    <p style="color: #888; font-size: 0.8rem;">The "Chef's Island." No airports, no mega-clubs—just pure 2026 Soft Life gastronomy.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-cta">
+            <h2>Ready to vanish?</h2>
+            <p style="color: #666; margin-bottom: 30px;">Access the full coordinate database for 2026.</p>
+            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-glow">UNLOCK HIDDEN STAYS</a>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 60px; color: #333; font-size: 0.7rem; letter-spacing: 2px;">
+        MAP VERSION 4.0.2 // CARTOGRAPHY BY SOFTLIFE
+    </footer>
+
+</body>
+</html>
