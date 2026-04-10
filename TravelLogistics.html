@@ -1,0 +1,20 @@
+<div class="card" style="border-left: 4px solid #00d4ff; background: rgba(0, 212, 255, 0.05);">
+    <h3 style="color: #00d4ff; margin-bottom: 15px;">✈️ Smart Travel Sync: ${city.name} 2026</h3>
+    <p style="font-size: 0.9rem; margin-bottom: 20px;">We've pre-loaded the best routes to <strong>${city.airportName}</strong> for your event dates.</p>
+    
+    <!-- SKYSCANNER WIDGET CONTAINER -->
+    <div 
+        data-skyscanner-widget="FlightSearchWidget" 
+        data-locale="en-US" 
+        data-market="US" 
+        data-currency="USD" 
+        data-destination-iata-code="${city.iataCode}" 
+        data-associate-id="21885"
+        style="width: 100%;">
+    </div>
+    <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+    
+    <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 15px;">
+        *Tip: 2026 data shows <strong>Fridays</strong> are currently the cheapest departure days for international event travel.
+    </p>
+</div>
