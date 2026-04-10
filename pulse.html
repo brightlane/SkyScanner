@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Pulse | SoftLife Network Analytics 2026</title>
+    <style>
+        :root { --glow-blue: #0ea5e9; --grid: #1e293b; --bg: #020617; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: #f8fafc; padding: 40px 20px; }
+        
+        .header { max-width: 1100px; margin: 0 auto 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--grid); padding-bottom: 20px; }
+        .header h1 { font-size: 1.5rem; font-weight: 200; letter-spacing: 2px; }
+        .system-time { font-family: 'Courier New', monospace; font-size: 0.8rem; color: var(--glow-blue); }
+
+        .stat-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .stat-card { background: rgba(30, 41, 59, 0.5); border: 1px solid var(--grid); padding: 25px; border-radius: 4px; position: relative; overflow: hidden; }
+        .stat-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--glow-blue); box-shadow: 0 0 10px var(--glow-blue); }
+        
+        .label { font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px; }
+        .value { font-size: 2rem; font-weight: 800; margin: 10px 0; display: block; }
+        .trend { font-size: 0.75rem; color: #22c55e; font-weight: 700; }
+
+        .module-list { max-width: 1100px; margin: 40px auto; background: rgba(30, 41, 59, 0.2); border: 1px solid var(--grid); border-radius: 8px; }
+        .module-item { display: flex; justify-content: space-between; padding: 20px; border-bottom: 1px solid var(--grid); }
+        .module-item:last-child { border: none; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block; margin-right: 10px; box-shadow: 0 0 8px #22c55e; }
+
+        .btn-update { display: inline-block; background: var(--glow-blue); color: #fff; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-size: 0.8rem; font-weight: 700; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>SOFTLIFE // PULSE</h1>
+        <div class="system-time">UTC [2026.04.10] :: SYSTEM ACTIVE</div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <span class="label">Network Reach</span>
+            <span class="value">284.2K</span>
+            <span class="trend">↑ 14.2% (Monthly)</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Affiliate Conversion</span>
+            <span class="value">3.82%</span>
+            <span class="trend">↑ 0.5% (Weekly)</span>
+        </div>
+        <div class="stat-card">
+            <span class="label">Avg. Order Value</span>
+            <span class="value">$1,142</span>
+            <span class="trend">↑ $89 (Legacy Hub)</span>
+        </div>
+    </div>
+
+    <div class="module-list">
+        <div class="module-item">
+            <span><span class="status-dot"></span>Page 18: Eco-Luxury Hub</span>
+            <span style="color: var(--glow-blue);">High Intent Traffic Detected</span>
+        </div>
+        <div class="module-item">
+            <span><span class="status-dot"></span>Page 24: Community Bridge</span>
+            <span>Link-in-Bio Performance: Peak</span>
+        </div>
+        <div class="module-item">
+            <span><span class="status-dot" style="background: #f59e0b; box-shadow: 0 0 8px #f59e0b;"></span>Page 10: Asia Destinations</span>
+            <span style="color: #f59e0b;">Index Refresh Required</span>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="revenue.html" class="btn-update">View Detailed Revenue Map</a>
+    </div>
+
+    <footer style="text-align: center; padding: 60px; color: #475569; font-size: 0.7rem;">
+        SENSORY ANALYTICS v2026.4 | DATA ENCRYPTED
+    </footer>
+
+</body>
+</html>
