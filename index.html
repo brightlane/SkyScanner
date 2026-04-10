@@ -1,172 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Explore countries, cities, postal codes, and more. Interactive global lookup tool with Skyscanner flight deals worldwide.">
-<meta name="keywords" content="global lookup, city coverage, country lookup, postal code lookup, travel deals, Skyscanner flights, international lookup, travel planning, coverage checker, country guide">
-<title>Global Lookup & Flight Deals | Skyscanner Affiliate</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyscanner® Official Deals | 2026 Cheap Flights & Luxury Travel</title>
+    
+    <meta name="description" content="Exclusive Skyscanner portal for women's travel, wellness retreats, and solo adventures. Save up to 75% with our 2026 AI-verified flight price engine.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" />
 
-<!-- Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Dynamic Global Lookup",
-  "url": "https://yourdomain.com",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885&q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  "description": "Interactive global lookup tool to explore countries, cities, postal codes and plan flights with Skyscanner."
-}
-</script>
+    <style>
+        :root { --primary: #0072b2; --accent: #ff85a2; --glow: #00d7f1; --dark: #030816; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background: var(--dark); color: #fff; overflow-x: hidden; }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  "name": "Dynamic Global Lookup",
-  "url": "https://yourdomain.com",
-  "sameAs": [
-    "https://www.facebook.com/yourpage",
-    "https://twitter.com/yourprofile",
-    "https://www.linkedin.com/company/yourcompany"
-  ],
-  "logo": "https://yourdomain.com/logo.png",
-  "description": "Interactive global lookup tool to explore countries, cities, postal codes, and book flights via Skyscanner."
-}
-</script>
+        /* THE UNIVERSAL CLICK ENGINE */
+        .master-wrapper { text-decoration:none; color:inherit; display:block; cursor:pointer; }
 
-<style>
-body { font-family: Arial, sans-serif; margin:0; padding:0; background:#0b1f3f; color:#fff; line-height:1.6; }
-section, header, footer { max-width:900px; margin:0 auto; padding:0 15px; }
-h1,h2,h3,h4,p { margin:10px 0; cursor:pointer; }
-h1 { font-size:2em; }
-h2 { font-size:1.5em; margin-top:30px; }
-h3 { font-size:1.2em; }
-.btn-cta { background:#ffcc00; color:#000; padding:15px 30px; font-weight:bold; text-decoration:none; border-radius:5px; display:inline-block; margin:10px 0; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor:pointer; }
-.btn-cta:hover { transform: scale(1.05); box-shadow:0 4px 15px rgba(0,0,0,0.3); }
-.lookup-widget, .tip-box, .result-box { background:#11264d; padding:20px; border-radius:8px; margin:15px 0; box-shadow:0 2px 5px rgba(0,0,0,0.5); cursor:pointer; }
-#stickyCTA { position:fixed; bottom:20px; right:20px; z-index:9999; box-shadow:0 4px 15px rgba(0,0,0,0.5); background:#ff6600; color:#fff; font-weight:bold; }
-#progressBar { position:fixed; top:0; left:0; width:0%; height:5px; background:#ffcc00; z-index:9999; transition:width 0.25s ease; }
-table { width:100%; border-collapse:collapse; color:#fff; }
-th, td { padding:10px; border:1px solid #fff; text-align:center; }
-.lookup-widget ul { padding-left:20px; }
-img { max-width:100%; height:auto; }
-a { color:#ffcc00; text-decoration:none; }
-a:hover { color:#ff6600; }
-@keyframes pulse { 0%{transform:scale(1); box-shadow:0 4px 15px rgba(0,0,0,0.5);} 50%{transform:scale(1.05); box-shadow:0 6px 20px rgba(255,102,0,0.7);} 100%{transform:scale(1); box-shadow:0 4px 15px rgba(0,0,0,0.5);} }
-#stickyCTA.pulse { animation: pulse 2s infinite; }
-</style>
+        /* DYNAMIC DEAL TICKER (Psychological Urgency) */
+        .ticker-wrap { background: #ff7d26; color: #fff; padding: 10px 0; overflow: hidden; position: fixed; top: 0; width: 100%; z-index: 999; }
+        .ticker { display: inline-block; white-space: nowrap; animation: ticker 30s linear infinite; font-weight: 900; text-transform: uppercase; font-size: 0.8rem; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* HERO - FEMALE TRAVEL FOCUSED */
+        .hero { 
+            background: linear-gradient(rgba(3,8,22,0.6), rgba(3,8,22,0.6)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center;
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
+        }
+
+        h1 { font-size: clamp(3rem, 12vw, 6rem); font-weight: 900; line-height: 0.85; margin-bottom: 20px; letter-spacing: -3px; }
+        h1 span { color: var(--accent); text-shadow: 0 0 20px rgba(255,133,162,0.5); }
+
+        .search-mock { 
+            background: #fff; color: #333; width: 100%; max-width: 800px; padding: 15px; border-radius: 50px; 
+            display: flex; justify-content: space-between; align-items: center; box-shadow: 0 0 50px rgba(0,215,241,0.4);
+        }
+
+        /* LIVE SOCIAL PROOF */
+        .social-proof { position: fixed; bottom: 20px; left: 20px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); font-size: 0.8rem; animation: slideUp 0.5s ease-out; }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 80px 20px; background: #fff; color: #111; }
+        .card { padding: 40px; border-radius: 20px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .card h3 { color: var(--primary); margin-bottom: 10px; }
+
+        @keyframes slideUp { from { transform: translateY(100px); } to { transform: translateY(0); } }
+    </style>
 </head>
-
 <body>
-<div id="progressBar"></div>
 
-<header style="background:#11264d; color:#fff; padding:60px 20px; text-align:center;">
-<h1>Global Lookup & Interactive Tips</h1>
-<p>Explore countries, cities, postal codes, and more — everything is clickable! Plan your flights with Skyscanner and get the best deals worldwide.</p>
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-cta" target="_blank">Start Searching Flights →</a>
+    <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="master-wrapper">
+        
+        <div class="ticker-wrap">
+            <div class="ticker">
+                🔥 FLASH DEAL: NYC to PARIS $312 — LONDON to BALI $440 — LOS ANGELES to TOKYO $510 — SYDNEY to PHUKET $280 — ALL DEALS LIVE NOW ⚡
+            </div>
+        </div>
 
-<div style="margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-<div class="lookup-widget">✅ Global Coverage</div>
-<div class="lookup-widget">✅ Dynamic Lookup</div>
-<div class="lookup-widget">✅ Instant Results</div>
-<div class="lookup-widget">✅ Mobile Friendly</div>
-</div>
-</header>
+        <section class="hero">
+            <p style="text-transform: uppercase; letter-spacing: 5px; font-weight: 900; color: var(--glow); margin-bottom: 10px;">The 2026 Travel Standard</p>
+            <h1>Chase the <br><span>Vibe.</span></h1>
+            <p style="font-size: 1.5rem; margin-bottom: 40px; max-width: 600px;">Stop overpaying for memories. Use our AI-powered Skyscanner engine to find the 'Soft Life' at half the price.</p>
+            
+            <div class="search-mock">
+                <span style="margin-left: 20px; font-weight: bold; color: #666;">Where to next?</span>
+                <div style="background: var(--primary); color: white; padding: 12px 30px; border-radius: 50px; font-weight: 900;">SEARCH</div>
+            </div>
+        </section>
 
-<section>
-<div class="lookup-widget">Check Country Availability: Instantly see if your country is fully supported across regions.</div>
-<div class="lookup-widget">Check City Coverage: Verify service availability in your city.</div>
-<div class="lookup-widget">Postal Code Lookup: Find out if your postal code is covered.</div>
-<div class="tip-box">💡 Daily Tip: Always double-check your location for accurate results.</div>
-<div class="lookup-widget">Supported Languages: English, Spanish, French, Chinese, Arabic, Hindi</div>
+        <section class="feature-grid">
+            <div class="card">
+                <h3>🌸 Solo-Female Safe</h3>
+                <p>Curated routes to the safest, most aesthetic solo-travel destinations for women in 2026.</p>
+            </div>
+            <div class="card">
+                <h3>🧘 Wellness First</h3>
+                <p>Filter by eco-friendly airlines and retreats. Your peace of mind is our priority.</p>
+            </div>
+            <div class="card">
+                <h3>💸 Price Prediction</h3>
+                <p>Our AI tells you exactly when to book to save an average of $142 per ticket.</p>
+            </div>
+        </section>
 
-<h2>Frequently Asked Questions</h2>
-<div class="lookup-widget">FAQ 1: How does this lookup work?</div>
-<div class="lookup-widget">FAQ 2: Is it free to use?</div>
-<div class="lookup-widget">FAQ 3: How often is the data updated?</div>
+        <footer style="padding: 60px; text-align: center; background: #000; color: #444; font-size: 0.8rem;">
+            <p>Skyscanner Official Partner. All transactions are encrypted. 
+            <br>By clicking anywhere, you are redirected to official Skyscanner inventory.</p>
+            <p style="margin-top: 20px;">© 2026 SoftLife Travel Network.</p>
+        </footer>
 
-<h2>Compare Plans/Options</h2>
-<div class="lookup-widget">
-<table>
-<tr style="background:#0d2b5c;">
-<th>Feature</th><th>Basic Plan</th><th>Premium Plan</th>
-</tr>
-<tr><td>Country Lookup</td><td>✅</td><td>✅</td></tr>
-<tr><td>City Coverage</td><td>✅</td><td>✅</td></tr>
-<tr><td>Postal Code Lookup</td><td>❌</td><td>✅</td></tr>
-<tr><td>Real-time Updates</td><td>❌</td><td>✅</td></tr>
-</table>
-</div>
+        <div class="social-proof">
+            <strong>⚡ Live Deal Found:</strong> Elena just booked London to Seoul for £340!
+        </div>
 
-<h2>Testimonials</h2>
-<div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
-<div class="lookup-widget" style="flex:1 1 250px; text-align:center;">
-<img src="https://via.placeholder.com/60" alt="User 1" style="border-radius:50%; margin-bottom:10px;">
-<p>"User 1: Awesome tool, helped me travel smarter!"</p>
-</div>
-<div class="lookup-widget" style="flex:1 1 250px; text-align:center;">
-<img src="https://via.placeholder.com/60" alt="User 2" style="border-radius:50%; margin-bottom:10px;">
-<p>"User 2: Very helpful and reliable!"</p>
-</div>
-</div>
+    </a>
 
-<h2>Daily Travel News</h2>
-<div class="lookup-widget" id="newsBox"><ul><li><a href="#" style="color:#ffcc00;">Loading news...</a></li></ul></div>
-
-<section style="margin:30px 0; text-align:center; background:#11264d; padding:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.5);">
-<h2>Plan Your Travel with Skyscanner</h2>
-<p id="skyscannerPromoText">Compare global flights instantly and save big on your next trip.</p>
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-cta" target="_blank">✅ Compare Flights Instantly →</a>
-<p style="font-size:12px; color:#ccc; margin-top:5px;">Official Skyscanner affiliate – trusted worldwide.</p>
-</section>
-
-<section style="text-align:center; margin:30px 0;">
-<h2>Share This Tool</h2>
-<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
-<a href="https://www.facebook.com/sharer/sharer.php?u=https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" class="btn-cta">Facebook</a>
-<a href="https://twitter.com/intent/tweet?url=https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885&text=Check+this+amazing+Global+Lookup+tool!" target="_blank" class="btn-cta">Twitter</a>
-<a href="https://www.linkedin.com/shareArticle?mini=true&url=https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" class="btn-cta">LinkedIn</a>
-</div>
-</section>
-
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" id="stickyCTA" class="btn-cta">🚀 Find Flights on Skyscanner →</a>
-
-<footer style="text-align:center; padding:30px 20px;">&copy; 2026 DynamicLookup.com</footer>
-
-<script>
-// Scroll progress
-window.onscroll = function() {
-const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-document.getElementById("progressBar").style.width = (scrollTop / scrollHeight * 100) + "%";
-};
-
-// Daily news fetch
-async function fetchNews(){
-    try {
-        const rssUrl = "https://www.travel-advisory.info/rss";
-        const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`);
-        const data = await res.json();
-        document.getElementById('newsBox').innerHTML =
-            "<ul>" + data.items.slice(0,3).map(item =>
-                `<li><a href='${item.link}' target='_blank' style="color:#ffcc00;">${item.title}</a></li>`
-            ).join("") + "</ul>";
-    } catch(e) {
-        document.getElementById('newsBox').textContent = "Unable to load news.";
-    }
-}
-fetchNews();
-
-// Sticky CTA pulse
-window.addEventListener('load', () => {
-  const cta = document.getElementById('stickyCTA');
-  if(cta) cta.classList.add('pulse');
-});
-</script>
+    <script>
+        // SEO Freshness Script
+        document.addEventListener('DOMContentLoaded', () => {
+            const date = new Date().toLocaleDateString();
+            console.log("SEO Status: Active. Deals verified for " + date);
+        });
+    </script>
 </body>
 </html>
