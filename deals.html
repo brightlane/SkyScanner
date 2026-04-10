@@ -6,101 +6,126 @@
     <title>Live Flight Deals & FAQ 2026 | SoftLife Travel Tracker</title>
     <meta name="description" content="Real-time flight price drops and frequently asked questions about booking in 2026. Verified Skyscanner price tracking.">
     <style>
-        :root { --accent: #ff85a2; --sky: #0072b2; --dark: #030816; --success: #22c55e; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        :root { --accent: #ff85a2; --sky-blue: #00b4d8; --dark: #030816; --success: #22c55e; --bg-light: #f8fafc; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', -apple-system, sans-serif; }
         body { background: #fff; color: #1e293b; line-height: 1.6; }
         
-        .nav { background: var(--dark); padding: 15px; text-align: center; }
-        .nav a { color: white; text-decoration: none; margin: 0 10px; font-size: 0.8rem; font-weight: 700; }
+        /* NAVIGATION */
+        .nav { background: var(--dark); padding: 20px; text-align: center; border-bottom: 3px solid var(--accent); }
+        .nav a { color: white; text-decoration: none; margin: 0 15px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; }
+        .nav a:hover { color: var(--accent); }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
         
         /* LIVE FEED STYLING */
-        .live-badge { display: inline-block; background: var(--success); color: white; padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 900; animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        .live-badge { display: inline-block; background: var(--success); color: white; padding: 6px 16px; border-radius: 50px; font-size: 0.75rem; font-weight: 900; animation: blink 1.5s infinite; letter-spacing: 1px; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
 
-        .deal-row { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #e2e8f0; transition: 0.3s; text-decoration: none; color: inherit; }
-        .deal-row:hover { background: #f8fafc; transform: translateX(5px); }
-        .route { font-weight: 900; font-size: 1.1rem; }
-        .price-drop { color: var(--success); font-weight: 900; }
+        .deal-container { margin-top: 30px; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .deal-row { display: flex; justify-content: space-between; align-items: center; padding: 25px; border-bottom: 1px solid #e2e8f0; transition: 0.3s; text-decoration: none; color: inherit; background: white; }
+        .deal-row:last-child { border-bottom: none; }
+        .deal-row:hover { background: var(--bg-light); transform: scale(1.01); z-index: 10; }
+        
+        .route { font-weight: 900; font-size: 1.2rem; color: var(--dark); }
+        .price-drop { background: #f0fdf4; color: var(--success); font-weight: 900; padding: 8px 15px; border-radius: 8px; font-size: 1.1rem; border: 1px solid #dcfce7; }
+
+        /* PRO TIP BOX */
+        .pro-tip { background: #fff1f2; border: 2px dashed var(--accent); padding: 25px; border-radius: 15px; margin: 40px 0; }
+        .pro-tip h4 { color: #be123c; margin-bottom: 5px; font-size: 1.1rem; }
 
         /* FAQ STYLING */
-        .faq-section { margin-top: 60px; }
-        .faq-item { margin-bottom: 30px; border-left: 3px solid var(--accent); padding-left: 20px; }
-        .faq-item h3 { color: var(--dark); margin-bottom: 10px; font-size: 1.2rem; }
+        .faq-section { margin-top: 80px; }
+        .faq-header { text-align: center; margin-bottom: 40px; }
+        .faq-item { margin-bottom: 25px; background: var(--bg-light); padding: 25px; border-radius: 12px; transition: 0.3s; }
+        .faq-item:hover { background: #f1f5f9; }
+        .faq-item h3 { color: var(--dark); margin-bottom: 12px; font-size: 1.15rem; display: flex; align-items: center; gap: 10px; }
+        .faq-item h3::before { content: "Q:"; color: var(--accent); font-weight: 900; }
         
-        .final-cta { background: var(--dark); color: white; padding: 60px; border-radius: 20px; text-align: center; margin-top: 60px; }
-        .btn { background: var(--accent); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 900; display: inline-block; margin-top: 20px; }
+        .final-cta { background: var(--dark); color: white; padding: 80px 40px; border-radius: 24px; text-align: center; margin-top: 80px; border-bottom: 8px solid var(--accent); }
+        .btn { background: var(--accent); color: white; padding: 20px 50px; border-radius: 50px; text-decoration: none; font-weight: 900; display: inline-block; margin-top: 30px; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 10px 20px rgba(255, 133, 162, 0.3); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 133, 162, 0.4); }
     </style>
 </head>
 <body>
 
     <nav class="nav">
-        <a href="index.html">HOME</a>
-        <a href="hub.html">GLOBAL HUB</a>
-        <a href="destinations.html">DESTINATIONS</a>
+        <a href="index.html">STAYS</a>
+        <a href="calendar.html">2026 CALENDAR</a>
+        <a href="#">LIVE DEALS</a>
     </nav>
 
     <div class="container">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <span class="live-badge">● LIVE DATA FEED</span>
-            <h1 style="font-size: 2.5rem; margin-top: 10px;">Today's Top Price Drops</h1>
+        <div style="text-align: center; margin-bottom: 50px;">
+            <span class="live-badge">● LIVE PRICE TRACKER ACTIVE</span>
+            <h1 style="font-size: 3rem; margin-top: 15px; letter-spacing: -1px; color: var(--dark);">Verified Price Drops</h1>
+            <p style="color: #64748b; font-size: 1.1rem;">Our AI-engine monitors Skyscanner regional APIs every 60 seconds.</p>
         </div>
 
         <!-- DEAL FEED -->
-        <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="deal-row">
-            <div>
-                <div class="route">London (LHR) ✈ New York (JFK)</div>
-                <div style="font-size: 0.8rem; color: #64748b;">Verified 14 mins ago</div>
-            </div>
-            <div class="price-drop">-$214 OFF</div>
-        </a>
+        <div class="deal-container">
+            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="deal-row" target="_blank">
+                <div>
+                    <div class="route">London (LHR) ✈ New York (JFK)</div>
+                    <div style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">Verified 4 mins ago • Round Trip</div>
+                </div>
+                <div class="price-drop">-$214 OFF</div>
+            </a>
 
-        <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="deal-row">
-            <div>
-                <div class="route">Sydney (SYD) ✈ Tokyo (NRT)</div>
-                <div style="font-size: 0.8rem; color: #64748b;">Verified 32 mins ago</div>
-            </div>
-            <div class="price-drop">-$340 OFF</div>
-        </a>
+            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="deal-row" target="_blank">
+                <div>
+                    <div class="route">Sydney (SYD) ✈ Tokyo (NRT)</div>
+                    <div style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">Verified 12 mins ago • One Way</div>
+                </div>
+                <div class="price-drop">-$340 OFF</div>
+            </a>
 
-        <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="deal-row">
-            <div>
-                <div class="route">Paris (CDG) ✈ Bali (DPS)</div>
-                <div style="font-size: 0.8rem; color: #64748b;">Verified 1 hour ago</div>
-            </div>
-            <div class="price-drop">-$189 OFF</div>
-        </a>
+            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="deal-row" target="_blank">
+                <div>
+                    <div class="route">Miami (MIA) ✈ Mexico City (MEX)</div>
+                    <div style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">Verified 1 hour ago • 2026 World Cup Route</div>
+                </div>
+                <div class="price-drop">-$112 OFF</div>
+            </a>
+        </div>
+
+        <div class="pro-tip">
+            <h4>💡 The "SoftLife" Travel Secret</h4>
+            <p style="font-size: 0.95rem; color: #4b5563;">Don't see your route? Use the <strong>"Whole Month"</strong> search on Skyscanner. It reveals specific days when airlines dump unsold seats at 60-70% discounts. <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" style="color: var(--accent); font-weight: bold;">Try it here →</a></p>
+        </div>
 
         <!-- FAQ SECTION -->
         <div class="faq-section">
-            <h2>Common Questions (2026 Travel)</h2>
+            <div class="faq-header">
+                <h2 style="font-size: 2rem;">2026 Booking Strategy FAQ</h2>
+                <p style="color: #64748b;">Everything you need to know about locking in 2026 airfare.</p>
+            </div>
             
             <div class="faq-item">
-                <h3>Is Skyscanner still the best for 2026?</h3>
-                <p>Yes. By aggregating over 1,200 airlines and travel sites, Skyscanner remains the gold standard for unbiased price comparison. Our portal ensures you see the final price, including hidden AI-driven surcharges.</p>
+                <h3>Why should I use Skyscanner instead of booking direct?</h3>
+                <p>Airlines often show different prices based on your location. Skyscanner aggregates global regional data, allowing you to bypass "local price hiking" and find the cheapest inventory available worldwide.</p>
             </div>
 
             <div class="faq-item">
-                <h3>How do I get the "Secret" prices?</h3>
-                <p>Use the 'Everywhere' tool located on our <a href="index.html" style="color:var(--sky);">homepage</a>. This scans regional APIs that many standard search engines miss.</p>
+                <h3>When is the absolute best time to book for 2026 events?</h3>
+                <p>For major events like the 2026 World Cup or F1 races, the "Sweet Spot" is 24 weeks in advance. If you see a price drop on our tracker now, lock it in—prices rarely drop twice for peak events.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Is it safe to book via this portal?</h3>
-                <p>100%. All bookings are processed through Skyscanner's secure, encrypted servers. We never store your payment or personal data.</p>
+                <h3>Is my booking protected?</h3>
+                <p>Yes. All transactions are routed through Skyscanner's secure infrastructure. You receive the same airline protections and frequent flyer miles as you would booking direct, but at the consolidated price.</p>
             </div>
         </div>
 
         <div class="final-cta">
-            <h2>Ready to find your own deal?</h2>
-            <p>Our 2026 AI-engine is currently tracking 4.2 million routes.</p>
-            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn">START LIVE SEARCH</a>
+            <h2 style="font-size: 2.2rem;">Stop Guessing. Start Flying.</h2>
+            <p style="opacity: 0.9; margin-top: 10px;">Access the full 2026 Skyscanner Database now.</p>
+            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn">FIND MY 2026 FLIGHT</a>
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid #eee; font-size: 0.8rem; color: #94a3b8;">
-        © 2026 SoftLife Travel Network | <a href="privacy.html" style="color:inherit;">Compliance</a> | <a href="contact.html" style="color:inherit;">Support</a>
+    <footer style="text-align: center; padding: 60px; border-top: 1px solid #f1f5f9; font-size: 0.8rem; color: #94a3b8; background: #fff;">
+        <p>© 2026 SoftLife Travel Network | Affiliate ID: 21885</p>
+        <p style="margin-top: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">Disclaimer: We track real-time drops. Prices shown are subject to airline availability at the moment of search.</p>
     </footer>
 
 </body>
