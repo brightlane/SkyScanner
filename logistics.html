@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Transit Command: City-to-City Logistics | SoftLife Travel</title>
+    <meta name="description" content="Master 2026 transit between US, Mexico, and Canada. Flight clusters, hidden hub hacks, and border crossing strategies.">
+    <style>
+        :root { --sky: #00b4d8; --b-blue: #003580; --ali: #ff4747; --dark: #0f172a; --gold: #fbbf24; --bg: #f8fafc; --success: #22c55e; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        body { background: var(--bg); color: #1e293b; line-height: 1.6; }
+
+        /* NAVIGATION */
+        .nav { background: var(--dark); padding: 15px; text-align: center; border-bottom: 3px solid #ff85a2; }
+        .nav a { color: white; text-decoration: none; margin: 0 15px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+
+        /* HERO */
+        .hero-logistics { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 80px 20px; text-align: center; border-bottom: 8px solid var(--sky); }
+        .hero-logistics h1 { font-size: 2.8rem; letter-spacing: -1px; margin-bottom: 10px; }
+        .hero-logistics p { opacity: 0.9; max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
+
+        .container { max-width: 1150px; margin: 0 auto; padding: 50px 20px; display: grid; grid-template-columns: 1fr 320px; gap: 40px; }
+
+        /* CLUSTERS */
+        .cluster-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0; }
+        .cluster-card { background: white; border-radius: 16px; padding: 25px; border-left: 6px solid var(--sky); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .cluster-card h3 { color: var(--dark); margin-bottom: 15px; font-size: 1.2rem; }
+        .route-list { list-style: none; margin-bottom: 20px; }
+        .route-list li { padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; display: flex; justify-content: space-between; }
+        .pill { background: #f1f5f9; padding: 2px 8px; border-radius: 4px; font-weight: 800; color: var(--b-blue); font-size: 0.75rem; }
+
+        /* BUTTONS */
+        .btn-sync { display: inline-block; width: 100%; background: var(--sky); color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 0.85rem; transition: 0.3s; }
+        .btn-sync:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .btn-car { background: var(--b-blue); }
+
+        /* BORDER HACK BOX */
+        .border-hack { background: var(--dark); color: white; border-radius: 20px; padding: 40px; margin-top: 40px; position: relative; overflow: hidden; }
+        .border-hack h2 { color: var(--gold); margin-bottom: 15px; }
+        .hack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 25px; }
+        .hack-item { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+
+        /* SIDEBAR GEAR */
+        .sidebar h2 { font-size: 1.3rem; margin-bottom: 20px; color: var(--dark); }
+        .gear-card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 25px; border-top: 4px solid var(--ali); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .gear-card h4 { font-size: 1rem; margin-bottom: 8px; }
+        .gear-price { color: var(--ali); font-weight: 900; font-size: 1.2rem; margin: 10px 0; }
+        .ali-btn { display: block; background: var(--ali); color: white; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: 800; font-size: 0.8rem; }
+
+        /* HIDDEN HUB SECTION */
+        .hub-alert { background: #fffbeb; border: 1px solid #fef3c7; padding: 25px; border-radius: 16px; margin-top: 40px; }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .hack-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html">STAYS</a>
+        <a href="calendar.html">CALENDAR</a>
+        <a href="deals.html">FLIGHT DEALS</a>
+        <a href="#">LOGISTICS</a>
+    </nav>
+
+    <header class="hero-logistics">
+        <p style="font-weight: 900; color: var(--gold); text-transform: uppercase; letter-spacing: 2px;">2026 Transit Protocol</p>
+        <h1>Host City Logistics Command</h1>
+        <p>The definitive guide to moving between match clusters in the US, Mexico, and Canada. Avoid the border gridlock.</p>
+    </header>
+
+    <div class="container">
+        
+        <main>
+            <!-- REGIONAL CLUSTERS -->
+            <h2 style="font-size: 1.8rem; letter-spacing: -1px;">🏆 Optimized 2026 Match Clusters</h2>
+            <p style="color: #64748b; margin-bottom: 20px;">Don't cross the continent for every game. Stick to these clusters to save 40% on Skyscanner airfare.</p>
+
+            <div class="cluster-grid">
+                <!-- WEST COAST -->
+                <div class="cluster-card">
+                    <h3>The Pacific Swing</h3>
+                    <ul class="route-list">
+                        <li>Vancouver ✈️ Seattle <span class="pill">45m</span></li>
+                        <li>Seattle ✈️ San Francisco <span class="pill">2h</span></li>
+                        <li>SF ✈️ Los Angeles <span class="pill">1h 15m</span></li>
+                    </ul>
+                    <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-sync">Search Cluster Flights</a>
+                </div>
+
+                <!-- THE SOUTH -->
+                <div class="cluster-card" style="border-left-color: var(--gold);">
+                    <h3>The Southern Triangle</h3>
+                    <ul class="route-list">
+                        <li>Dallas 🚗 Houston <span class="pill">3.5h Drive</span></li>
+                        <li>Houston ✈️ Monterrey <span class="pill">1h 20m</span></li>
+                        <li>Monterrey ✈️ Mexico City <span class="pill">1h 30m</span></li>
+                    </ul>
+                    <a href="https://www.booking.com/?aid=1858279" class="btn-sync btn-car">Book Texas Car Rental</a>
+                </div>
+            </div>
+
+            <!-- THE BORDER HACK -->
+            <div class="border-hack">
+                <h2>🛂 The "Three-Country" Border Hack</h2>
+                <p>Land borders at San Ysidro (US/MEX) and Niagara (US/CAN) will see 4-8 hour delays in 2026. Use this protocol:</p>
+                
+                <div class="hack-grid">
+                    <div class="hack-item">
+                        <h4 style="color: var(--sky);">1. Fly Regional APIs</h4>
+                        <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">Airports have prioritized customs lanes. Flying into MEX or YYZ is 3x faster than land entry during tournament weeks.</p>
+                    </div>
+                    <div class="hack-item">
+                        <h4 style="color: var(--success);">2. Travel Personal Only</h4>
+                        <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">One "personal item" bag bypasses heavy luggage screening. This is the ultimate 'SoftLife' speed move.</p>
+                    </div>
+                </div>
+                <a href="deals.html" class="btn-sync" style="background: white; color: var(--dark); margin-top: 25px; width: auto; padding: 12px 30px;">View Faster Flight Routes</a>
+            </div>
+
+            <!-- HIDDEN HUB HACKS -->
+            <div class="hub-alert">
+                <h3 style="color: #92400e;">💡 Hidden Hub Strategy</h3>
+                <p style="font-size: 0.9rem; color: #b45309; margin-top: 8px;">Direct flights to LAX, JFK, and MIA will surge 300%. Our AI suggests these "Shadow Hubs" on Skyscanner:</p>
+                <ul style="margin-top: 15px; font-size: 0.85rem; color: #b45309; columns: 2;">
+                    <li><strong>Instead of LAX:</strong> Try Ontario (ONT)</li>
+                    <li><strong>Instead of NYC:</strong> Try Newark (EWR)</li>
+                    <li><strong>Instead of MIA:</strong> Try Fort Lauderdale (FLL)</li>
+                    <li><strong>Instead of MEX:</strong> Try Toluca (TLC)</li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- SIDEBAR GEAR -->
+        <aside class="sidebar">
+            <h2>🎒 Transit Gear</h2>
+            
+            <div class="gear-card">
+                <div style="font-size: 0.7rem; font-weight: 900; color: #94a3b8; text-transform: uppercase;">Essential</div>
+                <h4>Clear Stadium Crossbody</h4>
+                <p style="font-size: 0.8rem; color: #64748b;">100% compliant for all 2026 venues. No delays at security.</p>
+                <div class="gear-price">$9.99</div>
+                <a href="https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692" class="ali-btn" target="_blank">Buy on AliExpress</a>
+            </div>
+
+            <div class="gear-card">
+                <div style="font-size: 0.7rem; font-weight: 900; color: #94a3b8; text-transform: uppercase;">Connectivity</div>
+                <h4>65W GaN Travel Brick</h4>
+                <p style="font-size: 0.8rem; color: #64748b;">Ultra-compact. Charges laptop & phone in any host city outlet.</p>
+                <div class="gear-price">$14.50</div>
+                <a href="https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692" class="ali-btn" target="_blank">Get Fast Charge</a>
+            </div>
+
+            <div class="gear-card">
+                <div style="font-size: 0.7rem; font-weight: 900; color: #94a3b8; text-transform: uppercase;">Flight Safe</div>
+                <h4>Nitecore Ultra-Light Bank</h4>
+                <p style="font-size: 0.8rem; color: #64748b;">Lightest 10k mAh bank. Airline approved for long-haul routes.</p>
+                <div class="gear-price">Verified Safe</div>
+                <a href="https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692" class="ali-btn" target="_blank">Shop Power</a>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer style="background: var(--dark); color: white; padding: 60px 20px; text-align: center; border-top: 5px solid var(--sky);">
+        <p style="font-size: 0.8rem; opacity: 0.6;">SoftLife Logistics Command © 2026</p>
+        <p style="font-size: 0.7rem; margin-top: 10px;">Partner IDs: Skyscanner 21885 | Booking 1858279 | Awin 1166692</p>
+    </footer>
+
+</body>
+</html>
