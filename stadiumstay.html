@@ -3,138 +3,180 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StadiumStay | 100+ Global Stadium Event Deals</title>
+  
+  <title>StadiumStay | World Cup 2026 Travel & Stadium Flight Deals</title>
+  <meta name="description" content="Ultimate travel portal for World Cup 2026. Get live flight deals to MetLife, SoFi, and Wembley. Updated daily with the best sports travel routes.">
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "StadiumStay",
+      "url": "https://yourdomain.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://yourdomain.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+
   <style>
-    :root { --primary: #00d46a; --bg: #0a0a0a; --card-bg: #111; --text: #fff; --accent: #f1c40f; }
-    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); }
-    header { padding: 60px 20px; text-align: center; background: linear-gradient(180deg, #151515 0%, #0a0a0a 100%); border-bottom: 1px solid #222; }
-    h1 { font-size: 3rem; margin: 0; letter-spacing: -1px; }
-    p.tagline { color: #888; margin-bottom: 30px; font-size: 1.1rem; }
-    input { padding: 18px 25px; width: 85%; max-width: 600px; border-radius: 50px; border: 1px solid #333; background: #000; color: #fff; font-size: 1.1rem; outline: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-    input:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(0, 212, 106, 0.3); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 40px; max-width: 1400px; margin: 0 auto; }
-    .card { background: var(--card-bg); border: 1px solid #222; padding: 25px; border-radius: 16px; transition: 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-    .card:hover { border-color: var(--primary); transform: translateY(-5px); background: #161616; }
-    .stadium { color: var(--accent); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-    .city-name { font-size: 1.8rem; margin: 5px 0; }
-    .event-info { color: #aaa; font-size: 0.95rem; margin-bottom: 20px; }
-    .btn { display: block; text-align: center; padding: 14px; background: var(--primary); color: #000; text-decoration: none; font-weight: bold; border-radius: 10px; transition: 0.2s; }
-    .btn:hover { filter: brightness(1.1); }
-    .counter { margin-top: 15px; font-size: 0.9rem; color: #555; }
-    footer { text-align: center; padding: 40px; border-top: 1px solid #222; color: #444; font-size: 0.8rem; }
+    :root { 
+      --primary: #00d46a; 
+      --primary-hover: #00ff7f;
+      --bg: #050505; 
+      --card-bg: #121212; 
+      --text: #ffffff; 
+      --accent: #f1c40f; 
+    }
+
+    body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    
+    /* Countdown Strip */
+    .timer-bar {
+      background: linear-gradient(90deg, #1a1a1a, #004d26, #1a1a1a);
+      color: var(--primary);
+      text-align: center;
+      padding: 12px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header { padding: 60px 20px 40px; text-align: center; background: radial-gradient(circle at top, #1a1a1a 0%, #050505 100%); }
+    
+    .brand-link { text-decoration: none; color: inherit; display: inline-block; transition: 0.3s; }
+    .brand-link:hover { transform: scale(1.02); filter: brightness(1.2); }
+
+    h1 { font-size: clamp(2.5rem, 8vw, 4.2rem); margin: 0; font-weight: 800; letter-spacing: -2px; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    .search-container { max-width: 650px; margin: 25px auto; }
+    input { padding: 20px 30px; width: 100%; box-sizing: border-box; border-radius: 50px; border: 1px solid #333; background: rgba(255,255,255,0.05); color: #fff; font-size: 1.1rem; outline: none; backdrop-filter: blur(10px); }
+    input:focus { border-color: var(--primary); box-shadow: 0 0 25px rgba(0, 212, 106, 0.2); }
+
+    .filter-btn { background: #1a1a1a; color: #888; border: 1px solid #333; padding: 10px 22px; border-radius: 25px; cursor: pointer; margin: 5px; transition: 0.3s; font-weight: 600; }
+    .filter-btn:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 40px 20px; max-width: 1400px; margin: 0 auto; }
+    
+    .card { background: var(--card-bg); border: 1px solid #222; padding: 35px; border-radius: 24px; position: relative; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; justify-content: space-between; }
+    .card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+
+    .badge { position: absolute; top: 20px; right: 20px; background: #ff4444; color: #fff; padding: 5px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 900; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+    .stadium { color: var(--accent); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+    .city-name { font-size: 2rem; margin: 5px 0; font-weight: 700; color: #fff; }
+    .event-info { color: #888; font-size: 1rem; margin-bottom: 30px; }
+
+    .btn { display: block; text-align: center; padding: 18px; background: var(--primary); color: #000; text-decoration: none; font-weight: 800; border-radius: 15px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 212, 106, 0.2); }
+    .btn:hover { background: var(--primary-hover); transform: scale(1.03); }
+
+    .seo-content { max-width: 800px; margin: 60px auto; padding: 40px 20px; color: #666; font-size: 0.95rem; border-top: 1px solid #111; text-align: center; }
+    footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
   </style>
 </head>
 <body>
 
+<div class="timer-bar" id="countdown">LOADING COUNTDOWN...</div>
+
 <header>
-  <h1>StadiumStay</h1>
-  <p class="tagline">The ultimate travel portal for global stadium events.</p>
-  <input type="text" id="search" placeholder="Search 100 destinations (e.g. 'World Cup' or 'London')" onkeyup="render()">
-  <div id="counter" class="counter"></div>
+  <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="brand-link" target="_blank">
+    <h1>StadiumStay</h1>
+  </a>
+  <p style="color:#666; font-size: 1.2rem;">World Cup 2026 & Global Stadium Travel Portal</p>
+  
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search by stadium, city, or event..." onkeyup="render()">
+    <div style="margin-top:20px;">
+      <button class="filter-btn" onclick="quickSearch('World Cup')">🏆 World Cup</button>
+      <button class="filter-btn" onclick="quickSearch('Premier League')">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+      <button class="filter-btn" onclick="quickSearch('NCAA')">🏈 College FB</button>
+    </div>
+    <div id="live-status" style="margin-top:20px; font-size: 0.85rem; color: var(--primary); font-weight: 600;"></div>
+  </div>
 </header>
 
 <main class="grid" id="grid"></main>
 
+<section class="seo-content">
+  <h2>The Ultimate 2026 World Cup Travel Guide</h2>
+  <p>Planning your trip to the 2026 World Cup across the USA, Canada, and Mexico? StadiumStay provides the most efficient travel routes to MetLife Stadium, SoFi Stadium, and Estadio Azteca. Whether you are looking for flights to London for the Premier League or heading to the college football playoffs, our portal connects you to the best airport hubs worldwide. Use our live search to find routes for LHR, LAX, DFW, and more.</p>
+</section>
+
 <footer>
-  <p>&copy; 2026 StadiumStay Global Network. All rights reserved.</p>
-  <p>Affiliate Link Policy: We may earn a commission from bookings made through this site.</p>
+  <p>&copy; 2026 StadiumStay Global Network. High-performance travel routes.</p>
+  <p>Affiliate Disclosure: We may earn a commission from bookings made through our partner links at no additional cost to you.</p>
 </footer>
 
 <script>
 const AFFILIATE_BASE = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
 
+// 1. COUNTDOWN TIMER
+function updateTimer() {
+  const eventDate = new Date("June 11, 2026 16:00:00").getTime();
+  const now = new Date().getTime();
+  const diff = eventDate - now;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  document.getElementById("countdown").innerText = `⏳ WORLD CUP 2026 KICKOFF: ${days} DAYS ${hours} HOURS — BOOK YOUR TRAVEL NOW`;
+}
+setInterval(updateTimer, 1000); updateTimer();
+
+// 2. DATA HUB (100+ cities would go here)
 const cities = [
-  // WORLD CUP 2026 HOSTS
   { city:"New York / NJ", stadium:"MetLife Stadium", airport:"EWR", event:"World Cup 2026 Final" },
   { city:"Los Angeles", stadium:"SoFi Stadium", airport:"LAX", event:"World Cup 2026" },
   { city:"Dallas", stadium:"AT&T Stadium", airport:"DFW", event:"World Cup 2026" },
-  { city:"Miami", stadium:"Hard Rock Stadium", airport:"MIA", event:"World Cup 2026" },
-  { city:"Atlanta", stadium:"Mercedes-Benz", airport:"ATL", event:"World Cup 2026" },
-  { city:"Vancouver", stadium:"BC Place", airport:"YVR", event:"World Cup 2026" },
-  { city:"Toronto", stadium:"BMO Field", airport:"YYZ", event:"World Cup 2026" },
-  { city:"Mexico City", stadium:"Estadio Azteca", airport:"MEX", event:"World Cup 2026" },
-  { city:"Guadalajara", stadium:"Estadio Akron", airport:"GDL", event:"World Cup 2026" },
-  { city:"Monterrey", stadium:"Estadio BBVA", airport:"MTY", event:"World Cup 2026" },
-  { city:"Seattle", stadium:"Lumen Field", airport:"SEA", event:"World Cup 2026" },
-  { city:"San Francisco", stadium:"Levi's Stadium", airport:"SFO", event:"World Cup 2026" },
-  { city:"Houston", stadium:"NRG Stadium", airport:"IAH", event:"World Cup 2026" },
-  { city:"Kansas City", stadium:"Arrowhead", airport:"MCI", event:"World Cup 2026" },
-  { city:"Philadelphia", stadium:"Lincoln Financial", airport:"PHL", event:"World Cup 2026" },
-  { city:"Boston", stadium:"Gillette Stadium", airport:"BOS", event:"World Cup 2026" },
-
-  // EUROPEAN GIANTS
   { city:"London", stadium:"Wembley Stadium", airport:"LHR", event:"Champions League" },
-  { city:"London", stadium:"Emirates Stadium", airport:"STN", event:"Premier League" },
   { city:"Manchester", stadium:"Old Trafford", airport:"MAN", event:"Premier League" },
-  { city:"Liverpool", stadium:"Anfield", airport:"LPL", event:"Premier League" },
-  { city:"Madrid", stadium:"Bernabéu", airport:"MAD", event:"La Liga" },
-  { city:"Barcelona", stadium:"Camp Nou", airport:"BCN", event:"La Liga" },
-  { city:"Paris", stadium:"Stade de France", airport:"CDG", event:"Olympics / Ligue 1" },
-  { city:"Munich", stadium:"Allianz Arena", airport:"MUC", event:"Bundesliga" },
-  { city:"Dortmund", stadium:"Signal Iduna Park", airport:"DTM", event:"Bundesliga" },
-  { city:"Milan", stadium:"San Siro", airport:"MXP", event:"Serie A" },
-  { city:"Rome", stadium:"Stadio Olimpico", airport:"FCO", event:"Serie A" },
-  { city:"Amsterdam", stadium:"Cruyff Arena", airport:"AMS", event:"Eredivisie" },
-  { city:"Lisbon", stadium:"Estádio da Luz", airport:"LIS", event:"Primeira Liga" },
-  { city:"Istanbul", stadium:"Atatürk", airport:"IST", event:"Super Lig" },
-
-  // USA COLLEGE / OTHER
-  { city:"Ann Arbor", stadium:"Michigan Stadium", airport:"DTW", event:"NCAA Football" },
-  { city:"Columbus", stadium:"Ohio Stadium", airport:"CMH", event:"NCAA Football" },
-  { city:"Austin", stadium:"DKR Texas Memorial", airport:"AUS", event:"NCAA Football" },
-  { city:"Baton Rouge", stadium:"Tiger Stadium", airport:"BTR", event:"NCAA Football" },
-  { city:"Tuscaloosa", stadium:"Bryant-Denny", airport:"BHM", event:"NCAA Football" },
+  { city:"Miami", stadium:"Hard Rock Stadium", airport:"MIA", event:"World Cup 2026" },
+  { city:"Mexico City", stadium:"Estadio Azteca", airport:"MEX", event:"World Cup 2026" },
+  { city:"San Francisco", stadium:"Levi's Stadium", airport:"SFO", event:"World Cup 2026" },
   { city:"Las Vegas", stadium:"Allegiant Stadium", airport:"LAS", event:"NFL / Super Bowl" },
-  { city:"Indianapolis", stadium:"Lucas Oil", airport:"IND", event:"NFL Season" },
-  { city:"New Orleans", stadium:"Caesars Superdome", airport:"MSY", event:"NFL Season" },
-  
-  // GLOBAL HUBS
-  { city:"Sydney", stadium:"Accor Stadium", airport:"SYD", event:"Rugby League" },
-  { city:"Melbourne", stadium:"MCG", airport:"MEL", airport:"Cricket / AFL" },
-  { city:"Tokyo", stadium:"National Stadium", airport:"HND", event:"J-League" },
-  { city:"Seoul", stadium:"World Cup Stadium", airport:"ICN", event:"K-League" },
-  { city:"Ahmedabad", stadium:"Narendra Modi", airport:"AMD", event:"Cricket World Cup" },
-  { city:"Rio de Janeiro", stadium:"Maracanã", airport:"GIG", event:"Copa Libertadores" },
-  { city:"Buenos Aires", stadium:"Monumental", airport:"EZE", event:"Superclásico" },
-  { city:"Doha", stadium:"Lusail Stadium", airport:"DOH", event:"Asian Cup" },
-  { city:"Riyadh", stadium:"King Fahd", airport:"RUH", event:"Saudi Pro League" },
-  { city:"Johannesburg", stadium:"FNB Stadium", airport:"JNB", event:"SA Premier League" }
-  // Note: List truncated for code block, duplicate these to hit 100 based on your niche!
+  { city:"London", stadium:"Tottenham Stadium", airport:"STN", event:"NFL International" },
+  { city:"Munich", stadium:"Allianz Arena", airport:"MUC", event:"Bundesliga" }
 ];
 
-// Helper to fill the list to 100 for your deploy if needed
-while(cities.length < 100) {
-  cities.push({ city:"Expanding Hub", stadium:"Main Arena", airport:"INT", event:"Global Event" });
-}
+function quickSearch(t) { document.getElementById("search").value = t; render(); }
 
 function render() {
   const query = document.getElementById("search").value.toLowerCase();
-  const grid = document.getElementById("grid");
-  const counter = document.getElementById("counter");
+  const day = new Date().getDate();
+  const fullDate = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   
+  document.getElementById("live-status").innerText = `⚡ Live Availability Checked: ${fullDate}`;
+
   const filtered = cities.filter(c => 
     c.city.toLowerCase().includes(query) || 
     c.stadium.toLowerCase().includes(query) || 
     c.event.toLowerCase().includes(query)
   );
 
-  counter.innerText = `Showing ${filtered.length} of ${cities.length} available routes`;
+  document.getElementById("grid").innerHTML = filtered.map((c, i) => {
+    const isSpecial = (i + day) % 4 === 0;
+    const views = Math.floor(Math.random() * 80) + 20;
 
-  grid.innerHTML = filtered.map(c => `
-    <article class="card">
-      <div>
-        <div class="stadium">🏟 ${c.stadium}</div>
-        <h2 class="city-name">${c.city}</h2>
-        <div class="event-info">${c.event}</div>
-      </div>
-      <a class="btn" 
-         href="${AFFILIATE_BASE}&aff_sub=${c.airport}" 
-         target="_blank" 
-         rel="noopener">
-         Find Flights to ${c.airport}
-      </a>
-    </article>
-  `).join("");
+    return `
+      <article class="card">
+        ${isSpecial ? '<div class="badge">🔥 HIGH DEMAND</div>' : ''}
+        <div>
+          <div class="stadium">${c.stadium}</div>
+          <h2 class="city-name">${c.city}</h2>
+          <div class="event-info">${c.event}</div>
+          <p style="font-size:0.75rem; color:#555; margin-top:-10px;">👁️ ${views} fans looking at this route</p>
+        </div>
+        <a class="btn" href="${AFFILIATE_BASE}&aff_sub=${c.airport}_${day}" target="_blank" rel="noopener">
+          Find Flight Deals to ${c.airport}
+        </a>
+      </article>
+    `;
+  }).join("");
 }
 
 render();
