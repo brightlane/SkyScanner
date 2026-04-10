@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">StadiumStay | 1,000+ Global Event Cities & Flights</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "StadiumStay",
+      "description": "Logistics and flights for World Cup 2026, Olympics 2028, and major stadium events.",
+      "url": "https://stadiumstay.com",
+      "priceRange": "$$"
+    }
+    </script>
+
+    <style>
+        :root { --gold: #f1c40f; --purple: #552583; --dark: #0a0a0a; --glass: rgba(255,255,255,0.08); --sky: #00d46a; --red: #ff4757; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', -apple-system, sans-serif; scroll-behavior: smooth; }
+        body { background: var(--dark); color: #e0e0e0; line-height: 1.6; }
+
+        /* NAVIGATION */
+        nav { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: #000; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { font-weight: 900; color: var(--gold); text-decoration: none; font-size: 1.6rem; letter-spacing: -1.5px; }
+
+        /* HERO AREA */
+        .hero { padding: 80px 20px; text-align: center; background: radial-gradient(circle at center, #111 0%, #000 100%); border-bottom: 1px solid #111; }
+        .hero h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 10px; color: #fff; }
+        .search-box { width: 100%; max-width: 600px; padding: 20px 25px; border-radius: 50px; border: 2px solid #333; background: #0a0a0a; color: #fff; font-size: 1.1rem; outline: none; transition: 0.3s; margin-top: 20px; }
+        .search-box:focus { border-color: var(--gold); box-shadow: 0 0 25px rgba(241, 196, 15, 0.15); }
+
+        /* FILTER PILLS */
+        .pills { display: flex; gap: 10px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
+        .pill { background: #1a1a1a; border: 1px solid #333; color: #888; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-size: 0.75rem; font-weight: 800; transition: 0.2s; }
+        .pill:hover, .pill.active { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+        /* CONTENT GRID */
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 20px; }
+
+        /* DYNAMIC CARDS */
+        .card { background: var(--glass); border: 1px solid #222; border-radius: 24px; padding: 25px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; position: relative; }
+        .card:hover { transform: translateY(-8px); border-color: var(--gold); background: rgba(255,255,255,0.12); }
+        .card .event-tag { color: var(--purple); font-size: 0.65rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+        .card h3 { font-size: 1.6rem; color: #fff; margin: 5px 0; letter-spacing: -0.5px; }
+        .card .stadium { color: var(--gold); font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 12px; }
+        
+        /* URGENCY ALERT */
+        .alert { background: rgba(255, 71, 87, 0.1); color: var(--red); font-size: 0.7rem; font-weight: 800; padding: 6px; border-radius: 8px; margin-bottom: 20px; text-align: center; border: 1px solid rgba(255, 71, 87, 0.15); }
+
+        /* AFFILIATE BUTTONS */
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: auto; }
+        .btn { padding: 14px 5px; text-align: center; text-decoration: none; font-weight: 900; font-size: 0.75rem; border-radius: 12px; transition: 0.2s; }
+        .btn-sky { background: var(--sky); color: #fff; }
+        .btn-tix { background: #fff; color: #000; }
+        .btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+        footer { text-align: center; padding: 60px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">STADIUMSTAY</a>
+        <div style="font-size: 0.6rem; color: #555; letter-spacing: 1px;">AFFILIATE: 21885</div>
+    </nav>
+
+    <header class="hero">
+        <h1>Travel to the Trophy.</h1>
+        <p style="color: #666; font-weight: 500;">Direct booking paths to every major 2026-2028 stadium host.</p>
+        <input type="text" id="citySearch" class="search-box" placeholder="Search City, Stadium, or Airport..." onkeyup="search()">
+        <div class="pills">
+            <button onclick="quickFilter('World Cup')" class="pill">⚽ World Cup</button>
+            <button onclick="quickFilter('Super Bowl')" class="pill">🏈 Super Bowl</button>
+            <button onclick="quickFilter('Olympics')" class="pill">🏅 Olympics</button>
+            <button onclick="quickFilter('')" class="pill">🌐 All Cities</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="grid" id="cityGrid"></div>
+    </main>
+
+    <footer>
+        <p>© 2026 STADIUMSTAY | Official Partner ID: 21885</p>
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px; opacity: 0.5;">
+            <span>Verified Skyscanner Partner</span>
+            <span>TicketMastery API Active</span>
+        </div>
+    </footer>
+
+    <script>
+        // MASTER DATABASE (Ready for expansion to 1,000 cities)
+        const cities = [
+            { n: "Los Angeles", s: "SoFi Stadium", a: "LAX", e: "World Cup 2026", status: "98% Booked" },
+            { n: "New York", s: "MetLife Stadium", a: "EWR", e: "WC Final 2026", status: "High Demand" },
+            { n: "Miami", s: "Hard Rock Stadium", a: "MIA", e: "Quarterfinals", status: "Selling Fast" },
+            { n: "Dallas", s: "AT&T Stadium", a: "DFW", e: "Semi-Finals", status: "Limited Access" },
+            { n: "Las Vegas", s: "Allegiant Stadium", a: "LAS", e: "Super Bowl LXI", status: "Elite Pricing" },
+            { n: "London", s: "Wembley Stadium", a: "LHR", e: "Champions League", status: "Price Rising" },
+            { n: "Paris", s: "Stade de France", a: "CDG", e: "International Hub", status: "Available" },
+            { n: "Mexico City", s: "Estadio Azteca", a: "MEX", e: "Opening Match", status: "Historic Event" },
+            { n: "Toronto", s: "BMO Field", a: "YYZ", e: "Group Stage", status: "Trending" },
+            { n: "Atlanta", s: "Mercedes-Benz", a: "ATL", e: "World Cup 2026", status: "Last Chance" }
+            // Pattern: { n:"City", s:"Stadium", a:"AirportCode", e:"Event", status:"AlertText" }
+        ];
+
+        const grid = document.getElementById('cityGrid');
+        const searchInput = document.getElementById('citySearch');
+
+        function render(data) {
+            grid.innerHTML = data.map(c => `
+                <div class="card">
+                    <span class="event-tag">${c.e}</span>
+                    <h3>${c.n}</h3>
+                    <span class="stadium">📍 ${c.s}</span>
+                    <div class="alert">⚠️ ${c.status}</div>
+                    <div class="btn-group">
+                        <a href="https://www.skyscanner.com/transport/flights-from/anywhere/to/${c.a}/?associateid=21885" class="btn btn-sky" rel="nofollow">FLIGHTS TO ${c.a}</a>
+                        <a href="https://brightlane.github.io/EventTicketMastery/" class="btn btn-tix" rel="nofollow">VIEW TICKETS</a>
+                    </div>
+                </div>
+            `).join('');
+
+            // DYNAMIC SEO TITLE
+            if(data.length === 1) {
+                document.title = `Stay near ${data[0].s} | ${data[0].n} Travel Deals`;
+            } else {
+                document.title = "StadiumStay | 1,000+ Stadium Event Hub";
+            }
+        }
+
+        function search() {
+            const val = searchInput.value.toLowerCase();
+            const filtered = cities.filter(c => 
+                c.n.toLowerCase().includes(val) || 
+                c.s.toLowerCase().includes(val) || 
+                c.e.toLowerCase().includes(val)
+            );
+            render(filtered);
+        }
+
+        function quickFilter(term) {
+            searchInput.value = term;
+            search();
+            // Scroll to grid on mobile
+            if(window.innerWidth < 768) {
+                grid.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // URL PARAM HANDLING (e.g. stadiumstay.com/?city=Miami)
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            const city = params.get('city');
+            if(city) {
+                searchInput.value = city;
+                search();
+            } else {
+                render(cities);
+            }
+        };
+    </script>
+</body>
+</html>
