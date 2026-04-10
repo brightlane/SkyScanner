@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Popular Flight Routes | Direct & Budget Connections</title>
+    <style>
+        :root { --slate: #0f172a; --sky: #0072b2; --accent: #8b5cf6; --gray: #f8fafc; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--gray); color: var(--slate); }
+        .nav { background: white; padding: 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .nav a { color: var(--slate); text-decoration: none; margin: 0 15px; font-weight: 700; font-size: 0.8rem; }
+        
+        .header { padding: 60px 20px; text-align: center; }
+        .header h1 { font-size: 2.2rem; margin-bottom: 10px; }
+
+        .route-grid { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        /* BOARDING PASS STYLE CARD */
+        .ticket-card { background: white; margin-bottom: 20px; border-radius: 16px; display: flex; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px dashed #cbd5e1; position: relative; }
+        .ticket-left { padding: 30px; flex-grow: 1; border-right: 2px dashed var(--gray); }
+        .ticket-right { padding: 30px; background: #fffcf0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 180px; }
+        
+        .airport-code { font-size: 1.5rem; font-weight: 900; color: var(--sky); }
+        .plane-icon { margin: 0 15px; color: #cbd5e1; }
+        .route-name { font-size: 0.9rem; color: #64748b; margin-top: 5px; }
+        
+        .price-tag { font-size: 1.8rem; font-weight: 900; color: var(--slate); }
+        .btn-ticket { background: var(--slate); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 800; margin-top: 10px; text-transform: uppercase; }
+        
+        .ticket-card:before, .ticket-card:after { content: ''; position: absolute; background: var(--gray); width: 20px; height: 20px; border-radius: 50%; left: 74.5%; margin-left: -10px; }
+        .ticket-card:before { top: -10px; }
+        .ticket-card:after { bottom: -10px; }
+
+        @media (max-width: 600px) { .ticket-card { flex-direction: column; } .ticket-left { border-right: none; border-bottom: 2px dashed var(--gray); } .ticket-card:before, .ticket-card:after { display: none; } }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html">HOME</a>
+        <a href="hub.html">REGIONS</a>
+        <a href="deals.html">LIVE DEALS</a>
+    </nav>
+
+    <div class="header">
+        <h1>High-Traffic Routes 2026</h1>
+        <p>The most requested flight paths with the lowest current price points.</p>
+    </div>
+
+    <div class="route-grid">
+        <!-- Ticket 1 -->
+        <div class="ticket-card">
+            <div class="ticket-left">
+                <div>
+                    <span class="airport-code">NYC</span>
+                    <span class="plane-icon">✈</span>
+                    <span class="airport-code">PAR</span>
+                </div>
+                <div class="route-name">New York City to Paris, France</div>
+                <p style="margin-top:10px; font-size: 0.8rem; color: #94a3b8;">Average duration: 7h 20m • Direct Service Available</p>
+            </div>
+            <div class="ticket-right">
+                <div class="price-tag">$299</div>
+                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-ticket">Book Seat</a>
+            </div>
+        </div>
+
+        <!-- Ticket 2 -->
+        <div class="ticket-card">
+            <div class="ticket-left">
+                <div>
+                    <span class="airport-code">LHR</span>
+                    <span class="plane-icon">✈</span>
+                    <span class="airport-code">DXB</span>
+                </div>
+                <div class="route-name">London to Dubai, UAE</div>
+                <p style="margin-top:10px; font-size: 0.8rem; color: #94a3b8;">Average duration: 6h 55m • Luxury Hub Route</p>
+            </div>
+            <div class="ticket-right">
+                <div class="price-tag">$345</div>
+                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-ticket">Book Seat</a>
+            </div>
+        </div>
+
+        <!-- Ticket 3 -->
+        <div class="ticket-card">
+            <div class="ticket-left">
+                <div>
+                    <span class="airport-code">LAX</span>
+                    <span class="plane-icon">✈</span>
+                    <span class="airport-code">HND</span>
+                </div>
+                <div class="route-name">Los Angeles to Tokyo, Japan</div>
+                <p style="margin-top:10px; font-size: 0.8rem; color: #94a3b8;">Average duration: 11h 45m • Trans-Pacific Special</p>
+            </div>
+            <div class="ticket-right">
+                <div class="price-tag">$512</div>
+                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-ticket">Book Seat</a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="padding: 60px 20px; text-align: center; font-size: 0.8rem; color: #94a3b8;">
+        © 2026 SoftLife Network | <a href="hub.html" style="color:inherit;">Browse All Routes</a>
+    </footer>
+
+</body>
+</html>
