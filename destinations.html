@@ -2,41 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Global Destinations | 2026 Flight Audit Portal</title>
-    <script src="generate.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Stadium Destinations | 2026 Audit Hub</title>
+    
+    <script src="vulture.js"></script>
+    <script src="vulture-generator.js"></script>
+    
     <style>
-        body { font-family: sans-serif; padding: 40px; background: #f0f4f8; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .city-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
-        .audit-btn { display: block; margin-top: 15px; background: #0072b2; color: white; padding: 10px; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        :root { --primary: #0072b2; --accent: #ff4747; --dark: #0f172a; --bg: #f1f5f9; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--dark); }
+        
+        .nav-mini { background: var(--dark); color: white; padding: 15px; text-align: center; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        .header-section { text-align: center; margin-bottom: 60px; }
+        .header-section h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: -2px; }
+        
+        /* The Vulture Grid */
+        .dest-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 25px; 
+        }
+
+        .dest-card { 
+            background: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 1px solid #e2e8f0;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dest-card:hover { transform: scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .dest-image { height: 200px; background: #cbd5e1; position: relative; }
+        .dest-badge { 
+            position: absolute; top: 15px; left: 15px; 
+            background: var(--accent); color: white; 
+            padding: 5px 12px; font-size: 0.7rem; font-weight: 800; border-radius: 50px; 
+        }
+
+        .dest-info { padding: 25px; }
+        .dest-info h3 { margin: 0 0 10px 0; font-size: 1.4rem; }
+        .dest-info p { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; }
+
+        .price-trigger { 
+            background: #f8fafc; border: 1px dashed var(--primary); 
+            padding: 12px; border-radius: 10px; text-align: center;
+            color: var(--primary); font-weight: 700; font-size: 0.9rem;
+        }
+
+        .live-indicator { 
+            display: inline-block; width: 8px; height: 8px; 
+            background: #10b981; border-radius: 50%; margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <h1>2026 Flight Path Audits</h1>
-    <p>Select a destination to view live benchmark pricing and availability.</p>
+<div class="nav-mini">2026 World Cup Logistics Audit • System Live</div>
 
-    <div class="grid" id="destination-grid">
-        </div>
+<div class="container">
+    <header class="header-section">
+        <h1 id="vulture-heading">Target Destinations</h1>
+        <p id="vulture-description">Real-time flight inventory and hotel availability for the 2026 stadium circuit.</p>
+    </header>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const grid = document.getElementById('destination-grid');
-            
-            // This pulls the cities directly from your travelDatabase in generate.js
-            grid.innerHTML = travelDatabase.map(item => {
-                // Creates a URL-friendly version of the city name (e.g., "London" -> "london")
-                const slug = item.city.split(',')[0].toLowerCase().trim();
-                
-                return `
-                    <div class="city-card">
-                        <h3>${item.city}</h3>
-                        <p>${item.desc}</p>
-                        <a href="audit.html?item=${slug}-newyork" class="audit-btn">Open Flight Audit</a>
-                    </div>
-                `;
-            }).join('');
-        });
-    </script>
+    <div class="dest-grid">
+        <a href="new-york.html" class="dest-card">
+            <div class="dest-image">
+                <span class="dest-badge">WORLD CUP FINAL</span>
+            </div>
+            <div class="dest-info">
+                <h3>New York / NJ</h3>
+                <p>MetLife Stadium Logistics & EWR Flight Benchmarks.</p>
+                <div class="price-trigger">
+                    <span class="live-indicator"></span> 
+                    Check Live Rates for July 2026
+                </div>
+                <span class="last-updated">Syncing...</span>
+            </div>
+        </a>
+
+        <a href="los-angeles.html" class="dest-card">
+            <div class="dest-image">
+                <span class="dest-badge">OPENING MATCH</span>
+            </div>
+            <div class="dest-info">
+                <h3>Los Angeles</h3>
+                <p>SoFi Stadium seating audits and LAX international routes.</p>
+                <div class="price-trigger">
+                    <span class="live-indicator"></span> 
+                    Check Live Rates for June 2026
+                </div>
+                <span class="last-updated">Syncing...</span>
+            </div>
+        </a>
+
+        <a href="london.html" class="dest-card">
+            <div class="dest-image">
+                <span class="dest-badge">EU HUB</span>
+            </div>
+            <div class="dest-info">
+                <h3>London</h3>
+                <p>Wembley & Tottenham Hotspur Stadium logistics.</p>
+                <div class="price-trigger">
+                    <span class="live-indicator"></span> 
+                    Check Live Rates for 2026
+                </div>
+                <span class="last-updated">Syncing...</span>
+            </div>
+        </a>
+    </div>
+</div>
+
 </body>
 </html>
