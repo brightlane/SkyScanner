@@ -2,119 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trending 2026 Destinations | Secret Travel Deals Portal</title>
-    <meta name="description" content="Explore the top-rated aesthetic and budget-friendly destinations for 2026. Verified flight data for Seoul, Bali, and Italy.">
-    <link rel="canonical" href="destinations.html" />
-
+    <title>Global Destinations | 2026 Flight Audit Portal</title>
+    <script src="generate.js"></script>
     <style>
-        :root { --accent: #ff85a2; --sky: #0072b2; --dark: #030816; --light: #f8fafc; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--light); color: #1e293b; }
-
-        /* HEADER */
-        .nav { background: var(--dark); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-weight: 900; color: #fff; text-decoration: none; letter-spacing: 1px; }
-        .nav-btn { background: var(--accent); color: #fff; padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 0.75rem; }
-
-        .hero { background: var(--dark); color: white; padding: 60px 20px; text-align: center; }
-        h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 10px; }
-
-        /* DESTINATION CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1100px; margin: -40px auto 60px; padding: 0 20px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); }
-        .card-img { width: 100%; height: 200px; background-size: cover; background-position: center; }
-        .card-content { padding: 20px; }
-        .tag { color: var(--accent); font-weight: 900; font-size: 0.7rem; text-transform: uppercase; }
-        .card-content h3 { margin: 10px 0; font-size: 1.3rem; }
-        .price { display: inline-block; background: #e0f2fe; color: var(--sky); padding: 4px 10px; border-radius: 5px; font-weight: 800; font-size: 0.8rem; margin-top: 10px; }
-
-        /* THE FOOTER CROSS-LINKER */
-        .footer { background: var(--dark); padding: 60px 20px; color: #94a3b8; margin-top: 80px; }
-        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-        .footer h4 { color: #fff; margin-bottom: 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
-        .footer ul { list-style: none; line-height: 2.5; font-size: 0.9rem; }
-        .footer a { color: inherit; text-decoration: none; }
-        .footer a:hover { color: var(--accent); }
+        body { font-family: sans-serif; padding: 40px; background: #f0f4f8; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .city-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
+        .audit-btn { display: block; margin-top: 15px; background: #0072b2; color: white; padding: 10px; text-decoration: none; border-radius: 6px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <nav class="nav">
-        <a href="index.html" class="logo">SKYSCANNER HUB</a>
-        <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="nav-btn">BOOK NOW</a>
-    </nav>
+    <h1>2026 Flight Path Audits</h1>
+    <p>Select a destination to view live benchmark pricing and availability.</p>
 
-    <header class="hero">
-        <h1>2026 Hotlist</h1>
-        <p>Aesthetic destinations with verified low-cost flight routes.</p>
-    </header>
-
-    <div class="grid">
-        <!-- Bali -->
-        <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=500&q=60');"></div>
-            <div class="card-content">
-                <span class="tag">Wellness • Tropical</span>
-                <h3>Ubud, Bali</h3>
-                <p>The 2026 destination for digital nomads and wellness seekers.</p>
-                <span class="price">From $440 Round-trip</span>
-            </div>
-        </a>
-
-        <!-- Seoul -->
-        <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512813195386-6cf811ad3542?auto=format&fit=crop&w=500&q=60');"></div>
-            <div class="card-content">
-                <span class="tag">Aesthetic • Shopping</span>
-                <h3>Seoul, South Korea</h3>
-                <p>Global center for skincare pilgrims and foodie safaris.</p>
-                <span class="price">From $512 Round-trip</span>
-            </div>
-        </a>
-
-        <!-- Italy -->
-        <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=500&q=60');"></div>
-            <div class="card-content">
-                <span class="tag">Euro Summer • Hidden Gem</span>
-                <h3>Salerno, Italy</h3>
-                <p>The smart, budget-friendly alternative to Positano.</p>
-                <span class="price">From $289 Round-trip</span>
-            </div>
-        </a>
-    </div>
-
-    <!-- MASTER CROSS-LINKER FOOTER -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div>
-                <h4>Site Network</h4>
-                <ul>
-                    <li><a href="index.html">🏠 Flight Search Root</a></li>
-                    <li><a href="guide.html">📖 2026 Travel Guide</a></li>
-                    <li><a href="destinations.html" style="color: var(--accent); font-weight: bold;">📍 Trending Destinations</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Quick Access</h4>
-                <ul>
-                    <li><a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" rel="sponsored" style="color: #00d7f1; font-weight: bold;">Live Price Ticker</a></li>
-                    <li><a href="guide.html#hacks">Budget Hacks</a></li>
-                    <li><a href="index.html#wellness">Wellness Search</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>About</h4>
-                <p style="font-size: 0.8rem; line-height: 1.6;">Verified Skyscanner Affiliate Partner. All data is updated daily to reflect 2026 global travel inventory.</p>
-            </div>
+    <div class="grid" id="destination-grid">
         </div>
-        <div style="margin-top: 40px; text-align: center; font-size: 0.75rem; border-top: 1px solid #111; padding-top: 20px; opacity: 0.5;">
-            © 2026 SoftLife Travel Network | <span id="year"></span>
-        </div>
-    </footer>
 
-    <script>document.getElementById('year').innerText = new Date().getFullYear();</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const grid = document.getElementById('destination-grid');
+            
+            // This pulls the cities directly from your travelDatabase in generate.js
+            grid.innerHTML = travelDatabase.map(item => {
+                // Creates a URL-friendly version of the city name (e.g., "London" -> "london")
+                const slug = item.city.split(',')[0].toLowerCase().trim();
+                
+                return `
+                    <div class="city-card">
+                        <h3>${item.city}</h3>
+                        <p>${item.desc}</p>
+                        <a href="audit.html?item=${slug}-newyork" class="audit-btn">Open Flight Audit</a>
+                    </div>
+                `;
+            }).join('');
+        });
+    </script>
 </body>
 </html>
