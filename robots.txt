@@ -1,13 +1,20 @@
-# Global directives for all search engines
+# ==========================================
+# STADIUMSTAY 2026 - ROBOTS.TXT
+# Purpose: Maximize Crawl Budget & SEO Juice
+# ==========================================
+
 User-agent: *
+
+# Allow everything by default
 Allow: /
 
-# Disallow utility and system pages to preserve crawl budget
-Disallow: /exit.html
-Disallow: /reset.html
-Disallow: /404.html
-Disallow: /compliance.html
-Disallow: /privacy.html
+# Block technical or private files (optional)
+Disallow: /README.md
+Disallow: /LICENSE
+Disallow: /.git/
 
-# Link to your sitemap (Update with your actual custom domain if you have one)
+# Direct Google to your Sitemaps
 Sitemap: https://brightlane.github.io/SkyScanner/sitemap.xml
+
+# Tell bots to wait 1 second between crawls to ensure GitHub Pages stability
+Crawl-delay: 1
