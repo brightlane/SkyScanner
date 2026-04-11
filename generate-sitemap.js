@@ -1,90 +1,59 @@
-const fs = require("fs");
-const path = require("path");
+/**
+ * SITE-MAP GENERATOR ENGINE
+ * Copy this into your generate-sitemap.js file.
+ * This script builds the XML structure for your virtual city pages.
+ */
 
-const BASE_URL = "https://brightlane.github.io/SkyScanner";
+const BASE_URL = "https://brightlane.github.io/SkyScanner/";
 
-// files/folders to ignore
-const EXCLUDE_FILES = [
-  "404.html",
-  "sitemap.html",
-  "sitemap.xml",
-  "generate-sitemap.js"
+// 1. ADD YOUR 500+ CITIES/STADIUMS HERE
+// The script will turn each of these into a unique URL
+const targetCities = [
+    "London", "Paris", "Tokyo", "Madrid", "Berlin", "Rome", "Lisbon", "Bali", 
+    "MetLife Stadium", "SoFi Stadium", "AT&T Stadium", "Wembley", "Old Trafford",
+    "Estadio Azteca", "Hard Rock Stadium", "Levi's Stadium", "Allianz Arena",
+    "Barcelona", "Milan", "Amsterdam", "Dubai", "Singapore", "Sydney"
+    // Tip: You can just copy-paste a list of names here!
 ];
 
-const SKIP_DIRS = [
-  "node_modules",
-  ".git"
+// 2. CORE STATIC PAGES
+const staticPages = [
+    "index.html",
+    "stadiumstay.html",
+    "destinations.html",
+    "calculator.html",
+    "blog.html",
+    "about.html",
+    "privacy.html"
 ];
 
-// SEO priority rules
-function getPriority(file) {
-  if (file === "index.html") return "1.0";
-  if (file === "blog.html") return "0.95";
+function generateSitemap() {
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+    xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-  if (
-    file.includes("paris") ||
-    file.includes("tokyo") ||
-    file.includes("new-york") ||
-    file.includes("london") ||
-    file.includes("rome") ||
-    file.includes("losangeles")
-  ) return "0.9";
+    // Add Static Pages
+    staticPages.forEach(page => {
+        xml += `  <url>\n`;
+        xml += `    <loc>${BASE_URL}${page}</loc>\n`;
+        xml += `    <priority>${page === 'index.html' ? '1.0' : '0.8'}</priority>\n`;
+        xml += `  </url>\n`;
+    });
 
-  if (file === "about.html" || file === "faq.html") return "0.7";
+    // Add Virtual Dynamic Pages (The 500-Page Trick)
+    targetCities.forEach(city => {
+        const encodedCity = encodeURIComponent(city);
+        xml += `  <url>\n`;
+        xml += `    <loc>${BASE_URL}index.html?q=${encodedCity}</loc>\n`;
+        xml += `    <priority>0.7</priority>\n`;
+        xml += `  </url>\n`;
+    });
 
-  return "0.8";
+    xml += `</urlset>`;
+    
+    // Output the result to the console
+    console.log("--- COPY THE XML BELOW INTO YOUR sitemap.xml FILE ---");
+    console.log(xml);
 }
 
-// crawl all html files safely
-function getPages(dir, list = []) {
-  const files = fs.readdirSync(dir);
-
-  files.forEach(file => {
-    const fullPath = path.join(dir, file);
-
-    if (fs.statSync(fullPath).isDirectory()) {
-      if (!SKIP_DIRS.includes(file)) {
-        getPages(fullPath, list);
-      }
-    } else if (file.endsWith(".html") && !EXCLUDE_FILES.includes(file)) {
-      list.push(file);
-    }
-  });
-
-  return list;
-}
-
-const pages = getPages("./");
-
-// build sitemap URLs
-const urls = pages.map(page => {
-  const loc =
-    page === "index.html"
-      ? `${BASE_URL}/`
-      : `${BASE_URL}/${page}`;
-
-  const priority = getPriority(page);
-
-  return `
-  <url>
-    <loc>${loc}</loc>
-    <priority>${priority}</priority>
-  </url>`;
-}).join("\n");
-
-// final sitemap XML
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-${urls}
-
-</urlset>`;
-
-// write file
-fs.writeFileSync("sitemap.xml", sitemap.trim());
-
-console.log("✅ Sitemap generated for SkyScanner successfully");
-const cities = ['london', 'paris', 'tokyo', 'lisbon', 'bali'];
-const urls = cities.map(city => `https://brightlane.github.io/SkyScanner/destination.html?city=${city}`);
-
-// Have your sitemap script loop through these and add them to the XML
+// Execute
+generateSitemap();
