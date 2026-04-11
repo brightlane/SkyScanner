@@ -3,29 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audit Link Expired | StadiumStay 2026</title>
-    <script src="generate.js"></script>
+    <title>Scanning 2026 Inventory... | StadiumStay Audit</title>
+    
+    <script src="vulture.js"></script>
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f8fafc; text-align: center; padding: 100px 20px; color: #0f172a; }
-        .box { max-width: 500px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 2px solid #0072b2; }
-        h1 { font-size: 3rem; margin: 0; color: #0072b2; }
-        p { color: #64748b; margin: 20px 0; }
-        .btn { display: inline-block; background: #0072b2; color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: white; text-align: center; padding: 50px 20px; }
+        .scanner-box { border: 2px dashed #334155; padding: 40px; border-radius: 20px; max-width: 500px; margin: 0 auto; }
+        .error-code { color: #ff4747; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; }
+        h1 { font-size: 1.8rem; margin: 20px 0; }
+        .loading-bar { width: 100%; height: 4px; background: #1e293b; margin: 20px 0; border-radius: 10px; overflow: hidden; }
+        .loading-progress { width: 40%; height: 100%; background: #0072b2; animation: move 2s infinite linear; }
+        @keyframes move { 0% { margin-left: -40%; } 100% { margin-left: 100%; } }
+        .vulture-btn { 
+            display: inline-block; background: #0072b2; color: white; padding: 15px 30px; 
+            text-decoration: none; border-radius: 50px; font-weight: 700; margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="box">
-        <h1>404</h1>
-        <h3>Audit Link Refreshing</h3>
-        <p>The specific stadium route or audit inventory you are looking for has been updated for the 2026 cycle.</p>
+    <div class="scanner-box">
+        <div class="error-code">STATUS: 404 - ROUTE_NOT_CACHED</div>
+        <h1>Destination Audit Incomplete</h1>
+        <p>The specific route you requested hasn't been cached in our local 2026 hub yet, but it is available in the global Skyscanner database.</p>
         
-        <a href="index.html" class="btn">Return to Audit Hub</a>
+        <div class="loading-bar"><div class="loading-progress"></div></div>
         
-        <p style="font-size: 0.8rem; margin-top: 30px;">
-            <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="sky-link" style="color: #94a3b8;">Check Live Flight Inventory instead →</a>
-        </p>
+        <p style="font-size: 0.8rem; opacity: 0.6;">Redirecting to Global Inventory Pipe...</p>
+        
+        <a href="https://skyscanner.com" class="vulture-btn">Access Global 2026 Inventory Now</a>
     </div>
+
+    <script>
+        // Automatic Redirect Trick after 5 seconds
+        setTimeout(() => {
+            // This pulls the affiliate link directly from your configuration
+            window.location.href = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+        }, 5000);
+    </script>
 
 </body>
 </html>
