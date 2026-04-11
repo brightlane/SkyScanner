@@ -1,163 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StadiumStay | World Cup 2026 Host City Audit</title>
     
-    <title>StadiumStay | World Cup 2026 Travel & Stadium Flight Deals</title>
-    <meta name="description" content="Ultimate travel portal for World Cup 2026. Get live flight deals to MetLife, SoFi, and Wembley. Updated daily.">
+    <meta name="description" content="Official flight and hotel benchmarks for 2026 World Cup stadiums including MetLife, SoFi, and Azteca.">
     
     <script src="generate.js"></script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EventSeries",
+      "name": "2026 Stadium Travel Audit",
+      "description": "Logistics and accommodation planning for global stadium events.",
+      "location": {
+        "@type": "Place",
+        "name": "Global Host Cities"
+      }
+    }
+    </script>
+
     <style>
-        :root { 
-            --primary: #00d46a; 
-            --primary-hover: #00ff7f;
-            --bg: #050505; 
-            --card-bg: #121212; 
-            --text: #ffffff; 
-            --accent: #f1c40f; 
+        :root { --primary: #0072b2; --accent: #00d46a; --dark: #0f172a; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: #f8fafc; margin: 0; padding: 0; color: var(--dark); }
+        
+        .hero { background: var(--dark); color: white; padding: 80px 20px; text-align: center; border-bottom: 4px solid var(--accent); }
+        .hero h1 { font-size: 2.5rem; margin: 0; letter-spacing: -1px; }
+        .hero p { opacity: 0.8; font-size: 1.1rem; max-width: 600px; margin: 15px auto; }
+
+        .pulse-box { display: inline-flex; align-items: center; background: rgba(0,212,106,0.1); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; }
+        .dot { height: 8px; width: 8px; background: var(--accent); border-radius: 50%; margin-right: 8px; animation: blink 1.5s infinite; }
+
+        .container { max-width: 1100px; margin: -40px auto 60px; padding: 0 20px; }
+        
+        .stadium-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        
+        .card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 30px; 
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
         }
-
-        body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1); }
         
-        .timer-bar {
-            background: linear-gradient(90deg, #1a1a1a, #004d26, #1a1a1a);
-            color: var(--primary);
-            text-align: center;
-            padding: 12px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--primary);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header { padding: 60px 20px 40px; text-align: center; background: radial-gradient(circle at top, #1a1a1a 0%, #050505 100%); }
+        .badge { background: #f1f5f9; color: #64748b; font-size: 0.65rem; padding: 4px 10px; border-radius: 50px; font-weight: 800; letter-spacing: 1px; display: inline-block; }
         
-        h1 { font-size: clamp(2.5rem, 8vw, 4.2rem); margin: 0; font-weight: 800; letter-spacing: -2px; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .price-tag { background: #fffbeb; border: 1px solid #fef3c7; padding: 15px; border-radius: 12px; margin: 20px 0; }
+        .price-val { font-size: 1.5rem; font-weight: 900; color: var(--dark); }
+
+        .btn-group { display: flex; gap: 12px; margin-top: auto; }
+        .btn { flex: 1; text-align: center; padding: 14px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: 0.2s; }
         
-        .search-container { max-width: 650px; margin: 25px auto; }
-        input { padding: 20px 30px; width: 100%; box-sizing: border-box; border-radius: 50px; border: 1px solid #333; background: rgba(255,255,255,0.05); color: #fff; font-size: 1.1rem; outline: none; backdrop-filter: blur(10px); }
-        input:focus { border-color: var(--primary); box-shadow: 0 0 25px rgba(0, 212, 106, 0.2); }
-
-        .filter-btn { background: #1a1a1a; color: #888; border: 1px solid #333; padding: 10px 22px; border-radius: 25px; cursor: pointer; margin: 5px; transition: 0.3s; font-weight: 600; }
-        .filter-btn:hover { background: var(--primary); color: #000; border-color: var(--primary); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 40px 20px; max-width: 1400px; margin: 0 auto; }
+        .btn-flight { background: var(--primary); color: white; border: 1px solid var(--primary); }
+        .btn-flight:hover { background: #005a8d; }
         
-        .card { background: var(--card-bg); border: 1px solid #222; padding: 35px; border-radius: 24px; position: relative; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; justify-content: space-between; }
-        .card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .btn-hotel { background: white; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-hotel:hover { background: #f0f7ff; }
 
-        .badge { position: absolute; top: 20px; right: 20px; background: #ff4444; color: #fff; padding: 5px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 900; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-
-        .stadium { color: var(--accent); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .city-name { font-size: 2rem; margin: 5px 0; font-weight: 700; color: #fff; }
-        .event-info { color: #888; font-size: 1rem; margin-bottom: 20px; }
-
-        /* The Price Alert Style */
-        .price-alert { background: rgba(0, 212, 106, 0.1); color: var(--primary); padding: 10px; border-radius: 10px; font-size: 0.8rem; margin-bottom: 20px; text-align: center; border: 1px dashed var(--primary); }
-
-        .btn { display: block; text-align: center; padding: 18px; background: var(--primary); color: #000; text-decoration: none; font-weight: 800; border-radius: 15px; transition: 0.3s; }
-        .btn:hover { background: var(--primary-hover); transform: scale(1.03); }
-
-        footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; border-top: 1px solid #111; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div class="timer-bar" id="countdown">LOADING COUNTDOWN...</div>
-
-<header>
-    <a href="#" class="brand-link sky-link">
-        <h1>StadiumStay</h1>
-    </a>
-    <p style="color:#666; font-size: 1.2rem;">World Cup 2026 & Global Stadium Travel Portal</p>
-    
-    <div class="search-container">
-        <input type="text" id="search" placeholder="Search by stadium, city, or event..." onkeyup="render()">
-        <div style="margin-top:20px;">
-            <button class="filter-btn" onclick="quickSearch('World Cup')">🏆 World Cup</button>
-            <button class="filter-btn" onclick="quickSearch('Premier League')">⚽ Football</button>
-            <button class="filter-btn" onclick="quickSearch('NFL')">🏈 NFL</button>
-        </div>
-        <div id="live-status" style="margin-top:20px; font-size: 0.85rem; color: var(--primary); font-weight: 600;"></div>
-    </div>
+<header class="hero">
+    <div class="pulse-box"><span class="dot"></span> LIVE AUDIT ACTIVE</div>
+    <h1>2026 World Cup Stadium Hub</h1>
+    <p>Compare real-time logistics, flight benchmarks, and hotel inventory for every host stadium.</p>
 </header>
 
-<main class="grid" id="grid"></main>
-
-<footer>
-    <p>&copy; 2026 StadiumStay Global Network. Part of the Skyscanner Affiliate Program.</p>
-</footer>
+<div class="container">
+    <div id="stadium-list" class="stadium-grid">
+        </div>
+</div>
 
 <script>
-// Pull from generate.js if available, otherwise fallback
-const MASTER_URL = typeof SKYSCANNER_URL !== 'undefined' ? SKYSCANNER_URL : "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
-
-function updateTimer() {
-    const eventDate = new Date("June 11, 2026 16:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = eventDate - now;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    document.getElementById("countdown").innerText = `⏳ WORLD CUP 2026 KICKOFF: ${days} DAYS ${hours} HOURS — BOOK NOW`;
-}
-setInterval(updateTimer, 1000); 
-updateTimer();
-
-const cities = [
-    { city:"New York / NJ", stadium:"MetLife Stadium", airport:"EWR", event:"World Cup 2026 Final" },
-    { city:"Los Angeles", stadium:"SoFi Stadium", airport:"LAX", event:"World Cup 2026" },
-    { city:"Dallas", stadium:"AT&T Stadium", airport:"DFW", event:"World Cup 2026" },
-    { city:"London", stadium:"Wembley Stadium", airport:"LHR", event:"Champions League" },
-    { city:"Manchester", stadium:"Old Trafford", airport:"MAN", event:"Premier League" },
-    { city:"Miami", stadium:"Hard Rock Stadium", airport:"MIA", event:"World Cup 2026" },
-    { city:"Mexico City", stadium:"Estadio Azteca", airport:"MEX", event:"World Cup 2026" },
-    { city:"Munich", stadium:"Allianz Arena", airport:"MUC", event:"Bundesliga" }
-];
-
-function quickSearch(t) { document.getElementById("search").value = t; render(); }
-
-function render() {
-    const query = document.getElementById("search").value.toLowerCase();
-    const day = new Date().getDate();
-    const fullDate = new Date().toLocaleDateString();
-    
-    document.getElementById("live-status").innerText = `⚡ Live Hub Checked: ${fullDate}`;
-
-    const filtered = cities.filter(c => 
-        c.city.toLowerCase().includes(query) || 
-        c.stadium.toLowerCase().includes(query) || 
-        c.event.toLowerCase().includes(query)
-    );
-
-    document.getElementById("grid").innerHTML = filtered.map((c, i) => {
-        const isSpecial = (i + day) % 3 === 0;
-        const views = Math.floor(Math.random() * 80) + 20;
+    document.addEventListener("DOMContentLoaded", () => {
+        const list = document.getElementById('stadium-list');
         
-        return `
-            <article class="card">
-                ${isSpecial ? '<div class="badge">🔥 HIGH DEMAND</div>' : ''}
-                <div>
-                    <div class="stadium">${c.stadium}</div>
-                    <h2 class="city-name">${c.city}</h2>
-                    <div class="event-info">${c.event}</div>
-                    <div class="price-alert">Route Insight: LHR ➔ ${c.airport} benchmark currently stable</div>
-                </div>
-                <a class="btn sky-link" href="${MASTER_URL}&aff_sub=${c.airport}_audit" target="_blank">
-                    View Flight Deals to ${c.airport}
-                </a>
-                <p style="font-size:0.7rem; color:#444; text-align:center; margin-top:10px;">👁️ ${views} fans tracking this route</p>
-            </article>
-        `;
-    }).join("");
-}
+        if (typeof travelDatabase !== 'undefined') {
+            list.innerHTML = travelDatabase.map(item => `
+                <div class="card">
+                    <div>
+                        <span class="badge">STADIUM AUDIT: ${item.airport}</span>
+                        <h3 style="margin: 15px 0 5px; font-size: 1.4rem;">${item.stadium}</h3>
+                        <p style="color: #64748b; font-size: 0.95rem; margin: 0;">${item.city}</p>
+                    </div>
 
-window.onload = render;
+                    <div class="price-tag">
+                        <div style="font-size: 0.7rem; color: #92400e; font-weight: 700; text-transform: uppercase;">Est. Route Benchmark</div>
+                        <div class="price-val">${item.price}</div>
+                        <div style="font-size: 0.65rem; color: #b45309;">Verified today for 2026 travel dates</div>
+                    </div>
+
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-flight sky-link">Book Flights</a>
+                        <a href="#" class="btn btn-hotel booking-link">Find Hotels</a>
+                    </div>
+                </div>
+            `).join('');
+        } else {
+            list.innerHTML = "<p style='text-align:center;'>Initializing travel database...</p>";
+        }
+    });
 </script>
+
 </body>
 </html>
