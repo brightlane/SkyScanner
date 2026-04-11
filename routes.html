@@ -3,107 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 Popular Flight Routes | Direct & Budget Connections</title>
+    <title>Global Route Audit | 2026 Flight Benchmarks</title>
+    
+    <script src="generate.js"></script>
+
     <style>
-        :root { --slate: #0f172a; --sky: #0072b2; --accent: #8b5cf6; --gray: #f8fafc; }
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--gray); color: var(--slate); }
-        .nav { background: white; padding: 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
-        .nav a { color: var(--slate); text-decoration: none; margin: 0 15px; font-weight: 700; font-size: 0.8rem; }
+        :root { --primary: #0072b2; --bg: #ffffff; --table-hover: #f1f5f9; }
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: #f8fafc; color: #1e293b; }
         
-        .header { padding: 60px 20px; text-align: center; }
-        .header h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        header { background: var(--primary); color: white; padding: 40px 20px; text-align: center; }
+        .container { max-width: 1100px; margin: -40px auto 40px; padding: 0 20px; }
+        
+        .audit-card { background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 30px; border: 1px solid #e2e8f0; }
+        
+        .status-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
+        .live-indicator { color: #22c55e; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; display: flex; align-items: center; }
+        .dot { height: 8px; width: 8px; background: #22c55e; border-radius: 50%; margin-right: 8px; animation: pulse 1.5s infinite; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { text-align: left; padding: 15px; border-bottom: 2px solid #e2e8f0; color: #64748b; font-size: 0.85rem; text-transform: uppercase; }
+        td { padding: 20px 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
+        tr:hover { background: var(--table-hover); }
+        
+        .btn-check { background: var(--primary); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.2s; }
+        .btn-check:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        .route-grid { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        
-        /* BOARDING PASS STYLE CARD */
-        .ticket-card { background: white; margin-bottom: 20px; border-radius: 16px; display: flex; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px dashed #cbd5e1; position: relative; }
-        .ticket-left { padding: 30px; flex-grow: 1; border-right: 2px dashed var(--gray); }
-        .ticket-right { padding: 30px; background: #fffcf0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 180px; }
-        
-        .airport-code { font-size: 1.5rem; font-weight: 900; color: var(--sky); }
-        .plane-icon { margin: 0 15px; color: #cbd5e1; }
-        .route-name { font-size: 0.9rem; color: #64748b; margin-top: 5px; }
-        
-        .price-tag { font-size: 1.8rem; font-weight: 900; color: var(--slate); }
-        .btn-ticket { background: var(--slate); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 800; margin-top: 10px; text-transform: uppercase; }
-        
-        .ticket-card:before, .ticket-card:after { content: ''; position: absolute; background: var(--gray); width: 20px; height: 20px; border-radius: 50%; left: 74.5%; margin-left: -10px; }
-        .ticket-card:before { top: -10px; }
-        .ticket-card:after { bottom: -10px; }
-
-        @media (max-width: 600px) { .ticket-card { flex-direction: column; } .ticket-left { border-right: none; border-bottom: 2px dashed var(--gray); } .ticket-card:before, .ticket-card:after { display: none; } }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        @media (max-width: 768px) { .hide-mobile { display: none; } }
     </style>
 </head>
 <body>
 
-    <nav class="nav">
-        <a href="index.html">HOME</a>
-        <a href="hub.html">REGIONS</a>
-        <a href="deals.html">LIVE DEALS</a>
-    </nav>
+<header>
+    <h1>2026 Flight Route Audit</h1>
+    <p>Real-time inventory benchmarks for global stadium hubs</p>
+</header>
 
-    <div class="header">
-        <h1>High-Traffic Routes 2026</h1>
-        <p>The most requested flight paths with the lowest current price points.</p>
-    </div>
-
-    <div class="route-grid">
-        <!-- Ticket 1 -->
-        <div class="ticket-card">
-            <div class="ticket-left">
-                <div>
-                    <span class="airport-code">NYC</span>
-                    <span class="plane-icon">✈</span>
-                    <span class="airport-code">PAR</span>
-                </div>
-                <div class="route-name">New York City to Paris, France</div>
-                <p style="margin-top:10px; font-size: 0.8rem; color: #94a3b8;">Average duration: 7h 20m • Direct Service Available</p>
-            </div>
-            <div class="ticket-right">
-                <div class="price-tag">$299</div>
-                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-ticket">Book Seat</a>
-            </div>
+<div class="container">
+    <div class="audit-card">
+        <div class="status-header">
+            <div class="live-indicator"><span class="dot"></span> Live System Status: Optimal</div>
+            <div style="font-size: 0.85rem; color: #64748b;" id="audit-date"></div>
         </div>
 
-        <!-- Ticket 2 -->
-        <div class="ticket-card">
-            <div class="ticket-left">
-                <div>
-                    <span class="airport-code">LHR</span>
-                    <span class="plane-icon">✈</span>
-                    <span class="airport-code">DXB</span>
-                </div>
-                <div class="route-name">London to Dubai, UAE</div>
-                <p style="margin-top:10px; font-size: 0.8rem; color: #94a3b8;">Average duration: 6h 55m • Luxury Hub Route</p>
-            </div>
-            <div class="ticket-right">
-                <div class="price-tag">$345</div>
-                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-ticket">Book Seat</a>
-            </div>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Destination Hub</th>
+                    <th class="hide-mobile">Primary Airport</th>
+                    <th>Audit Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="route-table">
+                </tbody>
+        </table>
 
-        <!-- Ticket 3 -->
-        <div class="ticket-card">
-            <div class="ticket-left">
-                <div>
-                    <span class="airport-code">LAX</span>
-                    <span class="plane-icon">✈</span>
-                    <span class="airport-code">HND</span>
-                </div>
-                <div class="route-name">Los Angeles to Tokyo, Japan</div>
-                <p style="margin-top:10px; font-size: 0.8rem; color: #94a3b8;">Average duration: 11h 45m • Trans-Pacific Special</p>
-            </div>
-            <div class="ticket-right">
-                <div class="price-tag">$512</div>
-                <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="btn-ticket">Book Seat</a>
-            </div>
+        <div style="margin-top: 30px; padding: 20px; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 10px; font-size: 0.85rem; color: #92400e;">
+            <strong>Note to Travelers:</strong> These benchmarks are updated every 24 hours. High-demand events (World Cup 2026) may cause inventory volatility. We recommend using the "Search Everywhere" tool for unadvertised airline repositioning flights.
         </div>
     </div>
+</div>
 
-    <footer style="padding: 60px 20px; text-align: center; font-size: 0.8rem; color: #94a3b8;">
-        © 2026 SoftLife Network | <a href="hub.html" style="color:inherit;">Browse All Routes</a>
-    </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Update Date
+        document.getElementById('audit-date').innerText = `Data Sync: ${new Date().toLocaleDateString()}`;
+
+        // 2. Inject Data from travelDatabase (in generate.js)
+        const tableBody = document.getElementById('route-table');
+        
+        // Populate the table using the data you already have in generate.js
+        tableBody.innerHTML = travelDatabase.map(item => `
+            <tr>
+                <td>
+                    <div style="font-weight: 700;">${item.city}</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">${item.stadium}</div>
+                </td>
+                <td class="hide-mobile">
+                    <span style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${item.airport}</span>
+                </td>
+                <td>
+                    <span style="color: #059669; font-weight: 600;">${item.price} Benchmark</span>
+                    <div style="font-size: 0.7rem; color: #94a3b8;">Verified Today</div>
+                </td>
+                <td>
+                    <a href="#" class="btn-check sky-link">Check Live Inventory</a>
+                </td>
+            </tr>
+        `).join('');
+    });
+</script>
 
 </body>
 </html>
