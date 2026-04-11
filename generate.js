@@ -1,123 +1,71 @@
 /**
- * STADIUMSTAY OS v4.0 - THE "DAILY PULSE" ENGINE
- * Fully Enhanced: Daily City Rotation, Gear Drops, and World Cup Countdown.
+ * STADIUMSTAY OS v4.1 - THE "REVENUE FIRST" ENGINE
+ * Purpose: Redirect all commercial intent to Skyscanner Affiliate ID 21885
  */
 
 // 1. MASTER CONFIGURATION
 const CONFIG = {
-    SKYSCANNER: "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885",
-    BOOKING: "https://www.booking.com/index.html?aid=1858279",
-    ALIEXPRESS: "https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692&ued=",
+    // YOUR PRIMARY REVENUE LINK
+    AFFILIATE_BASE: "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885",
+    
     BRAND_NAME: "StadiumStay 2026",
-    EVENT_DATE: new Date("June 11, 2026"), // World Cup 2026 Start Date
-    LAST_AUDIT: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+    EVENT_DATE: new Date("June 11, 2026"),
+    LAST_AUDIT: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + " UTC"
 };
 
 // 2. THE MASTER DATABASE
 const travelDatabase = [
-    { city: "New York / NJ", airport: "EWR", stadium: "MetLife Stadium", price: "$295", hotel_slug: "metlife" },
-    { city: "Los Angeles", airport: "LAX", stadium: "SoFi Stadium", price: "$315", hotel_slug: "sofi" },
-    { city: "Mexico City", airport: "MEX", stadium: "Estadio Azteca", price: "$220", hotel_slug: "azteca" },
-    { city: "London", airport: "LHR", stadium: "Wembley", price: "$410", hotel_slug: "wembley" },
-    { city: "Tokyo", airport: "NRT", stadium: "Japan National", price: "$780", hotel_slug: "national" },
-    { city: "Dallas", airport: "DFW", stadium: "AT&T Stadium", price: "$265", hotel_slug: "att-stadium" },
-    { city: "Miami", airport: "MIA", stadium: "Hard Rock Stadium", price: "$210", hotel_slug: "hard-rock" }
+    { city: "New York / NJ", airport: "EWR", stadium: "MetLife Stadium", price: "$295" },
+    { city: "Los Angeles", airport: "LAX", stadium: "SoFi Stadium", price: "$315" },
+    { city: "Mexico City", airport: "MEX", stadium: "Estadio Azteca", price: "$220" },
+    { city: "London", airport: "LHR", stadium: "Wembley", price: "$410" }
 ];
 
-// 3. AUTO-CONTENT GENERATOR (The Daily Trick)
-const getDailyIntel = () => {
-    const now = new Date();
-    const start = new Date(now.getFullYear(), 0, 0);
-    const diff = now - start;
-    const oneDay = 1000 * 60 * 60 * 24;
-    const dayOfYear = Math.floor(diff / oneDay);
-
-    // Dynamic Selections
-    const cityIndex = dayOfYear % travelDatabase.length;
-    const gearList = ["Portable GaN Chargers", "Clear Stadium Bags", "Solar Power Banks", "Travel Neck Pillows", "Universal Plug Adapters"];
-    
-    return {
-        city: travelDatabase[cityIndex],
-        gear: gearList[dayOfYear % gearList.length],
-        daysLeft: Math.ceil((CONFIG.EVENT_DATE - now) / oneDay)
-    };
-};
-
-// 4. THE INJECTION ENGINE
+// 3. THE REVENUE ENGINE
 (function() {
-    const intel = getDailyIntel();
-
-    const injectIdentity = () => {
-        const icon = document.createElement('link');
-        icon.rel = 'icon';
-        icon.href = 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>';
-        document.head.appendChild(icon);
-    };
-
-    const syncAffiliates = () => {
-        document.querySelectorAll('.sky-link').forEach(el => el.href = CONFIG.SKYSCANNER);
-        document.querySelectorAll('.booking-link').forEach(el => el.href = CONFIG.BOOKING);
-        document.querySelectorAll('.ali-link').forEach(el => {
-            const prod = el.getAttribute('data-url') || "https://aliexpress.com";
-            el.href = CONFIG.ALIEXPRESS + encodeURIComponent(prod);
-        });
-    };
+    const now = new Date();
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    const todayCity = travelDatabase[dayOfYear % travelDatabase.length];
 
     const injectDailyContent = () => {
-        // Daily Gear Drop in Header
-        const dealBar = document.getElementById('daily-deal');
-        if (dealBar) {
-            dealBar.innerHTML = `⚡ <strong>DAILY DROP:</strong> Verified 40% Discount on <u>${intel.gear}</u> &nbsp; | &nbsp; 🏆 <strong>${intel.daysLeft} Days</strong> until Kickoff`;
-        }
-
-        // Featured Daily Audit Card
+        // Force the Daily Audit Card to use the Affiliate Link
         const auditBox = document.getElementById('daily-audit');
         if (auditBox) {
             auditBox.innerHTML = `
-                <div style="background: #fff; border: 2px solid #0072b2; border-radius: 15px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                        <span style="background:#0072b2; color:white; font-size:0.6rem; padding:4px 8px; border-radius:4px; font-weight:900;">LIVE DAILY AUDIT</span>
-                        <span style="font-size:0.7rem; color:#64748b;">${CONFIG.LAST_AUDIT}</span>
-                    </div>
-                    <h3 style="margin:0; font-size:1.3rem;">Priority: ${intel.city.city}</h3>
-                    <p style="color:#64748b; font-size:0.85rem; margin:5px 0 15px;">Target: ${intel.city.stadium}</p>
-                    <div style="font-size:1.5rem; font-weight:900; color:#0f172a;">${intel.city.price} <span style="font-size:0.7rem; font-weight:400; color:#059669;">Benchmark Active</span></div>
-                    <a href="calculator.html?q=${intel.city.city}" class="btn-read" style="display:block; text-align:center; background:#0072b2; color:white; padding:12px; border-radius:8px; text-decoration:none; margin-top:15px; font-weight:700; font-size:0.85rem;">Secure Audit Rate →</a>
+                <div style="background:white; border:2px solid #0072b2; border-radius:15px; padding:25px; box-shadow:0 10px 20px rgba(0,0,0,0.05);">
+                    <span style="background:#0072b2; color:white; font-size:0.6rem; padding:4px 8px; border-radius:4px; font-weight:900;">LIVE DAILY AUDIT</span>
+                    <h3 style="margin:10px 0 5px;">${todayCity.city}</h3>
+                    <div style="font-size:1.5rem; font-weight:900; color:#0f172a; margin-bottom:15px;">${todayCity.price}</div>
+                    <a href="${CONFIG.AFFILIATE_BASE}" target="_blank" style="display:block; text-align:center; background:#0072b2; color:white; padding:12px; border-radius:8px; text-decoration:none; font-weight:700;">Secure This Rate →</a>
                 </div>
             `;
         }
+
+        const dealBar = document.getElementById('daily-deal');
+        if (dealBar) {
+            dealBar.innerHTML = `<a href="${CONFIG.AFFILIATE_BASE}" target="_blank" style="text-decoration:none; color:inherit;">⚡ <strong>DEAL ALERT:</strong> 2026 Flight Benchmarks for ${todayCity.city} are LIVE. <span style="text-decoration:underline;">Click to Audit</span></a>`;
+        }
     };
 
-    const injectFooter = () => {
-        if(document.querySelector('footer')) return;
-        const footer = document.createElement('footer');
-        footer.style.cssText = "background:#0f172a; color:#94a3b8; padding:80px 20px; font-family:sans-serif; margin-top:100px; border-top:4px solid #0072b2;";
-        
-        const links = {
-            "Host Cities": ["New-York", "Los-Angeles", "Mexico-City", "London", "Tokyo", "Dallas", "Miami"],
-            "Market Tools": ["Calculator", "Routes", "Blog", "Sitemap", "Packing", "Radar"],
-            "Legal": ["Privacy", "Terms", "Affiliate-Disclosure"]
-        };
-
-        let html = `<div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:40px;">`;
-        for (const [title, pages] of Object.entries(links)) {
-            html += `<div><h4 style="color:white; font-size:0.75rem; text-transform:uppercase; margin-bottom:20px;">${title}</h4>`;
-            pages.forEach(p => {
-                html += `<a href="${p.toLowerCase()}.html" style="color:#64748b; text-decoration:none; display:block; margin-bottom:10px; font-size:0.85rem;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#64748b'">${p.replace('-', ' ')}</a>`;
-            });
-            html += `</div>`;
-        }
-        html += `</div><div style="text-align:center; margin-top:60px; color:#475569; font-size:0.7rem;">
-            <p>© 2026 ${CONFIG.BRAND_NAME} | Verified Affiliate Hub | Last Sync: ${CONFIG.LAST_AUDIT}</p>
-        </div>`;
-        footer.innerHTML = html;
-        document.body.appendChild(footer);
+    const syncAllClicks = () => {
+        // GLOBAL INTERCEPTOR: Every link with class "sky-link" or "booking-link" 
+        // will now go to your Skyscanner Affiliate URL.
+        document.querySelectorAll('a').forEach(link => {
+            if (link.classList.contains('sky-link') || link.classList.contains('booking-link') || link.innerText.includes('Audit')) {
+                link.href = CONFIG.AFFILIATE_BASE;
+                link.target = "_blank"; // Opens in new tab so they keep your site open too
+            }
+        });
     };
 
     window.addEventListener('DOMContentLoaded', () => {
-        injectIdentity();
-        syncAffiliates();
         injectDailyContent();
-        injectFooter();
+        syncAllClicks();
+        
+        // Final Footer Injection with Affiliate Disclosure (SEO Requirement)
+        const footer = document.createElement('footer');
+        footer.style.cssText = "background:#0f172a; color:#94a3b8; padding:40px 20px; text-align:center; margin-top:50px;";
+        footer.innerHTML = `<p style="font-size:0.7rem;">© 2026 ${CONFIG.BRAND_NAME} | <a href="${CONFIG.AFFILIATE_BASE}" style="color:#64748b;">Affiliate Disclosure</a>: Clicks may result in commissions to support this audit hub.</p>`;
+        document.body.appendChild(footer);
     });
 })();
