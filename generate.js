@@ -1,71 +1,75 @@
 /**
- * STADIUMSTAY OS v4.1 - THE "REVENUE FIRST" ENGINE
- * Purpose: Redirect all commercial intent to Skyscanner Affiliate ID 21885
+ * STADIUMSTAY OS v4.5 - THE MULTI-CHANNEL REVENUE ENGINE
+ * Purpose: Dynamically route clicks to Skyscanner, Booking, or AliExpress.
  */
 
-// 1. MASTER CONFIGURATION
-const CONFIG = {
-    // YOUR PRIMARY REVENUE LINK
-    AFFILIATE_BASE: "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885",
-    
+// 1. MASTER AFFILIATE CONFIGURATION
+const REVENUE_CHANNELS = {
+    SKYSCANNER: "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885",
+    BOOKING: "https://www.booking.com/index.html?aid=1858279",
+    ALIEXPRESS: "https://www.awin1.com/cread.php?awinmid=6378&awinaffid=1166692&ued=",
     BRAND_NAME: "StadiumStay 2026",
-    EVENT_DATE: new Date("June 11, 2026"),
     LAST_AUDIT: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + " UTC"
 };
 
-// 2. THE MASTER DATABASE
+// 2. DAILY CONTENT DATABASE
 const travelDatabase = [
-    { city: "New York / NJ", airport: "EWR", stadium: "MetLife Stadium", price: "$295" },
-    { city: "Los Angeles", airport: "LAX", stadium: "SoFi Stadium", price: "$315" },
-    { city: "Mexico City", airport: "MEX", stadium: "Estadio Azteca", price: "$220" },
-    { city: "London", airport: "LHR", stadium: "Wembley", price: "$410" }
+    { city: "New York / NJ", stadium: "MetLife Stadium", price: "$295" },
+    { city: "Los Angeles", stadium: "SoFi Stadium", price: "$315" },
+    { city: "London", stadium: "Wembley Stadium", price: "$410" },
+    { city: "Miami", stadium: "Hard Rock Stadium", price: "$210" }
 ];
 
-// 3. THE REVENUE ENGINE
+// 3. THE INJECTION ENGINE
 (function() {
     const now = new Date();
     const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
-    const todayCity = travelDatabase[dayOfYear % travelDatabase.length];
+    const today = travelDatabase[dayOfYear % travelDatabase.length];
 
-    const injectDailyContent = () => {
-        // Force the Daily Audit Card to use the Affiliate Link
+    const injectDailyLogic = () => {
+        // 1. Header Deal Bar (AliExpress Hack)
+        const dealBar = document.getElementById('daily-deal');
+        if (dealBar) {
+            const gearUrl = REVENUE_CHANNELS.ALIEXPRESS + encodeURIComponent("https://www.aliexpress.com/w/wholesale-stadium-approved-bag.html");
+            dealBar.innerHTML = `<a href="${gearUrl}" target="_blank" style="text-decoration:none; color:inherit;">⚡ <strong>TODAY'S DROP:</strong> Verified Stadium Gear Audit Complete. <span style="text-decoration:underline;">Grab 40% Off Here</span></a>`;
+        }
+
+        // 2. Daily Audit Card (Skyscanner/Booking Hybrid)
         const auditBox = document.getElementById('daily-audit');
         if (auditBox) {
             auditBox.innerHTML = `
                 <div style="background:white; border:2px solid #0072b2; border-radius:15px; padding:25px; box-shadow:0 10px 20px rgba(0,0,0,0.05);">
-                    <span style="background:#0072b2; color:white; font-size:0.6rem; padding:4px 8px; border-radius:4px; font-weight:900;">LIVE DAILY AUDIT</span>
-                    <h3 style="margin:10px 0 5px;">${todayCity.city}</h3>
-                    <div style="font-size:1.5rem; font-weight:900; color:#0f172a; margin-bottom:15px;">${todayCity.price}</div>
-                    <a href="${CONFIG.AFFILIATE_BASE}" target="_blank" style="display:block; text-align:center; background:#0072b2; color:white; padding:12px; border-radius:8px; text-decoration:none; font-weight:700;">Secure This Rate →</a>
+                    <span style="background:#0072b2; color:white; font-size:0.6rem; padding:4px 8px; border-radius:4px; font-weight:900;">LIVE AUDIT: ${REVENUE_CHANNELS.LAST_AUDIT}</span>
+                    <h3 style="margin:10px 0 5px;">${today.city}</h3>
+                    <p style="font-size:0.8rem; color:#64748b; margin-bottom:15px;">Targeting: ${today.stadium}</p>
+                    <div style="font-size:1.5rem; font-weight:900; color:#0f172a; margin-bottom:15px;">${today.price}</div>
+                    <a href="${REVENUE_CHANNELS.SKYSCANNER}" target="_blank" style="display:block; text-align:center; background:#0072b2; color:white; padding:12px; border-radius:8px; text-decoration:none; font-weight:700; margin-bottom:10px;">Audit Flights</a>
+                    <a href="${REVENUE_CHANNELS.BOOKING}" target="_blank" style="display:block; text-align:center; border:2px solid #0072b2; color:#0072b2; padding:10px; border-radius:8px; text-decoration:none; font-weight:700; font-size:0.8rem;">Audit Hotels</a>
                 </div>
             `;
         }
-
-        const dealBar = document.getElementById('daily-deal');
-        if (dealBar) {
-            dealBar.innerHTML = `<a href="${CONFIG.AFFILIATE_BASE}" target="_blank" style="text-decoration:none; color:inherit;">⚡ <strong>DEAL ALERT:</strong> 2026 Flight Benchmarks for ${todayCity.city} are LIVE. <span style="text-decoration:underline;">Click to Audit</span></a>`;
-        }
     };
 
-    const syncAllClicks = () => {
-        // GLOBAL INTERCEPTOR: Every link with class "sky-link" or "booking-link" 
-        // will now go to your Skyscanner Affiliate URL.
+    const syncGlobalAffiliates = () => {
+        // Forces all links with specific classes to your IDs
+        document.querySelectorAll('.sky-link').forEach(el => el.href = REVENUE_CHANNELS.SKYSCANNER);
+        document.querySelectorAll('.booking-link').forEach(el => el.href = REVENUE_CHANNELS.BOOKING);
+        document.querySelectorAll('.ali-link').forEach(el => {
+            const dest = el.getAttribute('data-url') || "https://www.aliexpress.com";
+            el.href = REVENUE_CHANNELS.ALIEXPRESS + encodeURIComponent(dest);
+        });
+        
+        // Open all in new tab to preserve dwell time
         document.querySelectorAll('a').forEach(link => {
-            if (link.classList.contains('sky-link') || link.classList.contains('booking-link') || link.innerText.includes('Audit')) {
-                link.href = CONFIG.AFFILIATE_BASE;
-                link.target = "_blank"; // Opens in new tab so they keep your site open too
+            if(link.href.includes('convert.ctypy') || link.href.includes('booking.com') || link.href.includes('awin1.com')) {
+                link.target = "_blank";
+                link.rel = "nofollow noopener noreferrer"; // SEO Best Practice for Affiliate Links
             }
         });
     };
 
     window.addEventListener('DOMContentLoaded', () => {
-        injectDailyContent();
-        syncAllClicks();
-        
-        // Final Footer Injection with Affiliate Disclosure (SEO Requirement)
-        const footer = document.createElement('footer');
-        footer.style.cssText = "background:#0f172a; color:#94a3b8; padding:40px 20px; text-align:center; margin-top:50px;";
-        footer.innerHTML = `<p style="font-size:0.7rem;">© 2026 ${CONFIG.BRAND_NAME} | <a href="${CONFIG.AFFILIATE_BASE}" style="color:#64748b;">Affiliate Disclosure</a>: Clicks may result in commissions to support this audit hub.</p>`;
-        document.body.appendChild(footer);
+        injectDailyLogic();
+        syncGlobalAffiliates();
     });
 })();
