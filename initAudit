@@ -1,67 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Initialization & Audit | StadiumStay 2026</title>
+    <script src="generate.js"></script>
+    <style>
+        :root { --terminal-green: #00ff41; --dark-bg: #0d0d0d; }
+        body { background: var(--dark-bg); color: var(--terminal-green); font-family: 'Courier New', Courier, monospace; padding: 40px; line-height: 1.4; }
+        .monitor { max-width: 800px; margin: 0 auto; border: 1px solid #333; padding: 20px; border-radius: 8px; box-shadow: 0 0 20px rgba(0,255,65,0.1); }
+        .line { margin-bottom: 10px; display: block; overflow: hidden; white-space: nowrap; border-right: .15em solid var(--terminal-green); animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite; }
+        .log-entry { color: #888; font-size: 0.8rem; margin-top: 5px; }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
+        .stat-box { border: 1px dashed #333; padding: 15px; text-align: center; }
+        .stat-val { font-size: 1.5rem; font-weight: bold; color: white; }
+        .btn-portal { display: block; text-align: center; background: var(--terminal-green); color: black; padding: 15px; margin-top: 30px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--terminal-green); } }
+    </style>
+</head>
+<body>
+
+<div class="monitor">
+    <span class="line">> INITIALIZING GLOBAL AUDIT...</span>
+    <span class="line">> SYNCING SKYSCANNER API NODES... [OK]</span>
+    <span class="line">> VERIFYING 2026 STADIUM INVENTORY... [100%]</span>
+    
+    <div id="live-logs">
+        </div>
+
+    <div class="stat-grid">
+        <div class="stat-box">
+            <div class="stat-val" id="total-routes">500+</div>
+            <div class="log-entry">Active Routes Audited</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-val" id="sync-status">ACTIVE</div>
+            <div class="log-entry">Affiliate Node 1166692</div>
+        </div>
+    </div>
+
+    <a href="index.html" class="btn-portal sky-link">Access Verified Search Portal</a>
+</div>
+
 <script>
-    // 1. Centralize your link (This matches your generate.js strategy)
-    const SKYSCANNER_URL = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+    const logs = [
+        "Analyzing MetLife Stadium benchmark...",
+        "Scrubbing 'Everywhere' inventory for price gaps...",
+        "Updating Bali Wellness retreat currency rates...",
+        "Applying Secret #6 Authority Anchor...",
+        "Audit Complete: System 100% Operational."
+    ];
 
-    // 2. Your expandable database
-    const travelDatabase = {
-        "london-newyork": {
-            route: "London (LHR) to New York (JFK)",
-            price: "$342",
-            insight: "Prices are currently 14% lower than the April average. Best booking window is now open."
-        },
-        "dubai-london": {
-            route: "Dubai (DXB) to London (LGW)",
-            price: "£289",
-            insight: "High demand detected. Audit shows prices rising in the next 48 hours."
-        },
-        "paris-newyork": {
-            route: "Paris (CDG) to New York (JFK)",
-            price: "€315",
-            insight: "Flash deal detected. Benchmark prices have dropped for early Summer 2026."
-        }
-        // You can add "rome-london", "tokyo-la", etc. here following the same format
-    };
+    const logBox = document.getElementById('live-logs');
+    let i = 0;
 
-    function initAudit() {
-        // Find out which route the user clicked (e.g., ?item=london-newyork)
-        const params = new URLSearchParams(window.location.search);
-        const routeKey = params.get('item') || 'london-newyork'; 
-        const data = travelDatabase[routeKey];
-
-        if (data) {
-            // Update Page Content
-            document.title = `Audit: ${data.route} | Skyscanner 2026`;
-            document.getElementById('main-route').innerText = data.route;
-            document.getElementById('display-price').innerText = data.price;
-            document.getElementById('route-insight').innerText = data.insight;
-            
-            // Inject Affiliate Link
-            const skyLink = document.getElementById('sky-link');
-            skyLink.href = SKYSCANNER_URL;
-
-            // Dynamic Scarcity (Psychological Trigger)
-            const viewers = Math.floor(Math.random() * 20) + 5;
-            document.getElementById('scarcity-msg').innerText = `🔥 ${viewers} people are tracking this specific route right now.`;
-
-            // Update Verification Date
-            const d = new Date();
-            document.getElementById('last-check').innerText = `VERIFIED: ${d.toLocaleDateString()}`;
-
-            // Update Schema for SEO (Optional but recommended)
-            const schema = document.getElementById('schema-data');
-            if (schema) {
-                const schemaObj = JSON.parse(schema.innerHTML);
-                schemaObj.name = `Flight Audit: ${data.route}`;
-                schemaObj.description = data.insight;
-                schema.innerHTML = JSON.stringify(schemaObj);
-            }
-        } else {
-            // Fallback if the route doesn't exist in your database
-            document.getElementById('main-route').innerText = "Route Audit Not Found";
-            document.getElementById('sky-link').href = SKYSCANNER_URL;
+    function addLog() {
+        if (i < logs.length) {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerText = `[${new Date().toLocaleTimeString()}] ${logs[i]}`;
+            logBox.appendChild(entry);
+            i++;
+            setTimeout(addLog, 1200);
         }
     }
 
-    // Run the function as soon as the page loads
-    window.onload = initAudit;
+    document.addEventListener('DOMContentLoaded', addLog);
 </script>
+
+</body>
+</html>
