@@ -57,3 +57,11 @@
 
     window.onload = initAudit;
 </script>
+// Add this to your existing database
+const dailyBlogDeals = [
+    { city: "Lisbon", discount: "22%", price: "$340", desc: "The 2026 'Soft Life' capital." },
+    { city: "Tokyo", discount: "15%", price: "$720", desc: "Sakura season premium economy fares." },
+    { city: "Hoi An", discount: "40%", price: "$410", desc: "Top-rated digital nomad wellness hub." },
+    { city: "Bali", discount: "30%", price: "$550", desc: "Retreats for the 2026 spiritual season." },
+    { city: "New York", discount: "12%", price: "$290", desc: "Perfect for the MetLife stadium events." }
+];
