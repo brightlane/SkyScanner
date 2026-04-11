@@ -84,3 +84,7 @@ ${urls}
 fs.writeFileSync("sitemap.xml", sitemap.trim());
 
 console.log("✅ Sitemap generated for SkyScanner successfully");
+const cities = ['london', 'paris', 'tokyo', 'lisbon', 'bali'];
+const urls = cities.map(city => `https://brightlane.github.io/SkyScanner/destination.html?city=${city}`);
+
+// Have your sitemap script loop through these and add them to the XML
