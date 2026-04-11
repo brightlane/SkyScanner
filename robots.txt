@@ -1,0 +1,13 @@
+# Global directives for all search engines
+User-agent: *
+Allow: /
+
+# Disallow utility and system pages to preserve crawl budget
+Disallow: /exit.html
+Disallow: /reset.html
+Disallow: /404.html
+Disallow: /compliance.html
+Disallow: /privacy.html
+
+# Link to your sitemap (Update with your actual custom domain if you have one)
+Sitemap: https://brightlane.github.io/SkyScanner/sitemap.xml
