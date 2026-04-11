@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Travel Budget Calculator | SoftLife Tracker</title>
+    <script src="generate.js"></script>
+    <style>
+        :root { --navy: #071d49; --blue: #0072b2; --accent: #00d7f1; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 20px; color: #334155; }
+        .calc-container { max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--blue); }
+        h1 { color: var(--navy); font-size: 1.5rem; text-align: center; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        select, input { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1rem; }
+        .result-box { background: #f0f9ff; padding: 20px; border-radius: 12px; margin-top: 20px; text-align: center; }
+        .total-price { font-size: 2rem; font-weight: 800; color: var(--blue); }
+        .cta-btn { display: block; background: #2ed573; color: white; padding: 15px; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+        .footer-note { font-size: 0.75rem; color: #94a3b8; text-align: center; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="calc-container">
+        <h1>Trip Cost Estimator (2026)</h1>
+        <p style="text-align: center; font-size: 0.85rem;">Estimate your SoftLife budget based on live flight benchmarks.</p>
+
+        <div class="input-group">
+            <label>Select Destination</label>
+            <select id="city-select" onchange="calculateTotal()">
+                </select>
+        </div>
+
+        <div class="input-group">
+            <label>Length of Stay (Days)</label>
+            <input type="number" id="days" value="7" oninput="calculateTotal()">
+        </div>
+
+        <div class="result-box">
+            <div style="font-size: 0.9rem;">Estimated Minimum Budget</div>
+            <div class="total-price" id="total-display">$0</div>
+            <p id="breakdown-note" style="font-size: 0.8rem; color: #64748b;"></p>
+        </div>
+
+        <a href="#" class="cta-btn sky-link">Book This Rate on Skyscanner</a>
+        
+        <div class="footer-note">
+            Calculations include flight benchmark + $150/day average SoftLife expenses.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const select = document.getElementById('city-select');
+            
+            // 1. Automatically populate the dropdown from your generate.js database
+            select.innerHTML = travelDatabase.map(item => {
+                const cityName = item.city.split(',')[0];
+                return `<option value="${item.price}" data-name="${cityName}">${item.city}</option>`;
+            }).join('');
+
+            calculateTotal();
+        });
+
+        function calculateTotal() {
+            const select = document.getElementById('city-select');
+            const days = document.getElementById('days').value || 0;
+            const flightPriceStr = select.value;
+            
+            // Clean the price string (e.g., "$340" -> 340)
+            const flightPrice = parseInt(flightPriceStr.replace(/[^0-9]/g, '')) || 0;
+            const dailyCost = 150; // Average cost for accommodation/food
+            
+            const total = flightPrice + (dailyCost * days);
+            const cityName = select.options[select.selectedIndex].getAttribute('data-name');
+
+            document.getElementById('total-display').innerText = `$${total.toLocaleString()}`;
+            document.getElementById('breakdown-note').innerText = 
+                `Includes ${flightPriceStr} flight to ${cityName} and ${days} days of travel.`;
+        }
+    </script>
+</body>
+</html>
