@@ -1,4 +1,4 @@
-// 1. DATA HUBS (Must match your calculator.html hubs exactly)
+// 1. DATA HUBS (Ensure these match your calculator.html hubs)
 const hubs = {
     usa: ["New-York", "Los-Angeles", "Miami", "Chicago", "Dallas", "Atlanta", "Seattle", "Houston", "Boston"],
     europe: ["London", "Paris", "Berlin", "Rome", "Madrid", "Amsterdam", "Dublin", "Lisbon"],
@@ -17,16 +17,10 @@ let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
         <lastmod>${today}</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://brightlane.github.io/SkyScanner/stadiumstay.html</loc>
-        <lastmod>${today}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
     </url>`;
 
-// 2. THE 5,000+ PAGE GENERATOR LOOP
-// This creates a URL for every city to every other city (Origin -> Destination)
+// 2. THE 5,000-PAGE MATRIX LOOP
+// This creates a unique URL for every possible city-to-city combination
 allCities.forEach(origin => {
     allCities.forEach(dest => {
         if (origin !== dest) {
@@ -45,5 +39,5 @@ allCities.forEach(origin => {
 sitemap += `\n</urlset>`;
 
 // 3. OUTPUT
-console.log(sitemap); 
-// Save the console output as sitemap.xml in your root folder.
+console.log(sitemap);
+// ACTION: Copy the console output and save it as sitemap.xml in your root directory.
