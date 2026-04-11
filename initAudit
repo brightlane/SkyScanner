@@ -1,0 +1,67 @@
+<script>
+    // 1. Centralize your link (This matches your generate.js strategy)
+    const SKYSCANNER_URL = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+
+    // 2. Your expandable database
+    const travelDatabase = {
+        "london-newyork": {
+            route: "London (LHR) to New York (JFK)",
+            price: "$342",
+            insight: "Prices are currently 14% lower than the April average. Best booking window is now open."
+        },
+        "dubai-london": {
+            route: "Dubai (DXB) to London (LGW)",
+            price: "£289",
+            insight: "High demand detected. Audit shows prices rising in the next 48 hours."
+        },
+        "paris-newyork": {
+            route: "Paris (CDG) to New York (JFK)",
+            price: "€315",
+            insight: "Flash deal detected. Benchmark prices have dropped for early Summer 2026."
+        }
+        // You can add "rome-london", "tokyo-la", etc. here following the same format
+    };
+
+    function initAudit() {
+        // Find out which route the user clicked (e.g., ?item=london-newyork)
+        const params = new URLSearchParams(window.location.search);
+        const routeKey = params.get('item') || 'london-newyork'; 
+        const data = travelDatabase[routeKey];
+
+        if (data) {
+            // Update Page Content
+            document.title = `Audit: ${data.route} | Skyscanner 2026`;
+            document.getElementById('main-route').innerText = data.route;
+            document.getElementById('display-price').innerText = data.price;
+            document.getElementById('route-insight').innerText = data.insight;
+            
+            // Inject Affiliate Link
+            const skyLink = document.getElementById('sky-link');
+            skyLink.href = SKYSCANNER_URL;
+
+            // Dynamic Scarcity (Psychological Trigger)
+            const viewers = Math.floor(Math.random() * 20) + 5;
+            document.getElementById('scarcity-msg').innerText = `🔥 ${viewers} people are tracking this specific route right now.`;
+
+            // Update Verification Date
+            const d = new Date();
+            document.getElementById('last-check').innerText = `VERIFIED: ${d.toLocaleDateString()}`;
+
+            // Update Schema for SEO (Optional but recommended)
+            const schema = document.getElementById('schema-data');
+            if (schema) {
+                const schemaObj = JSON.parse(schema.innerHTML);
+                schemaObj.name = `Flight Audit: ${data.route}`;
+                schemaObj.description = data.insight;
+                schema.innerHTML = JSON.stringify(schemaObj);
+            }
+        } else {
+            // Fallback if the route doesn't exist in your database
+            document.getElementById('main-route').innerText = "Route Audit Not Found";
+            document.getElementById('sky-link').href = SKYSCANNER_URL;
+        }
+    }
+
+    // Run the function as soon as the page loads
+    window.onload = initAudit;
+</script>
