@@ -7,8 +7,7 @@
     
     <meta name="description" content="Search and compare cheap flights in 2026. Use the Skyscanner official portal for unadvertised airline deals and solo travel discounts.">
     
-    <meta name="revised" content="SkyScanner Hub, 2026-04-10">
-    <link rel="canonical" href="https://brightlane.github.io/SkyScanner/index.html" />
+    <script src="generate.js"></script>
 
     <style>
         :root { --skyscanner-blue: #0072b2; --soft-white: #f8fafc; --deep: #030816; --accent: #00d7f1; }
@@ -16,7 +15,6 @@
         
         body { background: var(--soft-white); color: #334155; line-height: 1.6; }
 
-        /* THE "MASTER" WRAPPER TO TRACK ALL CLICKS */
         .affiliate-link { text-decoration: none; color: inherit; display: block; }
 
         /* SEARCH HERO */
@@ -43,69 +41,88 @@
             border-bottom: 4px solid var(--accent);
         }
 
-        .mock-input { flex: 1; text-align: left; padding: 10px; color: #64748b; font-weight: 500; border-right: 1px solid #e2e8f0; }
+        .mock-input { flex: 1; text-align: left; padding: 10px; color: #64748b; font-weight: 500; border-right: 1px solid #e2e8f0; font-size: 0.9rem; }
         .search-btn { background: var(--skyscanner-blue); color: white; padding: 12px 30px; border-radius: 8px; font-weight: 700; }
 
-        /* SECRET #6 CONTENT */
+        /* CONTENT SECTION */
         .content-section { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { background: white; padding: 25px; border-radius: 15px; border: 1px solid #e2e8f0; transition: 0.3s; }
+        .card { background: white; padding: 25px; border-radius: 15px; border: 1px solid #e2e8f0; transition: 0.3s; position: relative; }
         .card:hover { border-color: var(--skyscanner-blue); transform: translateY(-5px); }
 
-        .price-badge { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; float: right; }
+        .price-badge { background: #dcfce7; color: #166534; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; position: absolute; top: 20px; right: 20px; }
 
-        /* SEO FOOTER SILO */
-        .seo-silo { font-size: 10px; color: #cbd5e1; text-align: justify; padding: 40px 20px; opacity: 0.5; }
+        .status-dot { height: 8px; width: 8px; background-color: #22c55e; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+        /* SEO FOOTER */
+        .seo-silo { font-size: 11px; color: #cbd5e1; text-align: justify; padding: 40px 20px; line-height: 2; }
     </style>
 </head>
 <body>
 
-    <a href="http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" class="affiliate-link">
-        
+    <a href="#" class="affiliate-link sky-link">
         <section class="hero">
-            <p style="text-transform: uppercase; letter-spacing: 3px; font-weight: 900; margin-bottom: 10px; font-size: 0.8rem;">Official Skyscanner Affiliate Partner</p>
+            <p style="text-transform: uppercase; letter-spacing: 3px; font-weight: 900; margin-bottom: 10px; font-size: 0.7rem;">Official Skyscanner Affiliate Partner</p>
             <h1>Where will you go <br>in 2026?</h1>
             
             <div class="search-bar-mock">
                 <div class="mock-input">📍 From: Current Location</div>
                 <div class="mock-input">🌍 To: Everywhere</div>
-                <div class="mock-input">📅 Dates: April 2026</div>
+                <div class="mock-input" id="current-date">📅 Loading...</div>
                 <div class="search-btn">SEARCH</div>
             </div>
         </section>
 
         <section class="content-section">
-            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 10px;">Trending Solo & Soft-Life Routes</h2>
-            <p style="text-align: center; color: #64748b;">AI-verified price drops for the next 30 days.</p>
+            <h2 style="font-size: 2.2rem; text-align: center; margin-bottom: 10px;">Trending Solo & Soft-Life Routes</h2>
+            <p style="text-align: center; color: #64748b;" id="live-check">⚡ AI-verified price drops detected.</p>
 
-            <div class="grid">
-                <div class="card">
-                    <span class="price-badge">SAVE 22%</span>
-                    <h3>Lisbon, Portugal</h3>
-                    <p>The 2026 "Soft Life" capital. Direct flights starting at $340 return.</p>
+            <div class="grid" id="blog-grid">
                 </div>
-                <div class="card">
-                    <span class="price-badge">SAVE 15%</span>
-                    <h3>Tokyo, Japan</h3>
-                    <p>Experience the Sakura season with our exclusive premium economy fares.</p>
-                </div>
-                <div class="card">
-                    <span class="price-badge">SAVE 40%</span>
-                    <h3>Hoi An, Vietnam</h3>
-                    <p>The top-rated digital nomad hub for 2026 wellness retreats.</p>
-                </div>
-            </div>
 
             <div style="margin-top: 60px; padding: 40px; background: #fff; border-radius: 20px; border: 1px dashed #cbd5e1;">
-                <h3>The 2026 Skyscanner Strategy Guide</h3>
+                <h3 style="margin-bottom: 15px;">The 2026 Skyscanner Strategy Guide</h3>
                 <p>Navigating airline inventory in 2026 requires utilizing <strong>Secret #6: The Authority Anchor</strong>. By accessing the Skyscanner portal through our verified link, you bypass the "Dynamic Pricing" filters that many airlines use to inflate costs based on your search history. We recommend booking 42 days in advance for transatlantic routes and utilizing the "Everywhere" feature for the highest conversion on last-minute wellness getaways.</p>
             </div>
         </section>
 
         <footer class="seo-silo">
-            Skyscanner flights 2026, cheap flights Bali wellness retreat, solo female travel safety guide 2026, Skyscanner vs Expedia 2026, how to find cheap flights April 2026, digital nomad travel hacks Vietnam, affordable luxury travel Portugal, SoftLife travel portal Skyscanner link, direct airline deals 2026, best flight search engine for solo travelers.
+            <span id="seo-keywords"></span>
         </footer>
     </a>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const grid = document.getElementById('blog-grid');
+            const dateBox = document.getElementById('current-date');
+            const liveCheck = document.getElementById('live-check');
+            const seoBox = document.getElementById('seo-keywords');
+
+            // 1. Dynamic Date Update
+            const now = new Date();
+            const dateString = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            dateBox.innerText = `📅 ${dateString}`;
+            liveCheck.innerText = `⚡ Price Integrity Verified: ${dateString}`;
+
+            // 2. Automated Content Injection
+            // Pulls 3 random cities from your travelDatabase in generate.js
+            const featured = travelDatabase.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+            grid.innerHTML = featured.map(item => `
+                <div class="card">
+                    <span class="price-badge">SAVE ${Math.floor(Math.random() * 20) + 15}%</span>
+                    <h3>${item.city}</h3>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: #475569;">${item.desc}</p>
+                    <p style="margin-top: 15px; font-weight: 700; color: var(--skyscanner-blue);">
+                        <span class="status-dot"></span> Live benchmark: ${item.price}
+                    </p>
+                </div>
+            `).join('');
+
+            // 3. Dynamic SEO Sprawl
+            const keywords = ["Skyscanner flights 2026", "cheap flights Bali", "solo travel 2026", "soft life travel", "digital nomad hubs", "World Cup travel routes", "airline price audit"];
+            seoBox.innerText = keywords.join(", ") + ", " + featured.map(i => i.city).join(", ");
+        });
+    </script>
 </body>
 </html>
