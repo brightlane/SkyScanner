@@ -1,44 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- 🟢 CORE ENTRY PAGES (highest SEO weight) -->
   <url>
-    <loc>https://yourdomain.com/index.html</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <loc>https://brightlane.github.io/SkyScanner/index.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/stadiumstay.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/destinations.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/calculator.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/blog.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/guide.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=London</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Tokyo</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=MetLife+Stadium</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=SoFi+Stadium</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Paris</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Dallas</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Manchester</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Barcelona</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.70</priority>
   </url>
 
   <url>
-    <loc>https://yourdomain.com/destinations.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://brightlane.github.io/SkyScanner/about.html</loc>
+    <priority>0.30</priority>
   </url>
-
-  <!-- 🟣 GEO TRAFFIC PAGES -->
-  <url><loc>https://yourdomain.com/europe.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://yourdomain.com/asia.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://yourdomain.com/america.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-
-  <!-- 🔵 HIGH SEARCH INTENT CONTENT -->
-  <url><loc>https://yourdomain.com/solo.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://yourdomain.com/eco.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://yourdomain.com/reset.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://yourdomain.com/radar.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-
-  <!-- 🟡 MONETIZATION / CONVERSION PAGES -->
-  <url><loc>https://yourdomain.com/deals.html</loc><changefreq>daily</changefreq><priority>0.85</priority></url>
-  <url><loc>https://yourdomain.com/routes.html</loc><changefreq>weekly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://yourdomain.com/vault.html</loc><changefreq>weekly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://yourdomain.com/revenue.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- ⚫ SUPPORT / TRUST PAGES -->
-  <url><loc>https://yourdomain.com/contact.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://yourdomain.com/privacy.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/privacy.html</loc>
+    <priority>0.10</priority>
+  </url>
 
 </urlset>
