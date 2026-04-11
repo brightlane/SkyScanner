@@ -1,0 +1,30 @@
+name: Vulture Engine Heartbeat
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour on the dot
+  workflow_dispatch: # Allows you to run it manually
+
+jobs:
+  update-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update Freshness Timestamps
+        run: |
+          # This updates the 'last-updated' markers in your files to the current time
+          current_time=$(date -u +"%Y-%m-%d %H:%M UTC")
+          sed -i "s/Syncing.../Last Verified: $current_time/g" index.html
+          sed -i "s/Syncing.../Last Verified: $current_time/g" destinations.html
+          
+      - name: Run Sitemap Generator
+        run: node generate-sitemap.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Vulture-Engine-Bot"
+          git config --global user.email "bot@vulture.engine"
+          git add .
+          git commit -m "Vulture Engine #11: Hourly Inventory Sync [Skip CI]" || exit 0
+          git push
