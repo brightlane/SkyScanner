@@ -1,111 +1,58 @@
-const fs = require("fs");
+const fs = require('fs');
+const path = require('path');
 
-// =========================
-// CONFIG
-// =========================
+// CONFIGURATION
+const BASE_URL = 'https://brightlane.github.io/TaxEase/';
+const REPO_PATH = './'; // Current directory
+const SITEMAP_DEST = './sitemap.xml';
 
-const OUTPUT_DIR = "./pages";
-const PAGE_COUNT = 200; // change this up to 50,000 if you want
+// 1. Get current date in YYYY-MM-DD format for 2026 SEO signals
+const today = new Date().toISOString().split('T')[0];
 
-// YOUR AFFILIATE LINK (UNCHANGED)
-const AFFILIATE =
-"http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+function generateSitemap() {
+    console.log("🚀 Starting Sitemap Generation for 2026 Season...");
 
-// =========================
-// BASE DATA (auto-expanded)
-// =========================
+    // 2. Read all files in the directory
+    const files = fs.readdirSync(REPO_PATH);
 
-const BASE = [
-  ["New York", "MetLife Stadium", "EWR", "World Cup 2026"],
-  ["Los Angeles", "SoFi Stadium", "LAX", "World Cup 2026"],
-  ["Miami", "Hard Rock Stadium", "MIA", "World Cup 2026"],
-  ["London", "Wembley Stadium", "LHR", "Champions League"],
-  ["Paris", "Stade de France", "CDG", "Olympics 2028"],
-  ["Tokyo", "National Stadium", "HND", "Olympics 2028"]
-];
+    // 3. Filter for .html files only
+    const htmlFiles = files.filter(file => file.endsWith('.html'));
 
-// =========================
-// TEMPLATE (INLINE)
-// =========================
+    // 4. Build the XML structure
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-function template(data, affLink) {
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>${data.city} Travel | StadiumStay</title>
-  <meta name="description" content="Travel guide for ${data.stadium} in ${data.city}">
-</head>
+    htmlFiles.forEach(file => {
+        // Skip 404 page (Google shouldn't index it)
+        if (file === '404.html') return;
 
-<body style="font-family:Arial;background:#0a0a0a;color:#fff;padding:30px">
+        // Determine Priority: Gaming and Blog get 1.0, Cities get 0.8
+        let priority = '0.80';
+        let freq = 'weekly';
 
-  <h1>${data.city} Stadium Travel</h1>
+        if (file === 'index.html' || file === 'blog.html' || file === 'warthunder.html') {
+            priority = '1.00';
+            freq = 'hourly';
+        }
 
-  <p><b>Stadium:</b> ${data.stadium}</p>
-  <p><b>Event:</b> ${data.event}</p>
-  <p><b>Airport:</b> ${data.airport}</p>
+        xml += `  <url>\n`;
+        xml += `    <loc>${BASE_URL}${file}</loc>\n`;
+        xml += `    <lastmod>${today}</lastmod>\n`;
+        xml += `    <changefreq>${freq}</changefreq>\n`;
+        xml += `    <priority>${priority}</priority>\n`;
+        xml += `  </url>\n`;
+    });
 
-  <a href="${affLink}"
-     style="display:inline-block;margin-top:20px;padding:12px 18px;background:#00d46a;color:#fff;text-decoration:none;">
-     Search Flights
-  </a>
+    xml += '</urlset>';
 
-  <hr style="margin:40px 0">
-
-  <p>
-    Plan your trip early for ${data.city}. Major demand during ${data.event}.
-  </p>
-
-</body>
-</html>
-`;
-}
-
-// =========================
-// GENERATOR
-// =========================
-
-function makeCity(i) {
-  const base = BASE[i % BASE.length];
-
-  return {
-    city: base[0],
-    stadium: base[1],
-    airport: base[2],
-    event: base[3],
-    slug: base[0].toLowerCase().replace(/ /g, "-") + "-" + i
-  };
-}
-
-// =========================
-// RUNNER
-// =========================
-
-function run() {
-  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-
-  console.log("🚀 Generating pages...");
-
-  for (let i = 0; i < PAGE_COUNT; i++) {
-
-    const city = makeCity(i);
-
-    const aff = `${AFFILIATE}&aff_sub=${city.airport}`;
-
-    const html = template(city, aff);
-
-    fs.writeFileSync(
-      `${OUTPUT_DIR}/${city.slug}.html`,
-      html
-    );
-
-    if (i % 1000 === 0) {
-      console.log(`Generated ${i} pages`);
+    // 5. Write to sitemap.xml
+    try {
+        fs.writeFileSync(SITEMAP_DEST, xml);
+        console.log(`✅ Success! sitemap.xml updated with ${htmlFiles.length} pages.`);
+        console.log(`📅 SEO Date Set: ${today}`);
+    } catch (err) {
+        console.error("❌ Error writing sitemap:", err);
     }
-  }
-
-  console.log(`✅ DONE: ${PAGE_COUNT} pages created`);
 }
 
-run();
+generateSitemap();
