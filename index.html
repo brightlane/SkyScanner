@@ -8,7 +8,6 @@
         }
     </script>
     <meta name="referrer" content="no-referrer-when-downgrade">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -19,36 +18,47 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0072b2">
 
+    <script src="vulture.js"></script>
+    <script src="vulture-generator.js"></script>
     <script src="generate.js"></script>
 
     <style>
-        :root { --primary: #0072b2; --accent: #ff4747; --dark: #0f172a; --bg: #f8fafc; }
+        :root { --primary: #0072b2; --accent: #ff4747; --dark: #0f172a; --bg: #f8fafc; --vulture-yellow: #ffec00; }
         body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); margin: 0; color: var(--dark); line-height: 1.6; }
         
-        /* Daily Deal Ticker */
-        #daily-deal { background: #fff1f1; color: var(--accent); padding: 12px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid #fee2e2; font-weight: 600; }
+        /* Vulture Urgency Ticker */
+        .vulture-ticker { 
+            background: var(--vulture-yellow); 
+            color: #000; 
+            padding: 12px; 
+            text-align: center; 
+            font-size: 0.9rem; 
+            border-bottom: 2px solid #000; 
+            font-weight: 800; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         .hero { background: var(--dark); color: white; padding: 80px 20px; text-align: center; }
         .hero h1 { font-size: 2.8rem; margin: 0; letter-spacing: -1.5px; }
         .hero p { opacity: 0.8; font-size: 1.1rem; margin: 20px 0 30px; }
 
-        /* Search Bar Logic */
         .search-container { max-width: 600px; margin: 0 auto; display: flex; background: white; padding: 8px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .search-container input { flex: 1; border: none; padding: 15px 25px; border-radius: 50px; outline: none; font-size: 1rem; }
+        .search-container input { flex: 1; border: none; padding: 15px 25px; border-radius: 50px; outline: none; font-size: 1rem; color: #333; }
         .search-container button { background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.2s; }
         .search-container button:hover { background: #005a8d; }
 
         .content-grid { max-width: 1100px; margin: -40px auto 80px; padding: 0 20px; display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
-        
-        /* Featured Daily Audit Sidebar */
         #daily-audit { position: sticky; top: 20px; }
 
-        /* Main Content Cards */
         .main-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; text-decoration: none; color: inherit; transition: 0.3s; }
+        .card { background: white; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; text-decoration: none; color: inherit; transition: 0.3s; position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .card h3 { margin: 0 0 10px 0; color: var(--primary); }
         .card p { font-size: 0.9rem; color: #64748b; margin: 0; }
+
+        /* SEO Freshness Stamp */
+        .last-updated { font-size: 0.75rem; color: var(--accent); font-weight: bold; margin-top: 15px; display: block; }
 
         @media (max-width: 768px) {
             .content-grid { grid-template-columns: 1fr; margin-top: 20px; }
@@ -58,11 +68,13 @@
 </head>
 <body>
 
-<div id="daily-deal">Syncing with 2026 Inventory Hub...</div>
+<div class="vulture-ticker">
+    Initializing 2026 Live Fare Audit...
+</div>
 
 <header class="hero">
-    <h1>StadiumStay 2026</h1>
-    <p>The developer-grade flight and hotel audit for global stadium travelers.</p>
+    <h1 id="vulture-heading">StadiumStay 2026</h1>
+    <p id="vulture-description">The developer-grade flight and hotel audit for global stadium travelers.</p>
     
     <div class="search-container">
         <input type="text" id="citySearch" placeholder="Enter host city (e.g. New York, London)...">
@@ -71,30 +83,37 @@
 </header>
 
 <div class="content-grid">
-    <aside id="daily-audit"></aside>
+    <aside id="daily-audit">
+        <div class="vulture-deal-box" style="background: white; padding: 20px; border-radius: 12px; border: 2px dashed var(--accent);">
+            <strong>Checking inventory...</strong>
+        </div>
+    </aside>
 
     <main class="main-cards">
         <a href="stadiumstay.html" class="card">
             <h3>🏟️ Stadium Index</h3>
-            <p>View 2026 logistics, flight benchmarks, and hotel inventory for every official host stadium.</p>
+            <p>View 2026 logistics, flight benchmarks, and hotel inventory for official host stadiums.</p>
+            <span class="last-updated">Updating...</span>
         </a>
         <a href="blog.html" class="card">
             <h3>📦 Gear Vault</h3>
             <p>AliExpress verified travel hacks and stadium-approved tech reviews.</p>
+            <span class="last-updated">Updating...</span>
         </a>
         <a href="routes.html" class="card">
             <h3>✈️ Route Benchmarks</h3>
-            <p>See the full data table of every global hub's current pricing baseline.</p>
+            <p>Full data table of global hub pricing baselines for World Cup travel.</p>
+            <span class="last-updated">Updating...</span>
         </a>
         <a href="init-audit.html" class="card">
             <h3>📡 Live Status</h3>
             <p>Check system uptime and API connection status for our affiliate pipes.</p>
+            <span class="last-updated">Updating...</span>
         </a>
     </main>
 </div>
 
 <script>
-    // Search Function for the Calculator Trick
     function runAudit() {
         const query = document.getElementById('citySearch').value;
         if (query) {
@@ -105,11 +124,8 @@
         }
     }
 
-    // Allow "Enter" key to search
     document.getElementById('citySearch').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            runAudit();
-        }
+        if (e.key === 'Enter') { runAudit(); }
     });
 </script>
 
