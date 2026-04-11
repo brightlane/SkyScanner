@@ -1,20 +1,7 @@
-# ==========================================
-# STADIUMSTAY 2026 - ROBOTS.TXT
-# Purpose: Maximize Crawl Budget & SEO Juice
-# ==========================================
-
 User-agent: *
-
-# Allow everything by default
 Allow: /
-
-# Block technical or private files (optional)
-Disallow: /README.md
-Disallow: /LICENSE
-Disallow: /.git/
-
-# Direct Google to your Sitemaps
+Disallow: /private/
 Sitemap: https://brightlane.github.io/SkyScanner/sitemap.xml
 
-# Tell bots to wait 1 second between crawls to ensure GitHub Pages stability
-Crawl-delay: 1
+# Vulture Engine #11 Priority
+Crawl-delay: 0
