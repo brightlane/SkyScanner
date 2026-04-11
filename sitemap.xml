@@ -1,80 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
   <url>
     <loc>https://brightlane.github.io/SkyScanner/index.html</loc>
     <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://brightlane.github.io/SkyScanner/assets/hero-banner.jpg</image:loc>
+      <image:title>StadiumStay 2026 Flight Hub</image:title>
+    </image:image>
   </url>
+
   <url>
     <loc>https://brightlane.github.io/SkyScanner/stadiumstay.html</loc>
     <lastmod>2026-04-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/destinations.html</loc>
-    <lastmod>2026-04-11</lastmod>
-    <priority>0.85</priority>
-  </url>
+
   <url>
     <loc>https://brightlane.github.io/SkyScanner/calculator.html</loc>
     <lastmod>2026-04-11</lastmod>
-    <priority>0.80</priority>
+    <changefreq>always</changefreq>
+    <priority>0.90</priority>
   </url>
+
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/init-audit.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <url>
     <loc>https://brightlane.github.io/SkyScanner/blog.html</loc>
     <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=London</loc>
-    <lastmod>2026-04-11</lastmod>
+    <loc>https://brightlane.github.io/SkyScanner/london.html</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Tokyo</loc>
-    <lastmod>2026-04-11</lastmod>
+    <loc>https://brightlane.github.io/SkyScanner/new-york.html</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=MetLife+Stadium</loc>
-    <lastmod>2026-04-11</lastmod>
+    <loc>https://brightlane.github.io/SkyScanner/mexico-city.html</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=SoFi+Stadium</loc>
-    <lastmod>2026-04-11</lastmod>
+    <loc>https://brightlane.github.io/SkyScanner/tokyo.html</loc>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Paris</loc>
-    <lastmod>2026-04-11</lastmod>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Dallas</loc>
-    <lastmod>2026-04-11</lastmod>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Manchester</loc>
-    <lastmod>2026-04-11</lastmod>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html?q=Barcelona</loc>
-    <lastmod>2026-04-11</lastmod>
+    <loc>https://brightlane.github.io/SkyScanner/los-angeles.html</loc>
     <priority>0.70</priority>
   </url>
 
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/about.html</loc>
-    <priority>0.30</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/privacy.html</loc>
-    <priority>0.10</priority>
+    <loc>https://brightlane.github.io/SkyScanner/packing.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <priority>0.75</priority>
   </url>
 
 </urlset>
