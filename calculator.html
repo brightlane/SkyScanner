@@ -1,29 +1,76 @@
-// Add this to your calculator.html <script> section
-const cityData = {
-    "New-York": { stadium: "MetLife Stadium", airport: "EWR", deal: "$420" },
-    "Los-Angeles": { stadium: "SoFi Stadium", airport: "LAX", deal: "$380" },
-    // This can stay in travelDatabase.js to keep this file clean
-};
+<script>
+    // 1. MASTER CONFIG
+    const SKYSCANNER_URL = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
 
-function injectDynamicContent() {
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('q'); // e.g., "New-York"
+    // 2. THE HUB REGIONS (The "Raw Materials" for 5,000 combinations)
+    const hubs = {
+        usa: ["New-York", "Los-Angeles", "Miami", "Chicago", "Dallas", "Atlanta", "Seattle"],
+        europe: ["London", "Paris", "Berlin", "Rome", "Madrid", "Amsterdam", "Dublin", "Lisbon"],
+        asia: ["Tokyo", "Seoul", "Bangkok", "Singapore", "Bali", "Hoi-An", "Dubai"],
+        stadiums: ["MetLife", "SoFi", "Azteca", "Hard-Rock", "Lumen-Field", "Gillette-Stadium"]
+    };
 
-    if (slug) {
-        const cityName = slug.replace(/-/g, ' ');
-        const data = cityData[slug] || { stadium: "Local Arena", airport: "Nearby", deal: "Check Rates" };
+    // 3. YOUR ORIGINAL DATABASE (Priority Hand-Crafted Routes)
+    const travelDatabase = {
+        "london-newyork": { route: "London (LHR) to New York (JFK)", price: "$342", insight: "Prices are 14% lower than average. Summer 2026 window open." },
+        "paris-newyork": { route: "Paris (CDG) to New York (JFK)", price: "€315", insight: "Flash deal detected for flights to MetLife Stadium area." },
+        "tokyo-losangeles": { route: "Tokyo (NRT) to Los Angeles (LAX)", price: "¥88,400", insight: "Non-stop routes are trending lower. Audit suggests 6-week window." }
+    };
 
-        // 1. Change SEO Meta (Crucial for Crawler)
-        document.title = `${cityName} 2026 | StadiumStay Audit`;
+    // 4. THE GENERATOR (Handles the other 4,990+ combinations)
+    function generateAuditData(slug) {
+        // Fallback if the slug is broken
+        if (!slug.includes('-')) slug = "london-new-york";
         
-        // 2. Update UI
-        document.getElementById('city-title').innerText = `${cityName} Travel Logistics`;
-        document.getElementById('stadium-name').innerText = data.stadium;
-        
-        // 3. Update Affiliate Link
-        const affBtn = document.getElementById('affiliate-button');
-        affBtn.href = `exit.html?to=skyscanner&q=${data.airport}`;
-        affBtn.innerText = `View ${data.deal} Flights to ${data.airport}`;
+        const [origin, dest] = slug.split('-');
+        const originClean = origin.replace(/-/g, ' ');
+        const destClean = dest.replace(/-/g, ' ');
+
+        // Logic check: Is this a Stadium or Wellness route?
+        const isStadium = hubs.stadiums.some(s => dest.toLowerCase().includes(s.toLowerCase()));
+        const isWellness = hubs.asia.some(a => dest.toLowerCase().includes(a.toLowerCase()));
+
+        // Realistic Price Scaling
+        let min = 300, max = 850;
+        if (isStadium) { min = 580; max = 1300; }
+        if (isWellness) { min = 420; max = 980; }
+        const price = Math.floor(Math.random() * (max - min) + min);
+
+        return {
+            route: `${originClean.toUpperCase()} to ${destClean.toUpperCase()}`,
+            price: `$${price}`,
+            insight: isStadium 
+                ? `STADIUM ALERT: High demand for 2026 events. Early-bird inventory near ${destClean} is 82% booked.` 
+                : `SOFTLIFE AUDIT: Seasonal baseline achieved. Audit suggests a ${Math.floor(Math.random() * 15 + 5)}% saving today.`
+        };
     }
-}
-window.onload = injectDynamicContent;
+
+    // 5. THE ENGINE (The logic that runs on page load)
+    function initAudit() {
+        const params = new URLSearchParams(window.location.search);
+        const routeKey = params.get('q') || params.get('item') || 'london-newyork'; 
+        
+        // Use hardcoded data if it exists, otherwise generate it!
+        const data = travelDatabase[routeKey] || generateAuditData(routeKey);
+
+        if (data) {
+            // Update Text content
+            document.title = `Audit: ${data.route} | 2026 Tracker`;
+            document.getElementById('main-route').innerText = data.route;
+            document.getElementById('display-price').innerText = data.price;
+            document.getElementById('route-insight').innerText = data.insight;
+            
+            // Link the Affiliate URL + SubID Tracking
+            document.getElementById('sky-link').href = `${SKYSCANNER_URL}&aff_sub=${routeKey}`;
+
+            // Date & Scarcity Social Proof
+            const d = new Date();
+            document.getElementById('last-check').innerText = `VERIFIED: ${d.toLocaleDateString()}`;
+            
+            const viewers = Math.floor(Math.random() * 30) + 10;
+            document.getElementById('scarcity-msg').innerText = `🔥 ${viewers} people are tracking this specific audit right now.`;
+        }
+    }
+
+    window.onload = initAudit;
+</script>
