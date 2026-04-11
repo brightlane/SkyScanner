@@ -1,114 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Route Audit | StadiumStay 2026</title>
-    
-    <script src="generate.js"></script>
+// Add this to your calculator.html <script> section
+const cityData = {
+    "New-York": { stadium: "MetLife Stadium", airport: "EWR", deal: "$420" },
+    "Los-Angeles": { stadium: "SoFi Stadium", airport: "LAX", deal: "$380" },
+    // This can stay in travelDatabase.js to keep this file clean
+};
 
-    <style>
-        :root { --primary: #0072b2; --dark: #0f172a; --accent: #00d46a; }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: #f8fafc; margin: 0; padding: 0; color: var(--dark); }
+function injectDynamicContent() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('q'); // e.g., "New-York"
+
+    if (slug) {
+        const cityName = slug.replace(/-/g, ' ');
+        const data = cityData[slug] || { stadium: "Local Arena", airport: "Nearby", deal: "Check Rates" };
+
+        // 1. Change SEO Meta (Crucial for Crawler)
+        document.title = `${cityName} 2026 | StadiumStay Audit`;
         
-        /* Navigation Header */
-        .nav-header { background: white; padding: 15px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 900; color: var(--dark); text-decoration: none; font-size: 1.1rem; }
+        // 2. Update UI
+        document.getElementById('city-title').innerText = `${cityName} Travel Logistics`;
+        document.getElementById('stadium-name').innerText = data.stadium;
         
-        .hero-mini { background: var(--dark); color: white; padding: 60px 20px; text-align: center; }
-        .hero-mini h1 { font-size: 2rem; margin: 0; letter-spacing: -1px; }
-
-        .audit-container { max-width: 600px; margin: -40px auto 60px; padding: 40px; background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); position: relative; }
-        
-        .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 50px; background: #f0fdf4; color: #16a34a; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; border: 1px solid #dcfce7; }
-        .status-dot { width: 8px; height: 8px; background: #16a34a; border-radius: 50%; }
-
-        /* Progress Bar */
-        .progress-wrapper { height: 8px; background: #f1f5f9; border-radius: 10px; overflow: hidden; margin: 20px 0; }
-        .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 2s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        .result-card { background: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; border-radius: 16px; margin: 25px 0; }
-        .price-display { font-size: 2.2rem; font-weight: 900; color: var(--dark); margin: 10px 0; letter-spacing: -1px; }
-
-        .btn-main { display: block; text-align: center; background: var(--primary); color: white; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 1rem; transition: 0.2s; box-shadow: 0 4px 12px rgba(0,114,178,0.2); }
-        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,114,178,0.3); }
-        
-        .booking-link-secondary { display: block; text-align: center; margin-top: 20px; color: #64748b; font-weight: 600; text-decoration: none; font-size: 0.85rem; }
-        .booking-link-secondary:hover { color: var(--primary); }
-    </style>
-</head>
-<body>
-
-<nav class="nav-header">
-    <a href="index.html" class="logo">✈️ STADIUMSTAY</a>
-    <a href="stadiumstay.html" style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-decoration: none;">VIEW ALL HOST CITIES</a>
-</nav>
-
-<div class="hero-mini">
-    <h1 id="audit-title">Initializing Route Audit...</h1>
-</div>
-
-<div class="container" style="padding: 0 20px;">
-    <div class="audit-container">
-        <div id="loading-state">
-            <div class="status-pill"><div class="status-dot"></div> Analyzing Global Inventory</div>
-            <p style="color: #64748b;">Scanning 500+ carrier benchmarks for <strong id="target-city" style="color: var(--dark);">...</strong></p>
-            <div class="progress-wrapper">
-                <div id="progress" class="progress-bar"></div>
-            </div>
-        </div>
-
-        <div id="audit-results" style="display: none;">
-            <div class="status-pill" style="background: #eff6ff; color: #2563eb; border-color: #dbeafe;">✓ AUDIT COMPLETE</div>
-            
-            <div class="result-card">
-                <div style="font-size: 0.7rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Route Benchmark Found</div>
-                <div class="price-display" id="final-price">Analyzing...</div>
-                <div style="font-size: 0.85rem; color: #059669; font-weight: 700;">● Verified Low Price for 2026 Season</div>
-            </div>
-
-            <p style="font-size: 0.85rem; color: #64748b; line-height: 1.5;">Our audit confirms high demand for <span id="res-city" style="font-weight: 700; color: var(--dark);">this destination</span>. To secure this benchmark rate, proceed through our secure affiliate portal below.</p>
-            
-            <a href="#" class="btn-main sky-link">Secure Skyscanner Rate: <span id="btn-city">City</span></a>
-            <a href="#" class="booking-link booking-link-secondary">Find Hotels in <span id="btn-city-2">City</span> →</a>
-        </div>
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const city = urlParams.get('q') || "Global Hubs";
-        
-        // Populate UI
-        document.getElementById('target-city').innerText = city;
-        document.getElementById('res-city').innerText = city;
-        document.getElementById('btn-city').innerText = city;
-        document.getElementById('btn-city-2').innerText = city;
-        document.getElementById('audit-title').innerText = `${city} Route Audit`;
-
-        // Smart Price Finder
-        let price = "$342"; // Default
-        if (typeof travelDatabase !== 'undefined') {
-            const match = travelDatabase.find(i => i.city.toLowerCase().includes(city.toLowerCase()));
-            if (match) price = match.price;
-            else {
-                // Generate a believable random benchmark if city isn't in DB
-                const randomBase = Math.floor(Math.random() * (600 - 250) + 250);
-                price = `$${randomBase}`;
-            }
-        }
-        document.getElementById('final-price').innerText = price;
-
-        // Animation Sequence
-        setTimeout(() => document.getElementById('progress').style.width = "100%", 100);
-
-        setTimeout(() => {
-            document.getElementById('loading-state').style.display = "none";
-            document.getElementById('audit-results').style.display = "block";
-        }, 2200);
-    });
-</script>
-
-</body>
-</html>
+        // 3. Update Affiliate Link
+        const affBtn = document.getElementById('affiliate-button');
+        affBtn.href = `exit.html?to=skyscanner&q=${data.airport}`;
+        affBtn.innerText = `View ${data.deal} Flights to ${data.airport}`;
+    }
+}
+window.onload = injectDynamicContent;
