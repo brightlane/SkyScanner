@@ -1,67 +1,61 @@
 <script>
-    // 1. YOUR MASTER AFFILIATE URL
-    const SKYSCANNER_URL = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+    // 1. MASTER AFFILIATE CONFIG (Enhanced with Sub-ID Tracking)
+    const BASE_AFFILIATE_URL = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
 
-    // 2. THE TRAVEL DATABASE (Add or edit routes here)
+    // 2. CONSOLIDATED DATABASE (Stadiums + SoftLife + Routes)
     const travelDatabase = {
-        "london-newyork": {
-            route: "London (LHR) to New York (JFK)",
-            price: "$342",
-            insight: "Prices are 14% lower than average. Summer 2026 booking window is now open."
-        },
-        "paris-newyork": {
-            route: "Paris (CDG) to New York (JFK)",
-            price: "€315",
-            insight: "Flash deal detected for flights to MetLife Stadium area. Secure this benchmark."
-        },
-        "tokyo-losangeles": {
-            route: "Tokyo (NRT) to Los Angeles (LAX)",
-            price: "¥88,400",
-            insight: "Non-stop routes are trending lower. Audit suggests booking at least 6 weeks out."
-        },
-        "rome-london": {
-            route: "Rome (FCO) to London (LHR)",
-            price: "€89",
-            insight: "Budget carrier baseline achieved. Prices stable for the next 14 days."
-        },
-        "world-cup-final": {
-            route: "Global Hubs to New York/NJ (MetLife)",
-            price: "$510",
-            insight: "High demand expected for 2026. Current audit shows early-bird inventory is available."
-        }
+        // --- World Cup / Stadium Focus ---
+        "metlife-final": { route: "Global Hubs to New York (EWR/JFK)", price: "$510", insight: "Early-bird World Cup Final inventory detected. Audit active.", cat: "stadium" },
+        "sofi-stadium": { route: "Tokyo/London to Los Angeles (LAX)", price: "$385", insight: "SoFi Stadium transit routes are 12% below baseline.", cat: "stadium" },
+        
+        // --- SoftLife / Wellness Focus ---
+        "lisbon-softlife": { route: "Digital Nomad Hub: Lisbon", price: "$340", insight: "2026 'Soft Life' capital. Inventory limited for retreat season.", cat: "wellness" },
+        "bali-retreat": { route: "Ubud Wellness Season 2026", price: "$550", insight: "Retreat pricing unlocked. Save 30% on multi-city hops.", cat: "wellness" },
+        
+        // --- Standard High-Traffic Routes ---
+        "london-newyork": { route: "London (LHR) to New York (JFK)", price: "$342", insight: "Prices are 14% lower than average. Summer 2026 window open.", cat: "standard" },
+        "tokyo-la": { route: "Tokyo (NRT) to Los Angeles (LAX)", price: "¥88,400", insight: "Non-stop routes trending lower. Audit suggests booking now.", cat: "standard" }
     };
 
-    // 3. THE INITAUDIT ENGINE
+    // 3. THE ENHANCED ENGINE
     function initAudit() {
         const params = new URLSearchParams(window.location.search);
-        const routeKey = params.get('item') || 'london-newyork'; 
-        const data = travelDatabase[routeKey];
+        // Supports 'item' or 'q' for compatibility with your existing SEO links
+        const routeKey = params.get('item') || params.get('q') || 'london-newyork'; 
+        const data = travelDatabase[routeKey.toLowerCase()];
 
         if (data) {
-            // Update Text content
-            document.title = `Audit: ${data.route} | SoftLife Tracker`;
-            document.getElementById('main-route').innerText = data.route;
-            document.getElementById('display-price').innerText = data.price;
-            document.getElementById('route-insight').innerText = data.insight;
+            // --- DYNAMIC SEO & TEXT INJECTION ---
+            document.title = `Audit: ${data.route} | 2026 Travel Hub`;
             
-            // Link the Affiliate URL
-            document.getElementById('sky-link').href = SKYSCANNER_URL;
+            // Safe update for your UI elements
+            const updateEl = (id, val) => { if(document.getElementById(id)) document.getElementById(id).innerText = val; };
+            
+            updateEl('main-route', data.route);
+            updateEl('display-price', data.price);
+            updateEl('route-insight', data.insight);
+            
+            // --- THE AFFILIATE PIPE ---
+            // We append the city as a 'subid' so you can see which city makes the most money in your dashboard
+            const trackingUrl = `${BASE_AFFILIATE_URL}&aff_sub=${routeKey}`;
+            const linkBtn = document.getElementById('sky-link');
+            if(linkBtn) linkBtn.href = trackingUrl;
 
-            // Date & Scarcity
+            // --- SCARCITY & VERIFICATION ENGINE ---
             const d = new Date();
-            document.getElementById('last-check').innerText = `VERIFIED: ${d.toLocaleDateString()}`;
-            const viewers = Math.floor(Math.random() * 25) + 5;
-            document.getElementById('scarcity-msg').innerText = `🔥 ${viewers} people are tracking this specific route right now.`;
+            updateEl('last-check', `VERIFIED AUDIT: ${d.toLocaleDateString()} ${d.getHours()}:00`);
+            
+            const viewers = Math.floor(Math.random() * 45) + 12; // Higher numbers for better social proof
+            updateEl('scarcity-msg', `🔥 ${viewers} people are currently auditing the ${data.route} route.`);
+            
+            // --- THE "TRICK": BROWSER HISTORY ---
+            // This updates the URL in the browser without reloading, making it look like a unique page
+            if (window.history.pushState) {
+                const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + routeKey;
+                window.history.replaceState({path:newurl},'',newurl);
+            }
         }
     }
 
     window.onload = initAudit;
 </script>
-// Add this to your existing database
-const dailyBlogDeals = [
-    { city: "Lisbon", discount: "22%", price: "$340", desc: "The 2026 'Soft Life' capital." },
-    { city: "Tokyo", discount: "15%", price: "$720", desc: "Sakura season premium economy fares." },
-    { city: "Hoi An", discount: "40%", price: "$410", desc: "Top-rated digital nomad wellness hub." },
-    { city: "Bali", discount: "30%", price: "$550", desc: "Retreats for the 2026 spiritual season." },
-    { city: "New York", discount: "12%", price: "$290", desc: "Perfect for the MetLife stadium events." }
-];
