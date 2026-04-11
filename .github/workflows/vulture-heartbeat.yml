@@ -1,0 +1,52 @@
+name: Vulture Engine Heartbeat
+
+on:
+  schedule:
+    # Runs every hour on the dot (UTC)
+    - cron: '0 * * * *'
+  # Allows you to manually trigger the engine from the 'Actions' tab
+  workflow_dispatch:
+
+jobs:
+  vulture-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Crucial for the bot to save changes back to your repo
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Inject Freshness Signals
+        run: |
+          # 1. Get current date and time
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+          
+          # 2. Update placeholders in HTML files to trick SEO crawlers
+          # This replaces "Syncing..." and "Updating..." with the current time
+          sed -i "s/Syncing.../Verified: $TIMESTAMP/g" index.html
+          sed -i "s/Updating.../Verified: $TIMESTAMP/g" index.html
+          sed -i "s/Syncing.../Verified: $TIMESTAMP/g" destinations.html
+          
+          echo "Vulture Heartbeat: Timestamps updated to $TIMESTAMP"
+
+      - name: Update Sitemap
+        run: |
+          # If your generate-sitemap.js requires Node, we run it here
+          if [ -f "generate-sitemap.js" ]; then
+            node generate-sitemap.js
+          fi
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Vulture-Engine-Bot"
+          git config --global user.email "bot@vulture.engine"
+          
+          # Only commit if there are actual changes
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Vulture Engine #11: Hourly Inventory Sync [Skip CI]"
+            git push
+          fi
