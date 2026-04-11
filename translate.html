@@ -1,0 +1,94 @@
+fddf
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Wallet & Language Hub | 2026 Global Auditor</title>
+    
+    <script src="generate.js"></script>
+
+    <style>
+        :root { --primary: #0072b2; --accent: #00d46a; --dark: #0f172a; }
+        body { font-family: 'Inter', sans-serif; background: #f1f5f9; color: var(--dark); margin: 0; }
+        
+        .header-mini { background: var(--dark); color: white; padding: 20px; text-align: center; border-bottom: 3px solid var(--accent); }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        
+        .flex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        
+        h2 { font-size: 1.2rem; margin-top: 0; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        
+        .calc-input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 1.1rem; }
+        .result { font-size: 1.5rem; font-weight: 800; color: var(--accent); text-align: center; margin: 15px 0; }
+
+        .lang-table { width: 100%; font-size: 0.9rem; border-collapse: collapse; }
+        .lang-table th { text-align: left; padding: 8px; border-bottom: 2px solid #f1f5f9; color: #64748b; }
+        .lang-table td { padding: 12px 8px; border-bottom: 1px solid #f8fafc; }
+        
+        .cta-box { background: linear-gradient(135deg, var(--primary), #004a75); color: white; padding: 30px; border-radius: 16px; text-align: center; margin-top: 30px; }
+        .btn-white { background: white; color: var(--primary); padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="header-mini">
+    <h1 style="margin:0; font-size: 1.4rem;">StadiumStay 2026 | Global Wallet Hub</h1>
+</div>
+
+<div class="container">
+    <div class="flex-grid">
+        <div class="card">
+            <h2>💰 Flight Budget Converter</h2>
+            <p style="font-size: 0.8rem; color: #64748b;">Convert your local budget to World Cup Host currencies (USD/MXN/CAD).</p>
+            <input type="number" id="amount" class="calc-input" placeholder="Enter Amount (USD)" onkeyup="convert()">
+            <div id="currency-results">
+                <div class="result" id="mxn-res">0.00 MXN</div>
+                <div class="result" id="eur-res" style="color:var(--primary)">0.00 EUR</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🗣️ Travel Essentials</h2>
+            <table class="lang-table">
+                <thead>
+                    <tr>
+                        <th>English</th>
+                        <th>Spanish (Mexico)</th>
+                        <th>Japanese</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Where is the stadium?</td><td>¿Dónde está el estadio?</td><td>スタジアムはどこですか？</td></tr>
+                    <tr><td>Check-in desk</td><td>Mostrador de registro</td><td>チェックインカウンター</td></tr>
+                    <tr><td>Cheapest flight?</td><td>¿Vuelo más barato?</td><td>一番安い航空券は？</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <h3>Lock in 2026 Prices Before Currency Shifts</h3>
+        <p>Airlines adjust inventory based on local currency strength. Use our auditor to find the lowest entry point.</p>
+        <a href="#" class="btn-white sky-link">Open Skyscanner Price Audit</a>
+    </div>
+</div>
+
+<script>
+    function convert() {
+        const val = document.getElementById('amount').value;
+        // Static rates for 2026-04 Benchmarks (Set & Forget)
+        document.getElementById('mxn-res').innerText = (val * 16.52).toLocaleString() + " MXN";
+        document.getElementById('eur-res').innerText = (val * 0.92).toLocaleString() + " EUR";
+    }
+
+    // Auto-populate some initial value
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('amount').value = 500;
+        convert();
+    });
+</script>
+
+</body>
+</html>
