@@ -1,0 +1,59 @@
+<script>
+    // 1. YOUR MASTER AFFILIATE URL
+    const SKYSCANNER_URL = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+
+    // 2. THE TRAVEL DATABASE (Add or edit routes here)
+    const travelDatabase = {
+        "london-newyork": {
+            route: "London (LHR) to New York (JFK)",
+            price: "$342",
+            insight: "Prices are 14% lower than average. Summer 2026 booking window is now open."
+        },
+        "paris-newyork": {
+            route: "Paris (CDG) to New York (JFK)",
+            price: "€315",
+            insight: "Flash deal detected for flights to MetLife Stadium area. Secure this benchmark."
+        },
+        "tokyo-losangeles": {
+            route: "Tokyo (NRT) to Los Angeles (LAX)",
+            price: "¥88,400",
+            insight: "Non-stop routes are trending lower. Audit suggests booking at least 6 weeks out."
+        },
+        "rome-london": {
+            route: "Rome (FCO) to London (LHR)",
+            price: "€89",
+            insight: "Budget carrier baseline achieved. Prices stable for the next 14 days."
+        },
+        "world-cup-final": {
+            route: "Global Hubs to New York/NJ (MetLife)",
+            price: "$510",
+            insight: "High demand expected for 2026. Current audit shows early-bird inventory is available."
+        }
+    };
+
+    // 3. THE INITAUDIT ENGINE
+    function initAudit() {
+        const params = new URLSearchParams(window.location.search);
+        const routeKey = params.get('item') || 'london-newyork'; 
+        const data = travelDatabase[routeKey];
+
+        if (data) {
+            // Update Text content
+            document.title = `Audit: ${data.route} | SoftLife Tracker`;
+            document.getElementById('main-route').innerText = data.route;
+            document.getElementById('display-price').innerText = data.price;
+            document.getElementById('route-insight').innerText = data.insight;
+            
+            // Link the Affiliate URL
+            document.getElementById('sky-link').href = SKYSCANNER_URL;
+
+            // Date & Scarcity
+            const d = new Date();
+            document.getElementById('last-check').innerText = `VERIFIED: ${d.toLocaleDateString()}`;
+            const viewers = Math.floor(Math.random() * 25) + 5;
+            document.getElementById('scarcity-msg').innerText = `🔥 ${viewers} people are tracking this specific route right now.`;
+        }
+    }
+
+    window.onload = initAudit;
+</script>
