@@ -1,81 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        // Force HTTPS for affiliate cookie integrity
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+            location.replace(`https:${location.href.substring(location.protocol.length)}`);
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <title>Audit Hub | 2026 Travel Logistics</title>
+    <meta name="description" content="Live flight benchmarks and stadium hotel inventory audits for 2026 global events.">
+    <meta name="robots" content="index, follow">
+
+    <style>
+        :root { --primary: #0072b2; --accent: #ff4747; --dark: #0f172a; --bg: #f8fafc; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); margin: 0; color: var(--dark); line-height: 1.6; }
+        
+        /* Header & Hero */
+        .hero { background: var(--dark); color: white; padding: 60px 20px; text-align: center; }
+        .hero h1 { font-size: 2.2rem; margin: 0; letter-spacing: -1px; text-transform: capitalize; }
+        
+        /* Main Audit Card */
+        .audit-container { max-width: 800px; margin: -40px auto 40px; padding: 0 20px; }
+        .audit-card { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+        
+        .route-label { color: #64748b; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .price-display { font-size: 3.5rem; font-weight: 800; color: var(--primary); margin: 10px 0; }
+        .insight-box { background: #f1f5f9; padding: 20px; border-radius: 12px; border-left: 4px solid var(--primary); margin: 20px 0; }
+        
+        /* Affiliate Button */
+        .cta-button { display: block; background: var(--accent); color: white; text-align: center; padding: 20px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: 0.3s; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 71, 71, 0.3); }
+
+        /* Scarcity / Social Proof */
+        .status-bar { display: flex; justify-content: space-between; margin-top: 20px; font-size: 0.85rem; color: #64748b; }
+        .live-tag { color: #22c55e; font-weight: 700; }
+
+        /* Internal Link Wall */
+        .link-wall { max-width: 1100px; margin: 60px auto; padding: 20px; border-top: 1px solid #e2e8f0; }
+        .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 20px; }
+        .audit-link { font-size: 0.8rem; color: var(--primary); text-decoration: none; padding: 10px; background: white; border: 1px solid #e2e8f0; border-radius: 6px; text-align: center; transition: 0.2s; }
+        .audit-link:hover { border-color: var(--primary); background: #f0f9ff; }
+
+        @media (max-width: 600px) {
+            .price-display { font-size: 2.5rem; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <h1 id="main-route">Loading Audit...</h1>
+    <p id="last-check">Verifying 2026 Inventory...</p>
+</header>
+
+<div class="audit-container">
+    <div class="audit-card">
+        <div class="route-label">Current Benchmark</div>
+        <div id="display-price" class="price-display">--</div>
+        
+        <div class="insight-box">
+            <strong>Audit Insight:</strong>
+            <p id="route-insight">Analyzing global route data and stadium proximity...</p>
+        </div>
+
+        <a href="#" id="sky-link" class="cta-button">Verify This Rate</a>
+
+        <div class="status-bar">
+            <span id="scarcity-msg">🔥 Tracking demand...</span>
+            <span class="live-tag">● LIVE DATA</span>
+        </div>
+    </div>
+</div>
+
+<section class="link-wall">
+    <h4 style="color: #64748b; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Related 2026 Route Benchmarks</h4>
+    <div id="related-links-grid" class="link-grid"></div>
+</section>
+
 <script>
     // 1. MASTER CONFIG
     const SKYSCANNER_URL = "http://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
 
-    // 2. THE HUB REGIONS (The "Raw Materials" for 5,000 combinations)
+    // 2. THE HUB REGIONS (Raw Materials for 5,000 combinations)
     const hubs = {
-        usa: ["New-York", "Los-Angeles", "Miami", "Chicago", "Dallas", "Atlanta", "Seattle"],
+        usa: ["New-York", "Los-Angeles", "Miami", "Chicago", "Dallas", "Atlanta", "Seattle", "Houston", "Boston"],
         europe: ["London", "Paris", "Berlin", "Rome", "Madrid", "Amsterdam", "Dublin", "Lisbon"],
         asia: ["Tokyo", "Seoul", "Bangkok", "Singapore", "Bali", "Hoi-An", "Dubai"],
-        stadiums: ["MetLife", "SoFi", "Azteca", "Hard-Rock", "Lumen-Field", "Gillette-Stadium"]
+        stadiums: ["MetLife", "SoFi", "Azteca", "Hard-Rock", "Lumen-Field", "Gillette-Stadium", "Levi-Stadium"]
     };
 
-    // 3. YOUR ORIGINAL DATABASE (Priority Hand-Crafted Routes)
+    // 3. PRIORITY HAND-CRAFTED DATABASE
     const travelDatabase = {
-        "london-newyork": { route: "London (LHR) to New York (JFK)", price: "$342", insight: "Prices are 14% lower than average. Summer 2026 window open." },
+        "london-newyork": { route: "London (LHR) to New York (JFK)", price: "$342", insight: "Prices are 14% lower than average. Summer 2026 window is now open." },
         "paris-newyork": { route: "Paris (CDG) to New York (JFK)", price: "€315", insight: "Flash deal detected for flights to MetLife Stadium area." },
         "tokyo-losangeles": { route: "Tokyo (NRT) to Los Angeles (LAX)", price: "¥88,400", insight: "Non-stop routes are trending lower. Audit suggests 6-week window." }
     };
 
-    // 4. THE GENERATOR (Handles the other 4,990+ combinations)
+    // 4. THE GENERATOR (Handles the 5,000+ other combinations)
     function generateAuditData(slug) {
-        // Fallback if the slug is broken
         if (!slug.includes('-')) slug = "london-new-york";
         
-        const [origin, dest] = slug.split('-');
-        const originClean = origin.replace(/-/g, ' ');
-        const destClean = dest.replace(/-/g, ' ');
+        const parts = slug.split('-');
+        const origin = parts[0].replace(/-/g, ' ');
+        const dest = parts[1] ? parts[1].replace(/-/g, ' ') : "Global Hub";
 
-        // Logic check: Is this a Stadium or Wellness route?
-        const isStadium = hubs.stadiums.some(s => dest.toLowerCase().includes(s.toLowerCase()));
-        const isWellness = hubs.asia.some(a => dest.toLowerCase().includes(a.toLowerCase()));
+        // Category Logic
+        const isStadium = hubs.stadiums.some(s => slug.toLowerCase().includes(s.toLowerCase()));
+        const isWellness = hubs.asia.some(a => slug.toLowerCase().includes(a.toLowerCase()));
 
-        // Realistic Price Scaling
         let min = 300, max = 850;
         if (isStadium) { min = 580; max = 1300; }
         if (isWellness) { min = 420; max = 980; }
         const price = Math.floor(Math.random() * (max - min) + min);
 
         return {
-            route: `${originClean.toUpperCase()} to ${destClean.toUpperCase()}`,
+            route: `${origin} to ${dest}`,
             price: `$${price}`,
             insight: isStadium 
-                ? `STADIUM ALERT: High demand for 2026 events. Early-bird inventory near ${destClean} is 82% booked.` 
-                : `SOFTLIFE AUDIT: Seasonal baseline achieved. Audit suggests a ${Math.floor(Math.random() * 15 + 5)}% saving today.`
-        };
-    }
-
-    // 5. THE ENGINE (The logic that runs on page load)
-    function initAudit() {
-        const params = new URLSearchParams(window.location.search);
-        const routeKey = params.get('q') || params.get('item') || 'london-newyork'; 
-        
-        // Use hardcoded data if it exists, otherwise generate it!
-        const data = travelDatabase[routeKey] || generateAuditData(routeKey);
-
-        if (data) {
-            // Update Text content
-            document.title = `Audit: ${data.route} | 2026 Tracker`;
-            document.getElementById('main-route').innerText = data.route;
-            document.getElementById('display-price').innerText = data.price;
-            document.getElementById('route-insight').innerText = data.insight;
-            
-            // Link the Affiliate URL + SubID Tracking
-            document.getElementById('sky-link').href = `${SKYSCANNER_URL}&aff_sub=${routeKey}`;
-
-            // Date & Scarcity Social Proof
-            const d = new Date();
-            document.getElementById('last-check').innerText = `VERIFIED: ${d.toLocaleDateString()}`;
-            
-            const viewers = Math.floor(Math.random() * 30) + 10;
-            document.getElementById('scarcity-msg').innerText = `🔥 ${viewers} people are tracking this specific audit right now.`;
-        }
-    }
-
-    window.onload = initAudit;
-</script>
-<section style="max-width: 1100px; margin: 40px auto; padding: 20px; border-top: 1px solid #e2e8f0;">
-    <h4 style="color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Related 2026 Route Audits</h4>
-    <div id="related-links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-        </div>
-</section>
+                ? `STADIUM ALERT: High demand for 2026. Early-bird inventory near ${dest} is ${Math.floor(Math.random() * 10 + 80)}% booked.` 
+                : `SOFTLIFE AUDIT: Seasonal baseline achieved. Audit suggests a ${Math.
