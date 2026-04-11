@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="dynamic-title">Travel Guide | SoftLife</title>
+    <script src="generate.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 40px; line-height: 1.6; background: #f4f7f6; }
+        .hero-box { background: #0072b2; color: white; padding: 60px; border-radius: 15px; text-align: center; }
+        .btn { display: inline-block; background: #00d7f1; color: #030816; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-box">
+        <h1 id="city-name">Exploring the World</h1>
+        <p id="city-desc">Loading the best 2026 travel insights for you...</p>
+        <a href="#" class="btn sky-link" id="audit-link">Check Live Flight Audit</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const cityKey = params.get('city') || 'london';
+            
+            // This pulls from the database you already created in generate.js
+            const cityData = travelDatabase.find(item => item.city.toLowerCase().includes(cityKey));
+
+            if (cityData) {
+                document.getElementById('city-name').innerText = `2026 Guide to ${cityData.city}`;
+                document.getElementById('city-desc').innerText = cityData.desc;
+                document.title = `Travel to ${cityData.city} | Official 2026 Portal`;
+                
+                // Link them to your Audit page automatically
+                document.getElementById('audit-link').href = `audit.html?item=${cityKey}-newyork`;
+            }
+        });
+    </script>
+</body>
+</html>
