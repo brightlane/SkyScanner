@@ -9,35 +9,33 @@ jobs:
   vulture-run:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # This is the "Key" to saving your files
+      contents: write # CRITICAL: Gives the bot permission to save files
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # Uses your internal security key
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Build Pages and Sitemap
+      - name: Build and Sync
         run: |
-          # 1. Expand the city list
-          node expand-database.js || echo "Database expansion skipped"
-          # 2. Generate the HTML files
-          node generate.js || echo "Page generation failed"
-          # 3. Generate the Sitemap
-          node generate-sitemap.js || echo "Sitemap generation failed"
+          node expand-database.js || echo "Skip Expand"
+          node generate.js || echo "Skip Generate"
+          node generate-sitemap.js || echo "Skip Sitemap"
 
-      - name: Inject SEO Freshness
+      - name: Commit and Push
         run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
-          find . -maxdepth 1 -name "*.html" -exec sed -i "s/Syncing.../$TIMESTAMP/g" {} +
-
-      - name: Force Save to GitHub
-        run: |
-          git config --global user.name "Vulture-Bot"
-          git config --global user.email "bot@vulture.io"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          # This saves the files. If it fails here, the 'Permissions' in Step 1 are wrong.
-          git commit -m "Vulture Sync: $(date)" || echo "No changes to save"
-          git push origin main
+          # This check prevents a failure if nothing changed
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to sync"
+          else
+            git commit -m "Vulture 10K Sync [Skip CI]"
+            git push origin main
+          fi
