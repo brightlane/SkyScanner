@@ -1,41 +1,45 @@
-name: Vulture 10K Engine
-
+name: SkyScanner Vulture-Heartbeat
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 * * * *' # Hourly Inventory Sync
+  workflow_dispatch:
+
+# Silences the Node 20 deprecation warning
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   vulture-run:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # CRITICAL: Gives the bot permission to save files
+      contents: write
     steps:
+      # Updated to v4.2.2 for Node 24 compatibility
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # Uses your internal security key
+          fetch-depth: 1 
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      # Updated to v4.1.0 for Node 24 compatibility
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.1.0
         with:
-          node-version: '20'
+          node-version: '20' # Keeps your SkyScanner engine running on the version it was built for
+          cache: 'npm'
 
-      - name: Build and Sync
+      - name: Run Vulture Engine
         run: |
-          node expand-database.js || echo "Skip Expand"
-          node generate.js || echo "Skip Generate"
-          node generate-sitemap.js || echo "Skip Sitemap"
+          node generate.js
+          node vulture-generator.js
+          node generate-sitemap.js
 
-      - name: Commit and Push
+      - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          # This check prevents a failure if nothing changed
-          if git diff --quiet && git diff --staged --quiet; then
-            echo "No changes to sync"
-          else
-            git commit -m "Vulture 10K Sync [Skip CI]"
-            git push origin main
-          fi
+          git commit -m "Vulture 10K Sync [Skip CI]" || exit 0
+          git push
