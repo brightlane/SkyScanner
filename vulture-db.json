@@ -1,23 +1,10 @@
-[
-  {
-    "slug": "metlife-stadium",
-    "target": "New York / New Jersey",
-    "event": "World Cup 2026 Final",
-    "airport": "EWR",
-    "deal": "NYC to LONDON from $312"
-  },
-  {
-    "slug": "sofi-stadium",
-    "target": "Los Angeles",
-    "event": "World Cup Opening Match",
-    "airport": "LAX",
-    "deal": "LA to TOKYO from $510"
-  },
-  {
-    "slug": "wembley-stadium",
-    "target": "London",
-    "event": "Champions League",
-    "airport": "LHR",
-    "deal": "LDN to BALI from $440"
-  }
-]
+{
+  "destinations": [
+    {
+      "city": "New York",
+      "stadium": "MetLife Stadium",
+      "airport": "EWR",
+      "slug": "new-york"
+    }
+  ]
+}
