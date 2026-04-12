@@ -1,23 +1,23 @@
 const fs = require('fs');
 
-// 1. Load Data & Template
-const db = JSON.parse(fs.readFileSync('./vulture-db.json', 'utf8'));
-const template = fs.readFileSync('./master-template.html', 'utf8');
+const dbPath = './vulture-db.json';
+const tempPath = './master-template.html';
 
-// 2. Clear previous builds (optional but keeps things clean)
-console.log(`Building ${db.destinations.length} pages...`);
+// Check for files before running
+if (!fs.existsSync(dbPath) || !fs.existsSync(tempPath)) {
+    console.error("CRITICAL ERROR: Missing vulture-db.json or master-template.html");
+    process.exit(1);
+}
 
-// 3. The Loop
+const db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+const template = fs.readFileSync(tempPath, 'utf8');
+
 db.destinations.forEach(dest => {
     let html = template
         .replace(/{{CITY}}/g, dest.city)
         .replace(/{{STADIUM}}/g, dest.stadium)
-        .replace(/{{AIRPORT}}/g, dest.airport)
-        .replace(/{{SLUG}}/g, dest.slug)
-        .replace(/{{DATE}}/g, new Date().toDateString());
-
-    // Write the file to root
+        .replace(/{{AIRPORT}}/g, dest.airport);
     fs.writeFileSync(`./${dest.slug}.html`, html);
 });
 
-console.log("Vulture Engine: All Pages Deployed.");
+console.log(`Generated ${db.destinations.length} pages.`);
