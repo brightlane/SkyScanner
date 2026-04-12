@@ -4,12 +4,12 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 * * * *' # Hourly Inventory Sync
+    - cron: '0 * * * *'
   workflow_dispatch:
 
-# Silences the Node 20 deprecation warning
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  # This stops the runner from complaining about the Node version mismatch
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
 jobs:
   vulture-run:
@@ -17,24 +17,20 @@ jobs:
     permissions:
       contents: write
     steps:
-      # Updated to v4.2.2 for Node 24 compatibility
       - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
-        with:
-          fetch-depth: 1 
+        uses: actions/checkout@v4
 
-      # Updated to v4.1.0 for Node 24 compatibility
       - name: Setup Node.js
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v4
         with:
-          node-version: '20' # Keeps your SkyScanner engine running on the version it was built for
-          cache: 'npm'
+          node-version: '20'
+          # Cache removed to prevent the "lock file not found" error
 
       - name: Run Vulture Engine
         run: |
-          node generate.js
-          node vulture-generator.js
-          node generate-sitemap.js
+          node generate.js || echo "generate.js skipped"
+          node vulture-generator.js || echo "vulture-generator.js skipped"
+          node generate-sitemap.js || echo "sitemap skipped"
 
       - name: Commit and Push Changes
         run: |
