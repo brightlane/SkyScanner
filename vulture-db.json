@@ -5,6 +5,30 @@
       "stadium": "MetLife Stadium",
       "airport": "EWR",
       "slug": "new-york"
+    },
+    {
+      "city": "London",
+      "stadium": "Wembley",
+      "airport": "LHR",
+      "slug": "london"
+    },
+    {
+      "city": "Paris",
+      "stadium": "Stade de France",
+      "airport": "CDG",
+      "slug": "paris"
+    },
+    {
+      "city": "Tokyo",
+      "stadium": "National Stadium",
+      "airport": "HND",
+      "slug": "tokyo"
+    },
+    {
+      "city": "Sydney",
+      "stadium": "Stadium Australia",
+      "airport": "SYD",
+      "slug": "sydney"
     }
   ]
 }
