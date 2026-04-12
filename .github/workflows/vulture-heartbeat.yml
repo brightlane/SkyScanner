@@ -1,37 +1,11 @@
-name: Vulture 10K Engine
-
-on:
-  schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
+steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Expand Database
-        run: node expand-database.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Use 22 for maximum stability right now
 
-      - name: Build 10k Pages
-        run: node generate.js
-
-      - name: Inject Freshness
-        run: |
-          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
-          find . -maxdepth 1 -name "*.html" -exec sed -i "s/Syncing.../$TIMESTAMP/g" {} +
-
-      - name: Update Sitemap
-        run: node generate-sitemap.js
-
-      - name: Commit 10k Updates
-        run: |
-          git config --global user.name "Vulture-Engine-Bot"
-          git config --global user.email "bot@vulture.engine"
-          git add .
-          git commit -m "Vulture 10K: Hourly Sync [Skip CI]" || echo "No changes"
-          git push
+      - name: Check Files
+        run: ls -R # This will print all files in the log so we can see what is missing
