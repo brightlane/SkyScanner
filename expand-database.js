@@ -1,28 +1,24 @@
 const fs = require('fs');
-const dbPath = './vulture-db.json';
+const DB_FILE = './vulture-db.json';
 
-// Create the file if it doesn't exist to prevent crash
-if (!fs.existsSync(dbPath)) {
-    fs.writeFileSync(dbPath, JSON.stringify({ destinations: [] }));
-}
-
-let db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
-
-const globalTargets = [
-    { city: "Toronto", stadium: "BMO Field", airport: "YYZ" },
-    { city: "Miami", stadium: "Hard Rock Stadium", airport: "MIA" }
+const newTargets = [
+    { city: "London", stadium: "Wembley", airport: "LHR" },
+    { city: "Paris", stadium: "Stade de France", airport: "CDG" },
+    { city: "Tokyo", stadium: "National Stadium", airport: "HND" },
+    { city: "Sydney", stadium: "Stadium Australia", airport: "SYD" }
 ];
 
-globalTargets.forEach(target => {
-    const exists = db.destinations.find(d => d.city === target.city);
+let db = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+
+newTargets.forEach(target => {
+    const exists = db.destinations.some(d => d.city === target.city);
     if (!exists) {
         db.destinations.push({
             ...target,
-            slug: target.city.toLowerCase().replace(/\s+/g, '-'),
-            lastModified: new Date().toISOString()
+            slug: target.city.toLowerCase().replace(/\s+/g, '-')
         });
     }
 });
 
-fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
-console.log("Database updated.");
+fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2));
+console.log("Vulture Engine: Database Expanded.");
