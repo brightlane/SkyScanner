@@ -1,30 +1,54 @@
-name: Vulture Engine Heartbeat
+name: Vulture 10K Engine
+
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour on the dot
-  workflow_dispatch: # Allows you to run it manually
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Clears the deprecation warning
 
 jobs:
-  update-engine:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Update Freshness Timestamps
-        run: |
-          # This updates the 'last-updated' markers in your files to the current time
-          current_time=$(date -u +"%Y-%m-%d %H:%M UTC")
-          sed -i "s/Syncing.../Last Verified: $current_time/g" index.html
-          sed -i "s/Syncing.../Last Verified: $current_time/g" destinations.html
-          
-      - name: Run Sitemap Generator
-        run: node generate-sitemap.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24' # Uses the latest recommended version
 
-      - name: Commit and Push Changes
+      - name: Expand Database
+        run: node expand-database.js
+
+      - name: Build 10k Pages
+        run: node generate.js
+
+      - name: Inject Freshness
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+          # This specifically updates the "Syncing..." text in all generated files
+          find . -maxdepth 1 -name "*.html" -exec sed -i "s/Syncing.../$TIMESTAMP/g" {} +
+
+      - name: Update Sitemap
+        run: |
+          if [ -f "generate-sitemap.js" ]; then
+            node generate-sitemap.js
+          fi
+
+      - name: Commit 10k Updates
         run: |
           git config --global user.name "Vulture-Engine-Bot"
           git config --global user.email "bot@vulture.engine"
           git add .
-          git commit -m "Vulture Engine #11: Hourly Inventory Sync [Skip CI]" || exit 0
-          git push
+          # Check if there are changes to avoid empty commit errors
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Vulture 10K: Hourly Sync [Skip CI]"
+            git push
+          fi
