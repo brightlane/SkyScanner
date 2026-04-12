@@ -1,43 +1,38 @@
-// 1. DATA HUBS (Ensure these match your calculator.html hubs)
-const hubs = {
-    usa: ["New-York", "Los-Angeles", "Miami", "Chicago", "Dallas", "Atlanta", "Seattle", "Houston", "Boston"],
-    europe: ["London", "Paris", "Berlin", "Rome", "Madrid", "Amsterdam", "Dublin", "Lisbon"],
-    asia: ["Tokyo", "Seoul", "Bangkok", "Singapore", "Bali", "Hoi-An", "Dubai"],
-    stadiums: ["MetLife", "SoFi", "Azteca", "Hard-Rock", "Lumen-Field", "Gillette-Stadium", "Levi-Stadium"]
-};
+const fs = require('fs');
+const path = require('path');
 
-const baseUrl = "https://brightlane.github.io/SkyScanner/calculator.html?q=";
-const allCities = Object.values(hubs).flat();
-const today = new Date().toISOString().split('T')[0];
+// CONFIGURATION
+const BASE_URL = 'https://brightlane.github.io/SkyScanner/';
+const SITEMAP_PATH = path.join(process.cwd(), 'sitemap.xml');
 
-let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+// 1. Get all HTML files in the root directory
+const files = fs.readdirSync(process.cwd());
+const htmlFiles = files.filter(file => file.endsWith('.html') && file !== '404.html');
+
+// 2. Build the XML structure
+let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+
+htmlFiles.forEach(file => {
+    const lastMod = new Date().toISOString().split('T')[0]; // Current date YYYY-MM-DD
+    const url = `${BASE_URL}${file}`;
+    
+    xml += `
     <url>
-        <loc>https://brightlane.github.io/SkyScanner/index.html</loc>
-        <lastmod>${today}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>`;
-
-// 2. THE 5,000-PAGE MATRIX LOOP
-// This creates a unique URL for every possible city-to-city combination
-allCities.forEach(origin => {
-    allCities.forEach(dest => {
-        if (origin !== dest) {
-            const slug = `${origin.toLowerCase()}-${dest.toLowerCase()}`;
-            sitemap += `
-    <url>
-        <loc>${baseUrl}${slug}</loc>
-        <lastmod>${today}</lastmod>
+        <loc>${url}</loc>
+        <lastmod>${lastMod}</lastmod>
         <changefreq>hourly</changefreq>
-        <priority>0.8</priority>
+        <priority>${file === 'index.html' ? '1.0' : '0.8'}</priority>
     </url>`;
-        }
-    });
 });
 
-sitemap += `\n</urlset>`;
+xml += `
+</urlset>`;
 
-// 3. OUTPUT
-console.log(sitemap);
-// ACTION: Copy the console output and save it as sitemap.xml in your root directory.
+// 3. Write the file
+try {
+    fs.writeFileSync(SITEMAP_PATH, xml);
+    console.log(`Vulture Sitemap: Successfully indexed ${htmlFiles.length} pages.`);
+} catch (err) {
+    console.error("Sitemap Error:", err.message);
+}
