@@ -1,18 +1,21 @@
-const fs = require('fs');
-const path = require('path');
-const marked = require('marked');  // Markdown to HTML converter
+// We need to use dynamic import for ESM support
+(async () => {
+  const fs = require('fs');
+  const path = require('path');
+  
+  // Use dynamic import to load the 'marked' module
+  const { default: marked } = await import('marked');  // ES Module Import
 
-// Input and Output directories
-const inputDir = path.join(__dirname, 'generated-articles');
-const outputDir = path.join(__dirname, 'pages');
+  const inputDir = path.join(__dirname, 'generated-articles');
+  const outputDir = path.join(__dirname, 'pages');
 
-// Check if output directory exists, create it if not
-if (!fs.existsSync(outputDir)) {
+  // Check if output directory exists, create it if not
+  if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir);
-}
+  }
 
-// Read all markdown files from the generated-articles directory
-fs.readdirSync(inputDir).forEach(file => {
+  // Read all markdown files from the generated-articles directory
+  fs.readdirSync(inputDir).forEach(file => {
     const filePath = path.join(inputDir, file);
     const fileName = path.basename(file, '.md');  // Extract file name without extension
 
@@ -52,4 +55,5 @@ fs.readdirSync(inputDir).forEach(file => {
     fs.writeFileSync(outputFilePath, htmlPage);
 
     console.log(`Generated HTML page: ${outputFilePath}`);
-});
+  });
+})();
