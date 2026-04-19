@@ -15,10 +15,10 @@ jobs:
       uses: actions/checkout@v2
 
     # Step 2: Set up Node.js environment
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
     # Step 3: Install dependencies (if you have a package.json)
     - name: Install dependencies
@@ -28,24 +28,32 @@ jobs:
     # Step 4: Run the article generation script
     - name: Run article generation script
       run: |
+        echo "Running article generation script..."
         node generateArticles.js 10  # Adjust the number of articles here
 
-    # Step 5: Check if any articles were generated and commit the changes
+    # Step 5: Check for changes and commit the generated articles
     - name: Check for changes and commit generated articles
       run: |
-        # Check if there are any new files or changes
-        git status  # Print the git status for debugging
-        
+        echo "Checking for generated files..."
+
+        # Check if any files were created
+        git status  # Output the status to check if there are any new files
+
         # Check if there are new files created in the generated-articles folder
         if [[ $(git status --porcelain) ]]; then
           echo "Changes detected, committing..."
+          
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
 
           # Stage and commit the generated files
           git add generated-articles/
-          git commit -m "Automated article generation"
-          git push
+          
+          # Commit only if there are changes
+          git commit -m "Automated article generation" || echo "No changes to commit"
+          
+          # Push the changes
+          git push || echo "Push failed"
         else
-          echo "No changes to commit"
+          echo "No changes to commit."
         fi
