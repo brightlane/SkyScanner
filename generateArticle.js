@@ -1,86 +1,94 @@
-const fs = require('fs');
-const path = require('path');
+const { Configuration, OpenAIApi } = require("openai");
+const fs = require("fs");
+const axios = require("axios");
+const cheerio = require("cheerio");
 
-// Sample list of destinations
-const destinations = [
-  "Bali", "Paris", "Tokyo", "New York", "London", "Sydney", "Rome", "Los Angeles", "Bangkok", "Barcelona",
-  "Mexico City", "Greece", "Dubai", "Miami", "Amsterdam", "Prague", "Lisbon", "Cairo", "Montreal", "Italy",
-  "Rio de Janeiro", "Cape Town", "Berlin", "Melbourne", "Lima", "Athens", "Seoul", "Iceland", "Phuket", "Seychelles",
-  "Egypt", "Mexico", "Singapore", "Orlando", "Amsterdam", "Kyoto", "Machu Picchu", "Madrid", "Dubai", "Seychelles"
+// Initialize OpenAI API
+const configuration = new Configuration({
+  apiKey: "YOUR_OPENAI_API_KEY", // Replace with your OpenAI API key
+});
+const openai = new OpenAIApi(configuration);
+
+// Skyscanner Affiliate Link Generator Function
+function generateAffiliateLink(keyword) {
+  return `https://www.skyscanner.net/?q=${encodeURIComponent(keyword)}`;
+}
+
+// Function to generate article content using GPT-3
+async function generateArticleContent(keyword) {
+  const prompt = `
+  Write a 5,000-word article on the topic of "${keyword}" with the following sections:
+  1. Introduction
+  2. Best places to visit for ${keyword}
+  3. How to find the best flight deals for ${keyword}
+  4. Tips for booking flights and saving money
+  5. Conclusion
+  
+  Make sure to include a call to action that encourages readers to visit Skyscanner for flight deals and to use Skyscanner's tools for the best prices.
+  Ensure the content is SEO-optimized and includes relevant keywords throughout.
+
+  Don't forget to include internal links such as Skyscanner's main page and offer insights or travel hacks to make the article more engaging.
+  `;
+  
+  const response = await openai.createCompletion({
+    model: "text-davinci-003", // You can use GPT-3.5 or GPT-4 here
+    prompt: prompt,
+    max_tokens: 3500, // Adjust the token size for longer content generation
+    temperature: 0.7, // Adjust for creativity
+  });
+
+  return response.data.choices[0].text.trim();
+}
+
+// Function to insert Skyscanner affiliate links into content
+function insertAffiliateLinks(content, keyword) {
+  const affiliateLink = generateAffiliateLink(keyword);
+  
+  // Use Cheerio to parse and inject links within relevant parts of the article
+  const $ = cheerio.load(content);
+
+  // Find relevant sections to add the link (e.g., in tips, flight deals, etc.)
+  $("p, h2").each((i, el) => {
+    if ($(el).text().includes("flight deals")) {
+      $(el).append(` <a href="${affiliateLink}" target="_blank">Check flight deals on Skyscanner</a>`);
+    }
+  });
+
+  return $.html();
+}
+
+// Function to generate a single article and save it to file
+async function generateAndSaveArticle(keyword) {
+  const content = await generateArticleContent(keyword);
+
+  // Insert affiliate links in the content
+  const articleWithLinks = insertAffiliateLinks(content, keyword);
+
+  // Create the file path based on the keyword
+  const fileName = keyword.toLowerCase().replace(/\s+/g, "-") + ".html";
+
+  // Write the HTML content to a file
+  fs.writeFileSync(fileName, articleWithLinks);
+
+  console.log(`Article for "${keyword}" saved as ${fileName}`);
+}
+
+// Function to generate articles for multiple keywords
+async function generateArticlesForKeywords(keywords) {
+  for (let keyword of keywords) {
+    await generateAndSaveArticle(keyword);
+  }
+}
+
+// Example list of daily keywords (can be generated dynamically or fetched from a source)
+const dailyKeywords = [
+  "Cheap flights to Bali",
+  "Travel deals to Tokyo",
+  "Best flight offers for Paris",
+  "Affordable tickets to New York",
+  "Flights to London 2026",
+  // Add more keywords or generate them dynamically
 ];
 
-// Sample affiliate URL
-const affiliateUrl = "https://your-affiliate-link.com";
-
-// Function to generate article content
-const generateArticleContent = (keyword) => {
-  return `
-  # How to Find the Best Flights to ${keyword}
-
-  If you're looking to book the best flights to ${keyword}, you're in the right place! In this guide, we'll explore how to find affordable and high-quality flights to ${keyword}, with a few tips and tricks to ensure you get the best deal.
-
-  ## Why ${keyword} is a Great Destination for Travelers
-
-  Whether you're planning a vacation, business trip, or looking for new travel experiences, ${keyword} offers a variety of attractions, culture, and opportunities to explore. Here's why this destination should be on your radar.
-
-  ## Best Time to Book Flights to ${keyword}
-
-  When should you book your flights to ${keyword}? It's important to consider factors like seasonal trends, travel demand, and airline deals. The best time to book flights to ${keyword} is typically during the off-season, when prices are lower and availability is higher.
-
-  ## Top Airlines Flying to ${keyword}
-
-  Several airlines offer competitive prices for flights to ${keyword}. Some of the top carriers to consider include:
-  
-  1. Airline 1 - Known for its affordable prices and frequent flights to ${keyword}.
-  2. Airline 2 - A great choice for comfort and luxury during your flight.
-  3. Airline 3 - Offers budget-friendly options with decent amenities.
-
-  ## How to Find the Cheapest Flights to ${keyword}
-
-  Searching for flights can be overwhelming, but using the right strategies can save you a lot of money. Here are a few tips to help you find the best flight deals to ${keyword}:
-  
-  - **Use a Flight Comparison Website**: Websites like [Skyscanner](https://www.skyscanner.com) can help you compare prices from different airlines and booking platforms.
-  - **Set Alerts**: Set up alerts for price drops so that you're notified when the price of your desired flight decreases.
-  - **Book Early**: Booking your flights well in advance can help you secure lower prices.
-  
-  ## Top 5 Hotels in ${keyword}
-
-  After you've secured your flight, it's time to book your accommodation. Here are some of the best hotels in ${keyword}:
-  
-  1. Hotel A - Luxury stay with incredible amenities.
-  2. Hotel B - A budget-friendly option without compromising comfort.
-  3. Hotel C - Known for its breathtaking views and top-notch service.
-
-  ## Conclusion
-
-  Booking flights to ${keyword} doesn't have to be stressful. By following these tips, you can find affordable flights, stay at top hotels, and enjoy your trip to ${keyword} without breaking the bank. Check out more deals on [Skyscanner](https://www.skyscanner.com) and get your dream vacation started today!
-
-  ---
-  *This article contains affiliate links. If you book through these links, we may earn a small commission at no extra cost to you.*
-  `;
-};
-
-// Function to generate multiple articles
-const generateArticles = (numArticles) => {
-  const articlesDir = path.join(__dirname, 'generated-articles');
-  
-  // Create articles folder if it doesn't exist
-  if (!fs.existsSync(articlesDir)) {
-    fs.mkdirSync(articlesDir);
-  }
-
-  // Loop through the number of articles to generate
-  for (let i = 0; i < numArticles; i++) {
-    const destination = destinations[i % destinations.length];
-    const keyword = `Best flights to ${destination}`;
-    const articleContent = generateArticleContent(keyword);
-
-    const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;  // Create filename based on the destination
-    fs.writeFileSync(path.join(articlesDir, fileName), articleContent);
-    console.log(`Generated article for: ${destination}`);
-  }
-};
-
-// Generate articles based on command line argument (default to 10 articles)
-const numArticles = process.argv[2] || 10;
-generateArticles(numArticles);
+// Call the function to start generating the articles
+generateArticlesForKeywords(dailyKeywords);
