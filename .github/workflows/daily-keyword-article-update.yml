@@ -2,48 +2,38 @@ name: Daily Article Generation
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Runs at 9 AM UTC every day (adjust timing as needed)
-  workflow_dispatch:  # Allows manual trigger if needed
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch: # Allows manual triggering
+
+permissions:
+  contents: write # Crucial for pushing changes back to the repo
 
 jobs:
   generate-articles:
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js (ensure Node.js is available for the script)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Python # Or Node.js depending on your script
+        uses: actions/setup-python@v5
         with:
-          node-version: '16'  # Adjust based on your preferred Node.js version
+          python-version: '3.10'
 
-      # Step 3: Install dependencies (if needed)
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
-          npm install  # Run npm install to ensure required dependencies are available
+          pip install -r requirements.txt
 
-      # Step 4: Generate Skyscanner Articles (Runs your article generation script)
-      - name: Generate Skyscanner Articles
-        run: node generateSkyscannerArticles.js 288  # Generates 288 articles per day (adjust as needed)
+      - name: Run Article Generation Script
+        run: python your_script_name.py # Replace with your actual script name
 
-      # Step 5: Check if generated articles exist
-      - name: Check if generated articles exist
+      - name: Configure Git
         run: |
-          ls -l generated-articles/  # Verifies that articles are generated in the right folder
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
 
-      # Step 6: Add generated articles to git
-      - name: Add generated articles to git
+      - name: Commit and Push Changes
         run: |
-          git add generated-articles/   # Ensure this points to the correct folder
-          git commit -m "Generated 288 daily articles"
-          git push origin main  # Push to the main branch
-
-      # Step 7: Deploy to GitHub Pages (if needed to make the articles public)
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for deployment
-          publish_dir: ./generated-articles  # Folder containing generated articles (adjust if necessary)
+          git add generated-articles/
+          # Only commit if there are actually changes to avoid workflow errors
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Daily SEO Refresh: Added new Skyscanner articles" && git push)
