@@ -1,19 +1,27 @@
 // affiliate-config.js
+const affiliateId = '21885'; // Your affiliate ID
+const offerId = '29465'; // Your offer ID
 
-// Base URL for the affiliate program
-const AFFILIATE_BASE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=";
+// Affiliate base URL (adjust this URL to your actual affiliate network URL format)
+const affiliateBaseUrl = 'https://convert.ctypy.com/aff_c';
 
-// Your unique Affiliate ID (replace this with your actual affiliate ID)
-const AFFILIATE_ID = "21885";
-
-// Generate a dynamic affiliate URL
-function generateAffiliateURL(query) {
-    return `${AFFILIATE_BASE_URL}${AFFILIATE_ID}&query=${encodeURIComponent(query)}`;
+// Function to generate dynamic affiliate URL with parameters
+function generateAffiliateUrl(query) {
+  const encodedQuery = encodeURIComponent(query);
+  return `${affiliateBaseUrl}?offer_id=${offerId}&aff_id=${affiliateId}&q=${encodedQuery}`;
 }
 
-// Default affiliate URL (can be used if query is not found)
-function getDefaultAffiliateURL() {
-    return `${AFFILIATE_BASE_URL}${AFFILIATE_ID}&query=default`;
+// Function to inject affiliate URL dynamically in all links
+function updateAffiliateLinks() {
+  const links = document.querySelectorAll('a.affiliate-link');  // You can customize this selector based on your needs
+
+  links.forEach(link => {
+    const query = link.getAttribute('data-query'); // Ensure that your HTML links have data-query attributes set
+    if (query) {
+      link.href = generateAffiliateUrl(query); // Update the href with the dynamic affiliate URL
+    }
+  });
 }
 
-export { generateAffiliateURL, getDefaultAffiliateURL };
+// Call this function on page load
+window.onload = updateAffiliateLinks;
