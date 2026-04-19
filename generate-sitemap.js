@@ -1,51 +1,50 @@
-// generate-sitemap.js
 const fs = require('fs');
 const path = require('path');
+const { generateAffiliateLink } = require('./generateArticlesWithKeywords');
 
-// List all your HTML files (you can manually add or automate this based on your directory structure)
-const htmlFiles = [
-  'index.html',
-  'stadiumstay.html',
-  'about.html',
-  'blog.html',
-  'calculator.html',
-  'contact.html',
-  'faq.html',
-  'privacy.html',
-  'destinations.html',
-  'collections.html',
-  'routes.html',
-  'solo.html',
-  'surge.html',
-  'subscribe.html',
-  // Add more HTML files as necessary
-];
+// Function to generate sitemap.xml for the website
+function generateSitemap() {
+  const articleFolder = './articles';  // Path where the articles are stored
+  const articles = fs.readdirSync(articleFolder);  // List all files in the folder
+  const baseUrl = 'https://brightlane.github.io/SkyScanner';  // Replace with your actual domain
 
-// Define the base URL for your site
-const baseURL = 'https://brightlane.github.io/SkyScanner'; // Update with your website's domain
+  // Begin XML structure
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+  sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-// Start the XML sitemap structure
-let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
-sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  // Adding the homepage to the sitemap
+  sitemap += `  <url>\n    <loc>${baseUrl}/index.html</loc>\n  </url>\n`;
 
-// Loop through each HTML file and add it to the sitemap
-htmlFiles.forEach(file => {
-  // Create a valid URL for each HTML page
-  const url = `${baseURL}/${file}`;
+  // Loop through articles and add each one to the sitemap
+  articles.forEach((articleFile) => {
+    if (articleFile.endsWith('.html')) {
+      const articleUrl = `${baseUrl}/articles/${articleFile}`;
+      sitemap += `  <url>\n    <loc>${articleUrl}</loc>\n  </url>\n`;
+    }
+  });
 
-  // Add URL entry to the sitemap
-  sitemap += '  <url>\n';
-  sitemap += `    <loc>${url}</loc>\n`;
-  sitemap += '    <lastmod>' + new Date().toISOString() + '</lastmod>\n';
-  sitemap += '    <changefreq>daily</changefreq>\n'; // You can adjust the frequency as needed
-  sitemap += '    <priority>0.8</priority>\n'; // Adjust priority (default is 0.5 to 1.0)
-  sitemap += '  </url>\n';
-});
+  // Add any other key pages to the sitemap
+  const additionalPages = [
+    '/about.html',
+    '/contact.html',
+    '/privacy.html',
+    '/blog.html',
+    '/subscribe.html',
+    '/faq.html',
+    '/terms-of-service.html'
+  ];
 
-// Close the XML sitemap
-sitemap += '</urlset>\n';
+  additionalPages.forEach((page) => {
+    sitemap += `  <url>\n    <loc>${baseUrl}${page}</loc>\n  </url>\n`;
+  });
 
-// Write the sitemap to an XML file
-const outputPath = path.join(__dirname, 'sitemap.xml');
-fs.writeFileSync(outputPath, sitemap, 'utf-8');
-console.log('Sitemap generated successfully: sitemap.xml');
+  // End XML structure
+  sitemap += `</urlset>\n`;
+
+  // Write sitemap.xml to disk
+  fs.writeFileSync('./sitemap.xml', sitemap);
+  console.log('Sitemap generated and saved to sitemap.xml');
+}
+
+// Run the sitemap generation
+generateSitemap();
