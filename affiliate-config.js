@@ -1,19 +1,19 @@
 // affiliate-config.js
 
-// Base URL for your affiliate program (replace with your actual base URL)
+// Base URL for the affiliate program
 const AFFILIATE_BASE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=";
 
-// Your affiliate ID (replace with your actual affiliate ID)
+// Your unique Affiliate ID (replace this with your actual affiliate ID)
 const AFFILIATE_ID = "21885";
 
-// A function to generate a dynamic affiliate link based on the query
+// Generate a dynamic affiliate URL
 function generateAffiliateURL(query) {
     return `${AFFILIATE_BASE_URL}${AFFILIATE_ID}&query=${encodeURIComponent(query)}`;
 }
 
-// You can also create other utility functions here if needed, like:
+// Default affiliate URL (can be used if query is not found)
 function getDefaultAffiliateURL() {
-    return generateAffiliateURL('default');
+    return `${AFFILIATE_BASE_URL}${AFFILIATE_ID}&query=default`;
 }
 
 export { generateAffiliateURL, getDefaultAffiliateURL };
