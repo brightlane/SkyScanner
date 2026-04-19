@@ -1,0 +1,39 @@
+{
+  "name": "SkyScanner",
+  "version": "1.0.0",
+  "description": "SkyScanner affiliate and article generation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "generate": "node generateArticle.js", 
+    "build": "npm run generate"  // Add other build steps if necessary
+  },
+  "keywords": [
+    "SkyScanner",
+    "affiliate marketing",
+    "travel",
+    "flight deals",
+    "article generation"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "fs": "^0.0.1-security",  // Using fs for file system operations
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"  // If you're using this for auto-restarting Node.js app during development
+  },
+  "engines": {
+    "node": ">=14.0.0"  // Ensure you're using at least Node.js version 14.x.x
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/skyScanner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/skyScanner/issues"
+  },
+  "homepage": "https://github.com/yourusername/skyScanner#readme"
+}
