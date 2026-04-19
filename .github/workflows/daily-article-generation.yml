@@ -9,34 +9,34 @@ jobs:
   generate-articles:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Check out the repository
+      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v2
       
-      # Step 2: Set up Node.js (if your articles generation is in Node.js)
+      # Step 2: Set up Node.js (adjust the Node.js version as necessary)
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Adjust as needed for your environment
+          node-version: '14'
 
-      # Step 3: Install dependencies (if applicable)
+      # Step 3: Install dependencies (if you have package dependencies)
       - name: Install dependencies
-        run: npm install  # Adjust based on your setup (e.g., yarn install)
+        run: npm install  # Or 'yarn install' if you're using Yarn
 
       # Step 4: Run the article generation script
       - name: Generate Articles
-        run: node /path/to/your/script/generateArticlesWithKeywords.js  # Adjust path
+        run: node ./generateArticlesWithKeywords.js  # Make sure this path is correct!
 
-      # Step 5: Run the sitemap generation
+      # Step 5: Generate the sitemap
       - name: Generate Sitemap
-        run: node /path/to/your/script/generateSitemap.js  # Adjust path
+        run: node ./generateSitemap.js  # Update path to match actual file location
 
       # Step 6: Organize files by keywords
       - name: Organize Articles
-        run: node /path/to/your/script/fileOrganizer.js  # Adjust path
+        run: node ./fileOrganizer.js  # Update path if needed
 
-      # Step 7: Deploy to GitHub Pages (or another platform)
+      # Step 7: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        run: node /path/to/your/script/deployToGitHub.js  # Adjust path
+        run: node ./deployToGitHub.js  # Update path if needed
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This allows deployment to GitHub Pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for deployment
