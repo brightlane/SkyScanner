@@ -1,110 +1,73 @@
-const { Configuration, OpenAIApi } = require("openai");
-const fs = require("fs");
-const cheerio = require("cheerio");
-const axios = require("axios");
+const fs = require('fs');
+const path = require('path');
 
-// OpenAI API setup
-const configuration = new Configuration({
-  apiKey: "YOUR_OPENAI_API_KEY", // Replace with your OpenAI API key
-});
-const openai = new OpenAIApi(configuration);
+// This function generates article content based on the given keyword
+function generateArticleContent(keyword) {
+  // Basic structure for the article
+  const title = `Explore the Best Destinations for ${keyword}`;
+  const intro = `Planning a trip? If you're interested in ${keyword}, this guide will help you find the best destinations, tips, and resources to make your journey amazing.`;
+  const body = `
+    <h2>Why Choose ${keyword}?</h2>
+    <p>${keyword} offers a variety of experiences that cater to all types of travelers. Whether you're looking for adventure, culture, relaxation, or a mix of everything, ${keyword} has something for everyone. Here are some top destinations you should consider:</p>
 
-// Skyscanner Affiliate Link Generator
-function generateAffiliateLink(keyword) {
-  return `https://www.skyscanner.net/?q=${encodeURIComponent(keyword)}`;
-}
+    <h3>Top Destinations for ${keyword}</h3>
+    <ul>
+      <li><strong>Location 1</strong> - Description of the location and why it's great for ${keyword}.</li>
+      <li><strong>Location 2</strong> - A description of the second location and how it fits the ${keyword} theme.</li>
+      <li><strong>Location 3</strong> - Information about another key location for ${keyword} enthusiasts.</li>
+    </ul>
 
-// SEO Optimization: Adds meta tags for SEO purposes
-function optimizeForSEO(content, keyword) {
-  const $ = cheerio.load(content);
-  
-  // Adding meta description
-  $("head").prepend(`<meta name="description" content="Find the best flight deals for ${keyword} on Skyscanner. Book now!">`);
+    <h3>Best Tips for ${keyword} Travelers</h3>
+    <p>Here are a few tips to get the most out of your ${keyword} journey:</p>
+    <ol>
+      <li>Tip 1: Brief tip.</li>
+      <li>Tip 2: Another helpful tip.</li>
+      <li>Tip 3: One more important suggestion for ${keyword} travelers.</li>
+    </ol>
 
-  // Adding title for SEO
-  $("head").prepend(`<title>Cheap Flights to ${keyword} - Find Deals on Skyscanner</title>`);
-
-  // Adding internal link (Skyscanner)
-  $("body").append(`
-    <p>Looking for the best deals for flights to ${keyword}? Check out <a href="${generateAffiliateLink(keyword)}" target="_blank">Skyscanner's flight deals here</a>.</p>
-  `);
-  
-  return $.html();
-}
-
-// Generate article content using GPT-3
-async function generateArticleContent(keyword) {
-  const prompt = `
-  Write a detailed 5,000-word article on the topic of "${keyword}" with the following sections:
-  1. Introduction
-  2. Top destinations for ${keyword}
-  3. How to find the best flight deals for ${keyword}
-  4. Tips for booking affordable flights
-  5. Conclusion with call to action to visit Skyscanner
-  
-  Make sure the content is SEO optimized with keyword placement, and includes a call-to-action at the end encouraging users to check Skyscanner for flight deals.
+    <h3>Conclusion</h3>
+    <p>Whether you're looking for relaxation, culture, or adventure, ${keyword} offers diverse experiences that make it an ideal travel destination.</p>
   `;
-  
-  const response = await openai.createCompletion({
-    model: "text-davinci-003", // Or GPT-4 if available
-    prompt: prompt,
-    max_tokens: 3500,
-    temperature: 0.7,
-  });
 
-  return response.data.choices[0].text.trim();
+  // Combine the title, intro, and body into one complete article
+  const content = `
+    <html>
+    <head>
+      <title>${title}</title>
+    </head>
+    <body>
+      <h1>${title}</h1>
+      <p>${intro}</p>
+      ${body}
+    </body>
+    </html>
+  `;
+
+  return content;
 }
 
-// Insert affiliate links and SEO content into the article
-function insertAffiliateLinks(content, keyword) {
-  const affiliateLink = generateAffiliateLink(keyword);
-  const $ = cheerio.load(content);
+// Main function to generate articles for all keywords in the keywords.txt file
+function generateArticles() {
+  const keywords = fs.readFileSync('./keywords.txt', 'utf-8').split('\n'); // Read keywords from a file
+  const articlesDir = './articles';  // Directory where articles will be saved
 
-  // Add affiliate link inside paragraphs or headers with relevant flight content
-  $("p, h2").each((i, el) => {
-    if ($(el).text().includes("flight deals") || $(el).text().includes("book")) {
-      $(el).append(` <a href="${affiliateLink}" target="_blank">Check flight deals on Skyscanner</a>`);
-    }
-  });
-
-  return $.html();
-}
-
-// Read the keywords from a file (or database)
-function readKeywordsFromFile() {
-  const data = fs.readFileSync("1millionKeywords.json");
-  return JSON.parse(data);
-}
-
-// Save the generated article to an HTML file
-async function saveArticleToFile(keyword, content) {
-  const articleWithLinks = insertAffiliateLinks(content, keyword);
-  const articleWithSEO = optimizeForSEO(articleWithLinks, keyword);
-  
-  const fileName = keyword.toLowerCase().replace(/\s+/g, "-") + ".html";
-  fs.writeFileSync(`./articles/${fileName}`, articleWithSEO);
-  
-  console.log(`Article for "${keyword}" saved as ${fileName}`);
-}
-
-// Main function to generate and save articles for each keyword
-async function generateArticlesForKeywords() {
-  const keywords = readKeywordsFromFile();
-  
-  for (let i = 0; i < keywords.length; i++) {
-    const keyword = keywords[i];
-    console.log(`Generating article for "${keyword}"...`);
-    
-    try {
-      const content = await generateArticleContent(keyword);
-      await saveArticleToFile(keyword, content);
-    } catch (error) {
-      console.error(`Failed to generate article for "${keyword}":`, error);
-    }
+  // Ensure articles directory exists
+  if (!fs.existsSync(articlesDir)) {
+    fs.mkdirSync(articlesDir);
   }
 
-  console.log("Article generation completed for all keywords.");
+  // Loop through keywords, generate an article for each, and save as an HTML file
+  keywords.forEach((keyword) => {
+    if (keyword.trim()) {
+      const articleContent = generateArticleContent(keyword);
+      const articlePath = path.join(articlesDir, `${keyword.replace(/ /g, '-')}.html`);
+      
+      // Write the article to a file
+      fs.writeFileSync(articlePath, articleContent);
+      console.log(`Article generated for: ${keyword}`);
+    }
+  });
 }
 
-// Start the article generation process
-generateArticlesForKeywords();
+// Run the article generation process
+generateArticles();
