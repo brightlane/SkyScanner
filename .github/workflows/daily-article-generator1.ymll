@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+// Sample list of destinations
 const destinations = [
   "Bali", "Paris", "Tokyo", "New York", "London", "Sydney", "Rome", "Los Angeles", "Bangkok", "Barcelona",
   "Mexico City", "Greece", "Dubai", "Miami", "Amsterdam", "Prague", "Lisbon", "Cairo", "Montreal", "Italy",
@@ -8,6 +9,7 @@ const destinations = [
   "Egypt", "Mexico", "Singapore", "Orlando", "Kyoto", "Machu Picchu", "Madrid", "Dubai", "Seychelles"
 ];
 
+// Function to generate travel-related article content with affiliate links
 const generateArticleContent = (destination) => {
   return `
   # Best Flights to ${destination}
@@ -37,33 +39,43 @@ const generateArticleContent = (destination) => {
   `;
 };
 
+// Main function to generate multiple articles
 const generateArticles = (numArticles) => {
-  const articlesDir = path.join(__dirname, 'generated-articles');
+  const articlesDir = path.join(__dirname, 'generated-articles'); // Directory to save generated articles
 
+  // Check if the directory exists, if not, create it
   if (!fs.existsSync(articlesDir)) {
     console.log("Creating generated-articles directory...");
     fs.mkdirSync(articlesDir);
   }
 
   let filesGenerated = 0;
-
+  
+  // Generate articles for each destination
   for (let i = 0; i < numArticles; i++) {
-    const destination = destinations[i % destinations.length];
+    const destination = destinations[i % destinations.length];  // Use destination in a loop
     const articleContent = generateArticleContent(destination);
 
-    const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;
+    // Create a filename using the destination name
+    const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;  // Convert spaces to dashes and to lowercase
     const filePath = path.join(articlesDir, fileName);
 
-    fs.writeFileSync(filePath, articleContent);
-    console.log(`Generated article: ${filePath}`);  // Add logging to confirm file creation
-
-    filesGenerated++;
+    try {
+      fs.writeFileSync(filePath, articleContent);  // Write the article content to a .md file
+      console.log(`Generated article: ${filePath}`);
+      filesGenerated++;
+    } catch (error) {
+      console.error(`Error writing article for ${destination}: ${error}`);
+    }
   }
 
   if (filesGenerated === 0) {
     console.log("No articles generated.");
+  } else {
+    console.log(`${filesGenerated} articles generated successfully.`);
   }
 };
 
-const numArticles = process.argv[2] || 10;
-generateArticles(numArticles);
+// Get the number of articles to generate from the command line argument (default is 10)
+const numArticles = process.argv[2] || 10;  // Default to 10 if not provided
+generateArticles(numArticles);  // Run the function to generate the articles
