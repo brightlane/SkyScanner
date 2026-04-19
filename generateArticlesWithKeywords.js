@@ -1,9 +1,16 @@
 const fs = require('fs');
 const path = require('path');
 
+// Check if the keywords file exists
+const keywordsFilePath = path.join(__dirname, 'keywords.txt'); // Use __dirname to ensure the path is relative to the script's location
+
+if (!fs.existsSync(keywordsFilePath)) {
+  console.error('Error: keywords.txt file not found. Please make sure it exists in the repository.');
+  process.exit(1);  // Exit the script with an error code
+}
+
 // This function generates article content based on the given keyword
 function generateArticleContent(keyword) {
-  // Basic structure for the article
   const title = `Explore the Best Destinations for ${keyword}`;
   const intro = `Planning a trip? If you're interested in ${keyword}, this guide will help you find the best destinations, tips, and resources to make your journey amazing.`;
   const body = `
@@ -28,7 +35,7 @@ function generateArticleContent(keyword) {
     <h3>Conclusion</h3>
     <p>Whether you're looking for relaxation, culture, or adventure, ${keyword} offers diverse experiences that make it an ideal travel destination.</p>
   `;
-
+  
   // Combine the title, intro, and body into one complete article
   const content = `
     <html>
@@ -48,7 +55,8 @@ function generateArticleContent(keyword) {
 
 // Main function to generate articles for all keywords in the keywords.txt file
 function generateArticles() {
-  const keywords = fs.readFileSync('./keywords.txt', 'utf-8').split('\n'); // Read keywords from a file
+  const keywords = fs.readFileSync(keywordsFilePath, 'utf-8').split('\n'); // Read keywords from the file
+
   const articlesDir = './articles';  // Directory where articles will be saved
 
   // Ensure articles directory exists
