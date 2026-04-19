@@ -1,0 +1,41 @@
+name: Daily Keyword Article Generator
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Runs at 9 AM UTC every day (adjust timing as needed)
+  workflow_dispatch:  # Allows manual trigger if needed
+
+jobs:
+  generate-article:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Fetch trending keywords (could be API or scraping tool)
+      - name: Fetch trending travel-related keywords
+        run: |
+          curl -o trending-keywords.json "https://api.example.com/trending-keywords"  # Replace with a real API endpoint
+          echo "Trending keywords fetched!"
+
+      # Step 3: Generate article with target keyword
+      - name: Generate daily article using keyword
+        run: |
+          node generateArticle.js --keywords trending-keywords.json # Your custom article generation script (e.g., using AI or templates)
+          echo "Article generated successfully!"
+
+      # Step 4: Commit and push the new article
+      - name: Commit and push article to the repo
+        run: |
+          git add .
+          git commit -m "Automated daily article update"
+          git push origin main  # Push to main branch
+
+      # Step 5: Optionally, trigger a deployment (if needed) to publish the article
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # Customize if your generated articles are in a specific directory
