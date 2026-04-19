@@ -1,16 +1,16 @@
+// Import necessary modules
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 
-// Define API endpoints for flight data, hotels, weather, SEO
-const FLIGHT_API_URL = 'https://api.example.com/flights'; // Replace with your actual API URL
-const HOTEL_API_URL = 'https://api.example.com/hotels'; // Replace with your actual API URL
-const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'; // Replace with your actual weather API URL
-const SEO_API_URL = 'https://api.example.com/seo-updates'; // Replace with your actual SEO API URL
-const WEATHER_API_KEY = 'your-weather-api-key'; // Replace with your actual OpenWeatherMap API key
-const AFFILIATE_LINK = 'https://affiliate.example.com?ref=your-affiliate-id'; // Replace with your affiliate link
+// Define API endpoints (you can replace these with real APIs)
+const FLIGHT_API_URL = 'https://api.example.com/flights';
+const HOTEL_API_URL = 'https://api.example.com/hotels';
+const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather';
+const SEO_API_URL = 'https://api.example.com/seo-updates';
+const AFFILIATE_LINK = 'https://affiliate.example.com?ref=your-affiliate-id'; // Your affiliate link
 
-// Function to fetch flight data from Skyscanner or any flight API
+// Function to fetch flight data
 const fetchFlightData = async () => {
   try {
     const response = await axios.get(FLIGHT_API_URL);
@@ -37,7 +37,7 @@ const fetchHotelData = async () => {
 // Function to fetch weather data
 const fetchWeatherData = async (city) => {
   try {
-    const response = await axios.get(`${WEATHER_API_URL}?q=${city}&appid=${WEATHER_API_KEY}`);
+    const response = await axios.get(`${WEATHER_API_URL}?q=${city}&appid=your-weather-api-key`);
     const weatherData = response.data;
     console.log("Weather data fetched successfully");
     updateWeatherData(weatherData);
@@ -46,29 +46,11 @@ const fetchWeatherData = async (city) => {
   }
 };
 
-// Function to update affiliate links in HTML files
-const updateAffiliateLinks = (htmlFilePath) => {
-  fs.readFile(htmlFilePath, 'utf8', (err, data) => {
-    if (err) throw err;
-    
-    let updatedHtml = data.replace(/href="([^"]*)"/g, (match, p1) => {
-      if (!p1.includes('affiliate')) {
-        return `href="${p1}?aff_id=your-affiliate-id"`; // Append affiliate ID to URLs
-      }
-      return match;
-    });
-
-    fs.writeFile(htmlFilePath, updatedHtml, 'utf8', (err) => {
-      if (err) throw err;
-      console.log(`Affiliate links updated in ${htmlFilePath}`);
-    });
-  });
-};
-
-// Function to update flight-related content
+// Function to update flight-related content on flights.html
 const updateFlightData = (flightData) => {
   const flightFilePath = path.join(__dirname, 'flights.html');
   let htmlContent = '<h2>Available Flights</h2>';
+  
   flightData.forEach(flight => {
     htmlContent += `
       <div class="flight">
@@ -81,13 +63,14 @@ const updateFlightData = (flightData) => {
 
   fs.writeFileSync(flightFilePath, htmlContent, 'utf8');
   console.log("Flight data updated on flights.html");
-  updateAffiliateLinks(flightFilePath);
+  updateAffiliateLinks(flightFilePath); // Update affiliate links
 };
 
-// Function to update hotel-related content
+// Function to update hotel-related content on hotels.html
 const updateHotelData = (hotelData) => {
   const hotelFilePath = path.join(__dirname, 'hotels.html');
   let htmlContent = '<h2>Available Hotels</h2>';
+  
   hotelData.forEach(hotel => {
     htmlContent += `
       <div class="hotel">
@@ -100,10 +83,10 @@ const updateHotelData = (hotelData) => {
 
   fs.writeFileSync(hotelFilePath, htmlContent, 'utf8');
   console.log("Hotel data updated on hotels.html");
-  updateAffiliateLinks(hotelFilePath);
+  updateAffiliateLinks(hotelFilePath); // Update affiliate links
 };
 
-// Function to update weather data
+// Function to update weather-related content on weather.html
 const updateWeatherData = (weatherData) => {
   const weatherFilePath = path.join(__dirname, 'weather.html');
   let htmlContent = `<h2>Weather for ${weatherData.name}</h2>`;
@@ -115,6 +98,25 @@ const updateWeatherData = (weatherData) => {
 
   fs.writeFileSync(weatherFilePath, htmlContent, 'utf8');
   console.log("Weather data updated on weather.html");
+};
+
+// Function to update affiliate links in HTML files
+const updateAffiliateLinks = (htmlFilePath) => {
+  fs.readFile(htmlFilePath, 'utf8', (err, data) => {
+    if (err) throw err;
+    
+    let updatedHtml = data.replace(/href="([^"]*)"/g, (match, p1) => {
+      if (!p1.includes('affiliate')) {
+        return `href="${p1}?aff_id=your-affiliate-id"`; // Append your affiliate ID
+      }
+      return match;
+    });
+
+    fs.writeFile(htmlFilePath, updatedHtml, 'utf8', (err) => {
+      if (err) throw err;
+      console.log(`Affiliate links updated in ${htmlFilePath}`);
+    });
+  });
 };
 
 // Function to generate SEO-friendly content
@@ -129,7 +131,7 @@ const generateSEOContent = async () => {
   }
 };
 
-// Function to update SEO content
+// Function to update SEO content (meta tags, keywords) in seo.html
 const updateSEOContent = (seoData) => {
   const seoFilePath = path.join(__dirname, 'seo.html');
   let htmlContent = `
@@ -144,11 +146,12 @@ const updateSEOContent = (seoData) => {
 
 // Main function to run all tasks
 const runAutomation = async () => {
+  // Fetch and update data for flight, hotel, weather, and SEO content
   await fetchFlightData();
   await fetchHotelData();
-  await fetchWeatherData('New York');
+  await fetchWeatherData('New York'); // Change city as needed
   await generateSEOContent();
 };
 
-// Run the automation every hour (or based on your desired frequency)
-setInterval(runAutomation, 60 * 60 * 1000); // Run every hour
+// Run the automation every day at midnight (or set your preferred time)
+setInterval(runAutomation, 24 * 60 * 60 * 1000); // Run every 24 hours (86400000ms)
