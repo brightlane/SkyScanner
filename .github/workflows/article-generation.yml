@@ -1,0 +1,44 @@
+name: Daily Article Generation
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Schedule to run every day at 9:00 AM UTC
+  workflow_dispatch:  # Allows for manual triggering of the workflow
+
+jobs:
+  generate-articles:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js (required to run the script)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Adjust to your preferred Node version
+
+      # Step 3: Install dependencies (if any)
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run the article generation script
+      - name: Generate Articles
+        run: |
+          node generateSkyscannerArticles.js 288  # Generates 288 articles per day (adjust as needed)
+
+      # Step 5: Commit and push the generated articles to GitHub
+      - name: Commit and Push Articles
+        run: |
+          git add articles/
+          git commit -m "Generate daily articles"
+          git push origin main  # Push changes back to the main branch (or another branch if needed)
+
+      # Step 6: Optional step: Deploy to GitHub Pages (if you're using GitHub Pages)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}  # Automatically uses GitHub's personal token for authentication
+          publish_dir: ./articles  # Adjust if you store articles elsewhere
