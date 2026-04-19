@@ -1,0 +1,44 @@
+name: Daily Article Generator and Deployment
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Run every day at 6 AM UTC
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: |
+        npm install marked  # Install markdown-it for Markdown to HTML conversion
+
+    - name: Run article HTML generation script
+      run: |
+        node generateHTMLPages.js  # Run the script to generate HTML pages
+
+    - name: Commit and push generated HTML files
+      run: |
+        echo "Committing and pushing generated pages..."
+
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+
+        git add pages/  # Add the generated HTML pages
+        git commit -m "Generate new daily article pages"
+        git push  # Push the changes to the repository
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: pages  # The folder containing the generated HTML files
