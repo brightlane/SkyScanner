@@ -1,34 +1,79 @@
-# .github/workflows/automated-article-generation.yml
-name: Daily Article Generation & Deployment
+const fs = require('fs');
+const path = require('path');
 
-on:
-  # Trigger workflow on push to the main branch and every day at midnight (UTC)
-  push:
-    branches:
-      - main
-  workflow_dispatch:  # Allow manual triggering from the GitHub UI
-  schedule:
-    - cron: '0 0 * * *'  # Runs every day at midnight (UTC)
+// Sample list of destinations
+const destinations = [
+    "Bali", "Paris", "Tokyo", "New York", "London", "Sydney", "Rome", "Los Angeles", "Bangkok", "Barcelona",
+    "Mexico City", "Greece", "Dubai", "Miami", "Amsterdam", "Prague", "Lisbon", "Cairo", "Montreal", "Italy",
+    "Rio de Janeiro", "Cape Town", "Berlin", "Melbourne", "Lima", "Athens", "Seoul", "Iceland", "Phuket", "Seychelles",
+    "Egypt", "Mexico", "Singapore", "Orlando", "Kyoto", "Machu Picchu", "Madrid", "Dubai", "Seychelles"
+];
 
-jobs:
-  generate-articles:
-    runs-on: ubuntu-latest
+// Function to generate travel-related article content with affiliate links
+const generateArticleContent = (destination) => {
+    return `
+    # Best Flights to ${destination}
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    Looking to travel to ${destination}? Here's everything you need to know about booking the best flights to ${destination}, including tips for getting great deals, top airlines, and more!
 
-    # Run article generation script
-    - name: Run article generation script
-      run: node ./generateArticlesWithKeywords.js
+    ## Why Visit ${destination}?
 
-    # Optional: Skip if not needed, or uncomment if you want to regenerate the sitemap.
-    # - name: Generate Sitemap
-    #   run: node ./generateSitemap.js
+    ${destination} is known for its incredible attractions, stunning landscapes, and vibrant culture. Whether you're visiting for business or leisure, there’s something for everyone.
 
-    # Example deployment to GitHub Pages
-    - name: Deploy to GitHub Pages
-      run: |
-        # This is an example of how you could deploy content
-        # Ensure you have a `gh-pages` branch or adjust deployment commands accordingly
-        # npx gh-pages -d ./public  # Example deployment command, adjust based on your setup
+    ## Best Airlines for ${destination}
+
+    When booking flights to ${destination}, you'll want to choose the right airlines to ensure a comfortable journey. Here are some of the top airlines that fly to ${destination}:
+
+    1. Airline A
+    2. Airline B
+    3. Airline C
+
+    ## How to Find the Cheapest Flights to ${destination}
+
+    Finding the best flight deals to ${destination} can be tricky, but here are some tips:
+    
+    - **Book Early**: The earlier you book, the better the deals you’ll find.
+    - **Use Skyscanner**: Skyscanner is a powerful tool to compare prices from various airlines.
+    - **Be Flexible**: If possible, try to book flights during off-peak seasons to save on airfare.
+
+    ## Conclusion
+
+    Don't wait any longer! Start planning your trip to ${destination} today with the help of Skyscanner.
+
+    *This article contains affiliate links to Skyscanner. By booking through these links, you help support our website at no extra cost to you.*
+    `;
+};
+
+// Main function to generate multiple articles
+const generateArticles = (numArticles) => {
+    const articlesDir = path.join(__dirname, 'generated-articles'); // Directory to save generated articles
+
+    // Check if the directory exists, if not, create it
+    if (!fs.existsSync(articlesDir)) {
+        console.log("Creating generated-articles directory...");
+        fs.mkdirSync(articlesDir);
+    }
+
+    let filesGenerated = 0;
+    // Generate articles for each destination
+    for (let i = 0; i < numArticles; i++) {
+        const destination = destinations[i % destinations.length];  // Use destination in a loop
+        const articleContent = generateArticleContent(destination);
+
+        // Create a filename using the destination name
+        const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;  // Convert spaces to dashes, and to lowercase
+        const filePath = path.join(articlesDir, fileName);
+        
+        fs.writeFileSync(filePath, articleContent);  // Write the article content to a .md file
+        console.log(`Article generated: ${filePath}`);  // Log the success message
+        filesGenerated++;
+    }
+
+    if (filesGenerated === 0) {
+        console.log("No articles generated.");
+    }
+};
+
+// Get the number of articles to generate from the command line argument (default is 10)
+const numArticles = process.argv[2] || 10; // Default to 10 if not provided
+generateArticles(numArticles);  // Run the function to generate the articles
