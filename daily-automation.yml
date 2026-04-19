@@ -1,0 +1,29 @@
+name: Daily Feeder Automation
+
+on:
+  schedule:
+    # Runs every day at midnight UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  run-feeder:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout your code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run your feeder script
+      - name: Run Feeder Automation
+        run: node feeder-automation.js
