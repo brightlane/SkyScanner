@@ -1,0 +1,42 @@
+name: Daily Article Generation
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at midnight UTC
+  workflow_dispatch:  # Allows you to trigger manually
+
+jobs:
+  generate-articles:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      # Step 2: Set up Node.js (if your articles generation is in Node.js)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Adjust as needed for your environment
+
+      # Step 3: Install dependencies (if applicable)
+      - name: Install dependencies
+        run: npm install  # Adjust based on your setup (e.g., yarn install)
+
+      # Step 4: Run the article generation script
+      - name: Generate Articles
+        run: node /path/to/your/script/generateArticlesWithKeywords.js  # Adjust path
+
+      # Step 5: Run the sitemap generation
+      - name: Generate Sitemap
+        run: node /path/to/your/script/generateSitemap.js  # Adjust path
+
+      # Step 6: Organize files by keywords
+      - name: Organize Articles
+        run: node /path/to/your/script/fileOrganizer.js  # Adjust path
+
+      # Step 7: Deploy to GitHub Pages (or another platform)
+      - name: Deploy to GitHub Pages
+        run: node /path/to/your/script/deployToGitHub.js  # Adjust path
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This allows deployment to GitHub Pages
