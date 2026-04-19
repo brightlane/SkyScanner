@@ -1,26 +1,19 @@
-/**
- * Global Affiliate Link Configuration
- * brightlane SkyScanner Project
- */
+// affiliate-config.js
 
-const AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+// Base URL for your affiliate program (replace with your actual base URL)
+const AFFILIATE_BASE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=";
 
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Find all links that are meant to go to Skyscanner/Booking
-    // This looks for links with specific classes or text
-    const flightLinks = document.querySelectorAll('a[href*="skyscanner"], .btn-search, .book-now, .deal-link');
+// Your affiliate ID (replace with your actual affiliate ID)
+const AFFILIATE_ID = "21885";
 
-    flightLinks.forEach(link => {
-        link.href = AFFILIATE_URL;
-        link.setAttribute('rel', 'sponsored noopener noreferrer');
-        link.setAttribute('target', '_blank');
-    });
+// A function to generate a dynamic affiliate link based on the query
+function generateAffiliateURL(query) {
+    return `${AFFILIATE_BASE_URL}${AFFILIATE_ID}&query=${encodeURIComponent(query)}`;
+}
 
-    // 2. Optional: Redirect any button clicks that don't have an href
-    const searchButtons = document.querySelectorAll('button.search-trigger');
-    searchButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            window.open(AFFILIATE_URL, '_blank');
-        });
-    });
-});
+// You can also create other utility functions here if needed, like:
+function getDefaultAffiliateURL() {
+    return generateAffiliateURL('default');
+}
+
+export { generateAffiliateURL, getDefaultAffiliateURL };
