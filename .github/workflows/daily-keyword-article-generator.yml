@@ -34,11 +34,11 @@ jobs:
         run: |
           ls -l generated-articles/  # Verifies that articles are generated in the right folder
 
-      # Step 6: Set Git user identity to allow commit
+      # Step 6: Set Git user identity (Explicitly set the identity)
       - name: Set Git user identity
         run: |
-          git config --global user.email "github-actions@github.com"  # Use a valid email address for GitHub Actions
-          git config --global user.name "GitHub Actions"  # Name for the commit author
+          git config --global user.email "github-actions@github.com"  # Set valid email for GitHub Actions
+          git config --global user.name "GitHub Actions"  # Set user name for the commit
 
       # Step 7: Add generated articles to git
       - name: Add generated articles to git
