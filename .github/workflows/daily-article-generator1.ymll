@@ -50,14 +50,13 @@ const generateArticles = (numArticles) => {
   }
 
   let filesGenerated = 0;
-  
+
   // Generate articles for each destination
   for (let i = 0; i < numArticles; i++) {
     const destination = destinations[i % destinations.length];  // Use destination in a loop
     const articleContent = generateArticleContent(destination);
 
-    // Create a filename using the destination name
-    const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;  // Convert spaces to dashes and to lowercase
+    const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;  // Convert spaces to dashes, and to lowercase
     const filePath = path.join(articlesDir, fileName);
 
     try {
@@ -77,5 +76,5 @@ const generateArticles = (numArticles) => {
 };
 
 // Get the number of articles to generate from the command line argument (default is 10)
-const numArticles = process.argv[2] || 10;  // Default to 10 if not provided
+const numArticles = process.argv[2] || 10;
 generateArticles(numArticles);  // Run the function to generate the articles
