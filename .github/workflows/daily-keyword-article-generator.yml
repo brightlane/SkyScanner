@@ -2,38 +2,27 @@ name: Daily Article Generation
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
-  workflow_dispatch: # Allows manual triggering
-
-permissions:
-  contents: write # Crucial for pushing changes back to the repo
+    - cron: "0 12 * * *"  # runs daily at 12:00 UTC
+  workflow_dispatch:      # lets you run it manually
 
 jobs:
   generate-articles:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python # Or Node.js depending on your script
+      - name: Show repo structure (debug)
+        run: ls -R
+
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.11"
 
-      - name: Install Dependencies
-        run: |
-          pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
-      - name: Run Article Generation Script
-        run: python your_script_name.py # Replace with your actual script name
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-
-      - name: Commit and Push Changes
-        run: |
-          git add generated-articles/
-          # Only commit if there are actually changes to avoid workflow errors
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Daily SEO Refresh: Added new Skyscanner articles" && git push)
+      - name: Run article generator
+        run: python generate_articles.py
