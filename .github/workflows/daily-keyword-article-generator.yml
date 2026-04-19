@@ -1,4 +1,4 @@
-name: Daily Keyword Article Generator
+name: Daily Article Generation
 
 on:
   schedule:
@@ -14,28 +14,42 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Step 2: Fetch trending keywords (could be API or scraping tool)
-      - name: Fetch trending travel-related keywords
-        run: |
-          curl -o trending-keywords.json "https://api.example.com/trending-keywords"  # Replace with a real API endpoint
-          echo "Trending keywords fetched!"
+      # Step 2: Set up Node.js (ensure Node.js is available for the script)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Adjust based on your preferred Node.js version
 
-      # Step 3: Generate 10 articles with target keywords
-      - name: Generate daily articles using keywords
+      # Step 3: Install dependencies (if needed)
+      - name: Install dependencies
         run: |
-          node generateArticle.js --keywords trending-keywords.json --num-articles 10 # Generate 10 articles
-          echo "10 articles generated successfully!"
+          npm install  # Run npm install to ensure required dependencies are available
 
-      # Step 4: Commit and push the new articles
-      - name: Commit and push articles to the repo
+      # Step 4: Generate Skyscanner Articles (Runs your article generation script)
+      - name: Generate Skyscanner Articles
+        run: node generateSkyscannerArticles.js 288  # Generates 288 articles per day (adjust as needed)
+
+      # Step 5: Check if generated articles exist
+      - name: Check if generated articles exist
         run: |
-          git add .
-          git commit -m "Automated daily article updates"
-          git push origin main  # Push to main branch
+          ls -l generated-articles/  # Verifies that articles are generated in the right folder
 
-      # Step 5: Optionally, trigger a deployment (if needed) to publish the articles
+      # Step 6: Set Git user identity to allow commit
+      - name: Set Git user identity
+        run: |
+          git config --global user.email "you@example.com"  # Use a valid email address
+          git config --global user.name "GitHub Actions"  # Use a name for the commit author
+
+      # Step 7: Add generated articles to git
+      - name: Add generated articles to git
+        run: |
+          git add generated-articles/   # Ensure this points to the correct folder
+          git commit -m "Generated 288 daily articles"
+          git push origin main  # Push to the main branch
+
+      # Step 8: Deploy to GitHub Pages (if needed to make the articles public)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Customize if your generated articles are in a specific directory
+          personal_token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for deployment
+          publish_dir: ./generated-articles  # Folder containing generated articles (adjust if necessary)
