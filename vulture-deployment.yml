@@ -1,0 +1,46 @@
+name: Vulture Deployment
+
+# Trigger the deployment on push to the main branch or manually using workflow_dispatch
+on:
+  push:
+    branches:
+      - main  # Trigger deployment when changes are made on the main branch
+  workflow_dispatch:  # Allows manual trigger of the deployment via GitHub Actions UI
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # The virtual environment to run the job on
+
+    steps:
+      # Step 1: Checkout the repository so we have access to all your files
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Checkout the code from the repository
+
+      # Step 2: Set up Node.js (Optional: Only if your project needs Node.js for build)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Set the Node.js version, adjust to your needs
+
+      # Step 3: Install dependencies (Only run this if your project requires dependencies)
+      - name: Install dependencies
+        run: |
+          npm install  # This installs any dependencies listed in package.json
+
+      # Step 4: Build the project (If you have a build step, adjust this to your needs)
+      - name: Build the project
+        run: |
+          npm run build  # Adjust this to your build script or skip if unnecessary
+        continue-on-error: false  # If build fails, the action will stop here
+
+      # Step 5: Deploy the website to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
+          publish_dir: ./  # This will publish the root directory. Adjust if build output is elsewhere (like `build/` or `dist/`)
+
+      # Step 6: Verify successful deployment (Optional)
+      - name: Verify deployment
+        run: |
+          curl -s https://YOUR_USERNAME.github.io/YOUR_REPOSITORY_NAME/ > /dev/null || (echo "Deployment failed" && exit 1)
