@@ -1,7 +1,9 @@
-User-agent: *
-Allow: /
-Disallow: /private/
-Sitemap: https://brightlane.github.io/SkyScanner/sitemap.xml
+# robots.txt for SkyScanner site
 
-# Vulture Engine #11 Priority
-Crawl-delay: 0
+# Allow all search engines to index the entire site
+User-agent: *
+Disallow: /private/
+Disallow: /admin/
+
+# Sitemap location for search engines to find
+Sitemap: https://brightlane.github.io/SkyScanner/sitemap.xml
