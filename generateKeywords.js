@@ -1,77 +1,66 @@
-const axios = require("axios");
-const fs = require("fs");
+const axios = require('axios');
+const fs = require('fs');
 
-// Example API endpoints (you can replace these with actual APIs or scraping logic)
-const googleTrendsApiUrl = "https://api.google.com/trends/keywords"; // Hypothetical API
-const semrushApiUrl = "https://api.semrush.com/keywords"; // Hypothetical API
+// API URL for your chosen keyword tool (e.g., Ubersuggest, SEMrush, or another)
+const API_URL = 'https://api.neilpatel.com/v1/keywords';  // Replace with your API URL
+const API_KEY = 'YOUR_API_KEY';  // Replace with your API key
 
-// Function to fetch keywords from Google Trends (replace with actual implementation)
-async function fetchGoogleTrendsKeywords() {
-  try {
-    const response = await axios.get(googleTrendsApiUrl);
-    return response.data.keywords; // Assuming the API returns a list of keywords
-  } catch (error) {
-    console.error('Error fetching Google Trends keywords:', error);
-    return [];
-  }
-}
+// Seed keywords related to Skyscanner and travel
+const seedKeywords = [
+    'cheap flights', 'flights to', 'book flights', 'last minute flights',
+    'vacation packages', 'holiday deals', 'cheap hotels', 'best flight deals',
+    'flights from', 'flights to New York', 'flights to Paris', 'best hotels in',
+    'car rental', 'affordable vacation packages', 'best travel destinations', 
+    // Add more seed keywords here as needed
+];
 
-// Function to fetch keywords from SEMrush (replace with actual implementation)
-async function fetchSemrushKeywords() {
-  try {
-    const response = await axios.get(semrushApiUrl);
-    return response.data.keywords; // Assuming the API returns a list of keywords
-  } catch (error) {
-    console.error('Error fetching SEMrush keywords:', error);
-    return [];
-  }
-}
-
-// Combine keywords from different sources
-async function fetchKeywords() {
-  const googleKeywords = await fetchGoogleTrendsKeywords();
-  const semrushKeywords = await fetchSemrushKeywords();
-
-  const allKeywords = [...googleKeywords, ...semrushKeywords];
-  return allKeywords;
-}
-
-// Generate long-tail keywords by combining basic travel phrases with destinations and events
-function generateLongTailKeywords(baseKeywords) {
-  const destinations = [
-    "Bali", "Paris", "New York", "Tokyo", "London", "Sydney", "Los Angeles", "Rome", "Mexico City", "Bali", "Berlin", "Lisbon",
-    "Barcelona", "Tokyo", "Bangkok", "Dubai", "Istanbul", "Miami", "Cairo", "Rio", "Cape Town"
-  ];
-  
-  const longTailKeywords = [];
-  for (let baseKeyword of baseKeywords) {
-    for (let destination of destinations) {
-      longTailKeywords.push(`${baseKeyword} to ${destination}`);
-      longTailKeywords.push(`${baseKeyword} flights to ${destination}`);
-      longTailKeywords.push(`cheap ${baseKeyword} to ${destination}`);
-      longTailKeywords.push(`${baseKeyword} flight deals to ${destination}`);
-      longTailKeywords.push(`best ${baseKeyword} to ${destination} 2026`);
+// Function to fetch keywords using an API
+const fetchKeywords = async (keyword) => {
+    try {
+        const response = await axios.get(API_URL, {
+            params: {
+                keyword: keyword,
+                api_key: API_KEY,
+            }
+        });
+        return response.data.keywords;  // Assuming the response contains a 'keywords' array
+    } catch (error) {
+        console.error('Error fetching keywords:', error);
+        return [];
     }
-  }
+};
 
-  return longTailKeywords;
-}
+// Function to generate a large number of unique keywords
+const generateKeywords = async () => {
+    let allKeywords = new Set();  // Using Set to avoid duplicate keywords
+    let keywordCount = 0;
 
-// Save 1 million keywords to a JSON file
-async function saveKeywordsToFile() {
-  const baseKeywords = await fetchKeywords();
-  console.log(`Fetched ${baseKeywords.length} base keywords`);
+    for (let i = 0; i < seedKeywords.length; i++) {
+        const seed = seedKeywords[i];
+        console.log(`Fetching keywords for: ${seed}`);
+        
+        // Fetching keywords for the seed keyword
+        const keywords = await fetchKeywords(seed);
+        
+        // Adding keywords to Set to ensure uniqueness
+        keywords.forEach((kw) => allKeywords.add(kw));
+        
+        keywordCount += keywords.length;
 
-  const longTailKeywords = generateLongTailKeywords(baseKeywords);
-  console.log(`Generated ${longTailKeywords.length} long-tail keywords`);
+        console.log(`Fetched ${keywords.length} keywords for: ${seed}`);
+        
+        // Stop if we've reached the desired number of keywords
+        if (allKeywords.size >= 5000000) {
+            break;
+        }
+    }
 
-  // Make sure we only save 1 million keywords
-  const keywordsToSave = longTailKeywords.slice(0, 1000000); // Only save 1 million
+    console.log(`Total unique keywords fetched: ${allKeywords.size}`);
 
-  // Save keywords to a file
-  fs.writeFileSync("1millionKeywords.json", JSON.stringify(keywordsToSave, null, 2));
-  console.log(`Saved 1 million keywords to 1millionKeywords.json`);
-}
+    // Write the keywords to a file
+    fs.writeFileSync('keywords.txt', Array.from(allKeywords).join('\n'), 'utf8');
+    console.log('Keywords saved to keywords.txt');
+};
 
-// Run the keyword generation and saving process
-saveKeywordsToFile();
+// Run the script
+generateKeywords();
