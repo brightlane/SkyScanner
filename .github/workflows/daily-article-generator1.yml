@@ -1,47 +1,78 @@
-name: Daily Article Generator
+const fs = require('fs');
+const path = require('path');
 
-# Trigger the workflow on a schedule (every day at 6 AM UTC)
-on:
-  schedule:
-    - cron: '0 6 * * *'  # This will run every day at 6 AM UTC
-  # Allow manual triggering with a "Run workflow" button
-  workflow_dispatch:  # You can manually trigger the workflow if needed
+// Sample list of destinations
+const destinations = [
+    "Bali", "Paris", "Tokyo", "New York", "London", "Sydney", "Rome", "Los Angeles", "Bangkok", "Barcelona",
+    "Mexico City", "Greece", "Dubai", "Miami", "Amsterdam", "Prague", "Lisbon", "Cairo", "Montreal", "Italy",
+    "Rio de Janeiro", "Cape Town", "Berlin", "Melbourne", "Lima", "Athens", "Seoul", "Iceland", "Phuket", "Seychelles",
+    "Egypt", "Mexico", "Singapore", "Orlando", "Kyoto", "Machu Picchu", "Madrid", "Dubai", "Seychelles"
+];
 
-jobs:
-  generate-articles:
-    runs-on: ubuntu-latest  # GitHub runner with Ubuntu OS
+// Function to generate travel-related article content with affiliate links
+const generateArticleContent = (destination) => {
+    return `
+    # Best Flights to ${destination}
 
-    steps:
-    # Step 1: Checkout the repository to get access to the code
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    Looking to travel to ${destination}? Here's everything you need to know about booking the best flights to ${destination}, including tips for getting great deals, top airlines, and more!
 
-    # Step 2: Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'  # Specify the version of Node.js to use (adjust if needed)
+    ## Why Visit ${destination}?
 
-    # Step 3: Install dependencies if they exist
-    - name: Install dependencies
-      run: |
-        npm install  # Installs dependencies from package.json (if you have one)
+    ${destination} is known for its incredible attractions, stunning landscapes, and vibrant culture. Whether you're visiting for business or leisure, there’s something for everyone.
 
-    # Step 4: Run the article generation script
-    - name: Run article generation script
-      run: |
-        node generateSkyscannerArticles3.js 10  # Adjust the number of articles to generate as needed
+    ## Best Airlines for ${destination}
 
-    # Step 5: Commit and push generated articles back to the repository
-    - name: Commit and push generated articles
-      run: |
-        # Check if there are any new files before committing
-        if [[ $(git status --porcelain) ]]; then
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add .
-          git commit -m "Automated article generation"
-          git push
-        else
-          echo "No changes to commit"
-        fi
+    When booking flights to ${destination}, you'll want to choose the right airlines to ensure a comfortable journey. Here are some of the top airlines that fly to ${destination}:
+
+    1. Airline A
+    2. Airline B
+    3. Airline C
+
+    ## How to Find the Cheapest Flights to ${destination}
+
+    Finding the best flight deals to ${destination} can be tricky, but here are some tips:
+    
+    - **Book Early**: The earlier you book, the better the deals you’ll find.
+    - **Use Skyscanner**: Skyscanner is a powerful tool to compare prices from various airlines.
+    - **Be Flexible**: If possible, try to book flights during off-peak seasons to save on airfare.
+
+    ## Conclusion
+
+    Don't wait any longer! Start planning your trip to ${destination} today with the help of Skyscanner.
+
+    *This article contains affiliate links to Skyscanner. By booking through these links, you help support our website at no extra cost to you.*
+    `;
+};
+
+// Main function to generate multiple articles
+const generateArticles = (numArticles) => {
+    const articlesDir = path.join(__dirname, 'generated-articles'); // Directory to save generated articles
+
+    // Check if the directory exists, if not, create it
+    if (!fs.existsSync(articlesDir)) {
+        console.log("Creating generated-articles directory...");
+        fs.mkdirSync(articlesDir);
+    }
+
+    let filesGenerated = 0;
+    // Generate articles for each destination
+    for (let i = 0; i < numArticles; i++) {
+        const destination = destinations[i % destinations.length];  // Use destination in a loop
+        const articleContent = generateArticleContent(destination);
+
+        // Create a filename using the destination name
+        const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;  // Convert spaces to dashes, and to lowercase
+        const filePath = path.join(articlesDir, fileName);
+        fs.writeFileSync(filePath, articleContent);  // Write the article content to a .md file
+        console.log(`Article generated: ${filePath}`);  // Log the success message
+        filesGenerated++;
+    }
+
+    if (filesGenerated === 0) {
+        console.log("No articles generated.");
+    }
+};
+
+// Get the number of articles to generate from the command line argument (default is 10)
+const numArticles = process.argv[2] || 10; // Default to 10 if not provided
+generateArticles(numArticles);  // Run the function to generate the articles
