@@ -1,38 +1,50 @@
+// generate-sitemap.js
 const fs = require('fs');
 const path = require('path');
 
-// CONFIGURATION
-const BASE_URL = 'https://brightlane.github.io/SkyScanner/';
-const SITEMAP_PATH = path.join(process.cwd(), 'sitemap.xml');
+// List of all the HTML files in your project (update this if your pages are in different directories)
+const pages = [
+  'index.html',
+  'stadiumstay.html',
+  'about.html',
+  'blog.html',
+  'calculator.html',
+  'contact.html',
+  'faq.html',
+  'privacy.html',
+  'terms.html',
+  'destinations.html',
+  'collections.html',
+  'routes.html',
+  'solo.html',
+  'surge.html',
+  'subscribe.html',
+  // Add more HTML pages as needed
+];
 
-// 1. Get all HTML files in the root directory
-const files = fs.readdirSync(process.cwd());
-const htmlFiles = files.filter(file => file.endsWith('.html') && file !== '404.html');
+// Function to generate the sitemap
+function generateSitemap() {
+  const urlSet = pages.map(page => {
+    const lastModified = new Date().toISOString(); // Set this dynamically if you have last-modified information
+    return `
+      <url>
+        <loc>https://brightlane.github.io/SkyScanner/${page}</loc>
+        <lastmod>${lastModified}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+      </url>
+    `;
+  }).join('\n');
 
-// 2. Build the XML structure
-let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    ${urlSet}
+  </urlset>`;
 
-htmlFiles.forEach(file => {
-    const lastMod = new Date().toISOString().split('T')[0]; // Current date YYYY-MM-DD
-    const url = `${BASE_URL}${file}`;
-    
-    xml += `
-    <url>
-        <loc>${url}</loc>
-        <lastmod>${lastMod}</lastmod>
-        <changefreq>hourly</changefreq>
-        <priority>${file === 'index.html' ? '1.0' : '0.8'}</priority>
-    </url>`;
-});
-
-xml += `
-</urlset>`;
-
-// 3. Write the file
-try {
-    fs.writeFileSync(SITEMAP_PATH, xml);
-    console.log(`Vulture Sitemap: Successfully indexed ${htmlFiles.length} pages.`);
-} catch (err) {
-    console.error("Sitemap Error:", err.message);
+  // Save the sitemap.xml to the root directory
+  fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap);
+  console.log('Sitemap generated successfully!');
 }
+
+// Execute the function
+generateSitemap();
