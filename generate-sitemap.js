@@ -2,8 +2,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// List of all the HTML files in your project (update this if your pages are in different directories)
-const pages = [
+// List all your HTML files (you can manually add or automate this based on your directory structure)
+const htmlFiles = [
   'index.html',
   'stadiumstay.html',
   'about.html',
@@ -12,39 +12,40 @@ const pages = [
   'contact.html',
   'faq.html',
   'privacy.html',
-  'terms.html',
   'destinations.html',
   'collections.html',
   'routes.html',
   'solo.html',
   'surge.html',
   'subscribe.html',
-  // Add more HTML pages as needed
+  // Add more HTML files as necessary
 ];
 
-// Function to generate the sitemap
-function generateSitemap() {
-  const urlSet = pages.map(page => {
-    const lastModified = new Date().toISOString(); // Set this dynamically if you have last-modified information
-    return `
-      <url>
-        <loc>https://brightlane.github.io/SkyScanner/${page}</loc>
-        <lastmod>${lastModified}</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-      </url>
-    `;
-  }).join('\n');
+// Define the base URL for your site
+const baseURL = 'https://brightlane.github.io/SkyScanner'; // Update with your website's domain
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${urlSet}
-  </urlset>`;
+// Start the XML sitemap structure
+let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
+sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-  // Save the sitemap.xml to the root directory
-  fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap);
-  console.log('Sitemap generated successfully!');
-}
+// Loop through each HTML file and add it to the sitemap
+htmlFiles.forEach(file => {
+  // Create a valid URL for each HTML page
+  const url = `${baseURL}/${file}`;
 
-// Execute the function
-generateSitemap();
+  // Add URL entry to the sitemap
+  sitemap += '  <url>\n';
+  sitemap += `    <loc>${url}</loc>\n`;
+  sitemap += '    <lastmod>' + new Date().toISOString() + '</lastmod>\n';
+  sitemap += '    <changefreq>daily</changefreq>\n'; // You can adjust the frequency as needed
+  sitemap += '    <priority>0.8</priority>\n'; // Adjust priority (default is 0.5 to 1.0)
+  sitemap += '  </url>\n';
+});
+
+// Close the XML sitemap
+sitemap += '</urlset>\n';
+
+// Write the sitemap to an XML file
+const outputPath = path.join(__dirname, 'sitemap.xml');
+fs.writeFileSync(outputPath, sitemap, 'utf-8');
+console.log('Sitemap generated successfully: sitemap.xml');
