@@ -2,43 +2,57 @@ name: Daily Article Generation
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Schedule to run every day at 9:00 AM UTC
-  workflow_dispatch:  # Allows for manual triggering of the workflow
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch: # Allows you to run it manually for testing
+
+permissions:
+  contents: write # Allows the bot to push generated articles to the repo
 
 jobs:
   generate-articles:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js (required to run the script)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          node-version: '16'  # Adjust to your preferred Node version
+          python-version: '3.10'
 
-      # Step 3: Install dependencies (if any)
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Run the article generation script
-      - name: Generate Articles
+      - name: Install Dependencies
         run: |
-          node generateSkyscannerArticles.js 288  # Generates 288 articles per day (adjust as needed)
+          python -m pip install --upgrade pip
+          # Checks if requirements.txt exists before trying to install
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          elif [ -f reqs.txt ]; then
+            pip install -r reqs.txt
+          else
+            echo "No requirements.txt found, installing base packages..."
+            pip install requests pandas # Add common packages you use here
+          fi
 
-      # Step 5: Commit and push the generated articles to GitHub
-      - name: Commit and Push Articles
+      - name: Run Article Generation Script
         run: |
-          git add articles/
-          git commit -m "Generate daily articles"
-          git push origin main  # Push changes back to the main branch (or another branch if needed)
+          # Ensure this filename matches your python script exactly
+          python main.py 
 
-      # Step 6: Optional step: Deploy to GitHub Pages (if you're using GitHub Pages)
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}  # Automatically uses GitHub's personal token for authentication
-          publish_dir: ./articles  # Adjust if you store articles elsewhere
+      - name: Configure Git Identity
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Commit and Push Changes
+        run: |
+          # Use the folder where your script outputs the .md or .html files
+          git add generated-articles/ 
+          
+          # Only commits if there are changes to avoid "nothing to commit" errors
+          if git diff --staged --quiet; then
+            echo "No new content generated today."
+          else
+            git commit -m "Daily SEO Refresh: Skyscanner automated update"
+            git push
+          fi
