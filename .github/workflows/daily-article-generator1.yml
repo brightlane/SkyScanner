@@ -4,8 +4,8 @@ name: Daily Article Generator
 on:
   schedule:
     - cron: '0 6 * * *'  # This will run every day at 6 AM UTC
-  # Allow manual triggering with a "Run" button
-  workflow_dispatch:  # Manual trigger
+  # Allow manual triggering with a "Run workflow" button
+  workflow_dispatch:  # You can manually trigger the workflow if needed
 
 jobs:
   generate-articles:
@@ -17,10 +17,10 @@ jobs:
       uses: actions/checkout@v2
 
     # Step 2: Set up Node.js environment
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'  # Specify the version of Node.js to use (adjust if needed)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Specify the version of Node.js to use (adjust if needed)
 
     # Step 3: Install dependencies if they exist
     - name: Install dependencies
@@ -35,8 +35,13 @@ jobs:
     # Step 5: Commit and push generated articles back to the repository
     - name: Commit and push generated articles
       run: |
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        git add .
-        git commit -m "Automated article generation"
-        git push
+        # Check if there are any new files before committing
+        if [[ $(git status --porcelain) ]]; then
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "Automated article generation"
+          git push
+        else
+          echo "No changes to commit"
+        fi
