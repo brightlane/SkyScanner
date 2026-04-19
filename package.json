@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "generate": "node generateArticle.js", 
-    "build": "npm run generate"  // Add other build steps if necessary
+    "generate": "node generateArticle.js",
+    "build": "npm run generate"
   },
   "keywords": [
     "SkyScanner",
@@ -19,14 +19,14 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
-    "fs": "^0.0.1-security",  // Using fs for file system operations
+    "fs": "^0.0.1-security",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"  // If you're using this for auto-restarting Node.js app during development
+    "nodemon": "^2.0.7"
   },
   "engines": {
-    "node": ">=14.0.0"  // Ensure you're using at least Node.js version 14.x.x
+    "node": ">=14.0.0"
   },
   "repository": {
     "type": "git",
