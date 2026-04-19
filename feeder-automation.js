@@ -1,23 +1,21 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
 
-// Define API endpoints for flight data, hotels, weather, etc.
-const FLIGHT_API_URL = 'https://api.example.com/flights';
-const HOTEL_API_URL = 'https://api.example.com/hotels';
-const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather';
-const SEO_API_URL = 'https://api.example.com/seo-updates';
-const AFFILIATE_LINK = 'https://affiliate.example.com?ref=your-affiliate-id'; // Your affiliate link
+// Define API endpoints for flight data, hotels, weather, SEO
+const FLIGHT_API_URL = 'https://api.example.com/flights'; // Replace with your actual API URL
+const HOTEL_API_URL = 'https://api.example.com/hotels'; // Replace with your actual API URL
+const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'; // Replace with your actual weather API URL
+const SEO_API_URL = 'https://api.example.com/seo-updates'; // Replace with your actual SEO API URL
+const WEATHER_API_KEY = 'your-weather-api-key'; // Replace with your actual OpenWeatherMap API key
+const AFFILIATE_LINK = 'https://affiliate.example.com?ref=your-affiliate-id'; // Replace with your affiliate link
 
-// Function to fetch flight data from Skyscanner, or any flight API
+// Function to fetch flight data from Skyscanner or any flight API
 const fetchFlightData = async () => {
   try {
     const response = await axios.get(FLIGHT_API_URL);
     const flightData = response.data;
     console.log("Flight data fetched successfully");
-
-    // Process flight data and update website content (e.g., flights.html)
     updateFlightData(flightData);
   } catch (error) {
     console.error("Error fetching flight data:", error);
@@ -30,8 +28,6 @@ const fetchHotelData = async () => {
     const response = await axios.get(HOTEL_API_URL);
     const hotelData = response.data;
     console.log("Hotel data fetched successfully");
-
-    // Process hotel data and update website content (e.g., hotels.html)
     updateHotelData(hotelData);
   } catch (error) {
     console.error("Error fetching hotel data:", error);
@@ -41,11 +37,9 @@ const fetchHotelData = async () => {
 // Function to fetch weather data
 const fetchWeatherData = async (city) => {
   try {
-    const response = await axios.get(`${WEATHER_API_URL}?q=${city}&appid=your-weather-api-key`);
+    const response = await axios.get(`${WEATHER_API_URL}?q=${city}&appid=${WEATHER_API_KEY}`);
     const weatherData = response.data;
     console.log("Weather data fetched successfully");
-
-    // Update website with weather data (e.g., weather.html)
     updateWeatherData(weatherData);
   } catch (error) {
     console.error("Error fetching weather data:", error);
@@ -57,11 +51,9 @@ const updateAffiliateLinks = (htmlFilePath) => {
   fs.readFile(htmlFilePath, 'utf8', (err, data) => {
     if (err) throw err;
     
-    // Update all links with the affiliate link
     let updatedHtml = data.replace(/href="([^"]*)"/g, (match, p1) => {
-      // Check if the link is not an affiliate link already
       if (!p1.includes('affiliate')) {
-        return `href="${p1}?aff_id=your-affiliate-id"`; // Append your affiliate ID
+        return `href="${p1}?aff_id=your-affiliate-id"`; // Append affiliate ID to URLs
       }
       return match;
     });
@@ -77,7 +69,6 @@ const updateAffiliateLinks = (htmlFilePath) => {
 const updateFlightData = (flightData) => {
   const flightFilePath = path.join(__dirname, 'flights.html');
   let htmlContent = '<h2>Available Flights</h2>';
-
   flightData.forEach(flight => {
     htmlContent += `
       <div class="flight">
@@ -90,8 +81,6 @@ const updateFlightData = (flightData) => {
 
   fs.writeFileSync(flightFilePath, htmlContent, 'utf8');
   console.log("Flight data updated on flights.html");
-
-  // Update affiliate links in the HTML file
   updateAffiliateLinks(flightFilePath);
 };
 
@@ -99,7 +88,6 @@ const updateFlightData = (flightData) => {
 const updateHotelData = (hotelData) => {
   const hotelFilePath = path.join(__dirname, 'hotels.html');
   let htmlContent = '<h2>Available Hotels</h2>';
-
   hotelData.forEach(hotel => {
     htmlContent += `
       <div class="hotel">
@@ -112,8 +100,6 @@ const updateHotelData = (hotelData) => {
 
   fs.writeFileSync(hotelFilePath, htmlContent, 'utf8');
   console.log("Hotel data updated on hotels.html");
-
-  // Update affiliate links in the HTML file
   updateAffiliateLinks(hotelFilePath);
 };
 
@@ -137,8 +123,6 @@ const generateSEOContent = async () => {
     const response = await axios.get(SEO_API_URL);
     const seoData = response.data;
     console.log("SEO data fetched successfully");
-
-    // Update your site with SEO-friendly meta tags, keywords, and descriptions
     updateSEOContent(seoData);
   } catch (error) {
     console.error("Error fetching SEO data:", error);
@@ -160,7 +144,6 @@ const updateSEOContent = (seoData) => {
 
 // Main function to run all tasks
 const runAutomation = async () => {
-  // Update flight, hotel, weather data, and SEO content
   await fetchFlightData();
   await fetchHotelData();
   await fetchWeatherData('New York');
