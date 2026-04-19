@@ -1,0 +1,42 @@
+name: Daily Article Generator
+
+# Trigger the workflow on a schedule (every day at 6 AM UTC)
+on:
+  schedule:
+    - cron: '0 6 * * *'  # This will run every day at 6 AM UTC
+  # Allow manual triggering with a "Run" button
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  generate-articles:
+    runs-on: ubuntu-latest  # GitHub runner with Ubuntu OS
+
+    steps:
+    # Step 1: Checkout the repository to get access to the code
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Specify the version of Node.js to use (adjust if needed)
+
+    # Step 3: Install dependencies if they exist
+    - name: Install dependencies
+      run: |
+        npm install  # Installs dependencies from package.json (if you have one)
+
+    # Step 4: Run the article generation script
+    - name: Run article generation script
+      run: |
+        node generateSkyscannerArticles3.js 10  # Adjust the number of articles to generate as needed
+
+    # Step 5: Commit and push generated articles back to the repository
+    - name: Commit and push generated articles
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add .
+        git commit -m "Automated article generation"
+        git push
