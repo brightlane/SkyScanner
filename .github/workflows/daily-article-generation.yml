@@ -1,42 +1,29 @@
-name: Daily Article Generation
+name: SkyScanner Automation
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Runs every day at midnight UTC
-  workflow_dispatch:  # Allows you to trigger manually
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   generate-articles:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
-      
-      # Step 2: Set up Node.js (adjust the Node.js version as necessary)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
 
-      # Step 3: Install dependencies (if you have package dependencies)
-      - name: Install dependencies
-        run: npm install  # Or 'yarn install' if you're using Yarn
+      # Generate articles (you already have this part)
+      - name: Run article generation
+        run: node ./generateArticlesWithKeywords.js
 
-      # Step 4: Run the article generation script
-      - name: Generate Articles
-        run: node ./generateArticlesWithKeywords.js  # Make sure this path is correct!
+      # Commenting out the sitemap generation since you already have one
+      # - name: Generate Sitemap
+      #   run: node ./generateSitemap.js
 
-      # Step 5: Generate the sitemap
-      - name: Generate Sitemap
-        run: node ./generateSitemap.js  # Update path to match actual file location
-
-      # Step 6: Organize files by keywords
-      - name: Organize Articles
-        run: node ./fileOrganizer.js  # Update path if needed
-
-      # Step 7: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        run: node ./deployToGitHub.js  # Update path if needed
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for deployment
+        run: |
+          # Command to deploy your content, for example:
+          # npx gh-pages -d ./public
+          
+      # You can add other deployment steps here if necessary.
