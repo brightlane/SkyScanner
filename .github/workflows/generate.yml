@@ -1,0 +1,39 @@
+name: Generate Articles
+
+on:
+  schedule:
+    - cron: "0 2 * * *"   # once per day
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run generator
+        run: node generateSkyscannerArticles.js
+
+      - name: Commit generated content
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add generated-articles pages sitemap.xml || true
+
+          # 🔥 IMPORTANT: prevent deploy loop trigger
+          git commit -m "[skip deploy] auto content generation" || exit 0
+
+          git push
