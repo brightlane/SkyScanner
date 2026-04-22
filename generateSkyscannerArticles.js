@@ -1,37 +1,43 @@
 const fs = require("fs");
 const path = require("path");
 
+console.log("🔥 Generator started");
+
 // --------------------------------------------------
-// 1. Ensure output folder exists
+// 1. OUTPUT FOLDER (IMPORTANT)
 // --------------------------------------------------
 const OUTPUT_DIR = path.join(__dirname, "generated-articles");
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 // --------------------------------------------------
-// 2. Example article generation loop
-// --------------------------------------------------
-function generateArticle(title, slug, html) {
-  const filePath = path.join(OUTPUT_DIR, `${slug}.html`);
-
-  fs.writeFileSync(filePath, html, "utf8");
-
-  console.log("Generated:", filePath);
-}
-
-// --------------------------------------------------
-// 3. YOUR EXISTING LOGIC GOES HERE
+// 2. SAMPLE DATA (replace with your real logic)
 // --------------------------------------------------
 const articles = [
   {
-    title: "Sample Travel Article",
-    slug: "sample-travel",
-    html: "<h1>Hello Travel</h1>"
+    title: "Cheap Flights to Tokyo 2026",
+    slug: "cheap-flights-tokyo-2026",
+    content: "<h1>Tokyo Travel Guide</h1><p>Best deals for 2026...</p>"
+  },
+  {
+    title: "Bali Budget Travel Guide",
+    slug: "bali-budget-travel",
+    content: "<h1>Bali on a Budget</h1><p>Save money while traveling...</p>"
   }
 ];
 
 // --------------------------------------------------
-// 4. Write all articles into tracked folder
+// 3. WRITE FILES (THIS IS THE CRITICAL PART)
 // --------------------------------------------------
-articles.forEach(a => {
-  generateArticle(a.title, a.slug, a.html);
-});
+for (const article of articles) {
+  const filePath = path.join(OUTPUT_DIR, `${article.slug}.html`);
+
+  fs.writeFileSync(filePath, article.content, "utf8");
+
+  console.log("✅ Generated:", filePath);
+}
+
+// --------------------------------------------------
+// 4. SAFETY CHECK (forces visibility in CI logs)
+// --------------------------------------------------
+const files = fs.readdirSync(OUTPUT_DIR);
+console.log("📦 Files created:", files);
