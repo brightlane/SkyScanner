@@ -4,7 +4,7 @@
       "city": "Tokyo",
       "intent": "hub",
       "region": "Asia",
-      "score": 6.7464802,
+      "score": 6.5711737999999995,
       "links": [
         "Tokyo-flights"
       ],
@@ -15,7 +15,7 @@
       "city": "Tokyo",
       "intent": "flights",
       "region": "Asia",
-      "score": 10.7464802,
+      "score": 10.5711738,
       "links": [
         "Tokyo-cheap-flights",
         "Tokyo-best-time-to-visit",
@@ -28,7 +28,7 @@
       "city": "Tokyo-cheap-flights",
       "intent": "cheap-flights",
       "region": "Asia",
-      "score": 5.7464802,
+      "score": 5.5711737999999995,
       "links": [],
       "visits": 29,
       "created": 1776857547594
@@ -37,7 +37,7 @@
       "city": "Tokyo-best-time-to-visit",
       "intent": "best-time-to-visit",
       "region": "Asia",
-      "score": 4.5464801999999995,
+      "score": 4.371173799999999,
       "links": [],
       "visits": 23,
       "created": 1776857547594
@@ -46,7 +46,7 @@
       "city": "Tokyo-travel-guide",
       "intent": "travel-guide",
       "region": "Asia",
-      "score": 13.5464802,
+      "score": 13.3711738,
       "links": [],
       "visits": 68,
       "created": 1776857547594
@@ -55,7 +55,7 @@
       "city": "Paris",
       "intent": "hub",
       "region": "Europe",
-      "score": 5.9464802,
+      "score": 5.7711738,
       "links": [
         "Paris-flights"
       ],
@@ -66,12 +66,13 @@
       "city": "Paris",
       "intent": "flights",
       "region": "Europe",
-      "score": 22.1464802,
+      "score": 23.9711738,
       "links": [
         "Paris-cheap-flights",
         "Paris-best-time-to-visit",
         "Paris-travel-guide",
-        "Bali-travel-guide-travel-guide"
+        "Bali-travel-guide-travel-guide",
+        "Rome-hub"
       ],
       "visits": 81,
       "created": 1776857547594
@@ -80,7 +81,7 @@
       "city": "Paris-cheap-flights",
       "intent": "cheap-flights",
       "region": "Europe",
-      "score": 8.3464802,
+      "score": 8.1711738,
       "links": [],
       "visits": 42,
       "created": 1776857547594
@@ -89,7 +90,7 @@
       "city": "Paris-best-time-to-visit",
       "intent": "best-time-to-visit",
       "region": "Europe",
-      "score": 14.3464802,
+      "score": 14.1711738,
       "links": [],
       "visits": 72,
       "created": 1776857547594
@@ -98,7 +99,7 @@
       "city": "Paris-travel-guide",
       "intent": "travel-guide",
       "region": "Europe",
-      "score": 17.5464802,
+      "score": 17.3711738,
       "links": [],
       "visits": 88,
       "created": 1776857547594
@@ -107,7 +108,7 @@
       "city": "Bali",
       "intent": "hub",
       "region": "Asia",
-      "score": 2.1464802,
+      "score": 1.9711738,
       "links": [
         "Bali-budget"
       ],
@@ -118,7 +119,7 @@
       "city": "Bali",
       "intent": "budget",
       "region": "Asia",
-      "score": 11.3464802,
+      "score": 11.1711738,
       "links": [
         "Bali-cheap-flights",
         "Bali-best-time-to-visit",
@@ -131,9 +132,10 @@
       "city": "Bali-cheap-flights",
       "intent": "cheap-flights",
       "region": "Asia",
-      "score": 18.3464802,
+      "score": 20.1711738,
       "links": [
-        "New York-travel-guide-travel-guide"
+        "New York-travel-guide-travel-guide",
+        "Tokyo-travel-guide-travel-guide"
       ],
       "visits": 92,
       "created": 1776857547594
@@ -142,7 +144,7 @@
       "city": "Bali-best-time-to-visit",
       "intent": "best-time-to-visit",
       "region": "Asia",
-      "score": 0.3464802,
+      "score": 0.17117380000000001,
       "links": [],
       "visits": 2,
       "created": 1776857547594
@@ -151,9 +153,10 @@
       "city": "Bali-travel-guide",
       "intent": "travel-guide",
       "region": "Asia",
-      "score": 18.3464802,
+      "score": 20.1711738,
       "links": [
-        "Lisbon-cheap-flights-cheap-flights"
+        "Lisbon-cheap-flights-cheap-flights",
+        "Paris-flights"
       ],
       "visits": 92,
       "created": 1776857547594
@@ -162,7 +165,7 @@
       "city": "New York",
       "intent": "hub",
       "region": "Americas",
-      "score": 14.1464802,
+      "score": 13.971173799999999,
       "links": [
         "New York-hotels"
       ],
@@ -173,12 +176,13 @@
       "city": "New York",
       "intent": "hotels",
       "region": "Americas",
-      "score": 24.7464802,
+      "score": 26.5711738,
       "links": [
         "New York-cheap-flights",
         "New York-best-time-to-visit",
         "New York-travel-guide",
-        "Rome-travel-guide-travel-guide"
+        "Rome-travel-guide-travel-guide",
+        "Tokyo-best-time-to-visit-best-time-to-visit"
       ],
       "visits": 94,
       "created": 1776857547594
@@ -187,7 +191,7 @@
       "city": "New York-cheap-flights",
       "intent": "cheap-flights",
       "region": "Americas",
-      "score": 12.1464802,
+      "score": 11.971173799999999,
       "links": [],
       "visits": 61,
       "created": 1776857547594
@@ -196,7 +200,7 @@
       "city": "New York-best-time-to-visit",
       "intent": "best-time-to-visit",
       "region": "Americas",
-      "score": 6.5464801999999995,
+      "score": 6.371173799999999,
       "links": [],
       "visits": 33,
       "created": 1776857547594
@@ -205,7 +209,7 @@
       "city": "New York-travel-guide",
       "intent": "travel-guide",
       "region": "Americas",
-      "score": 18.1464802,
+      "score": 17.9711738,
       "links": [],
       "visits": 91,
       "created": 1776857547594
@@ -214,10 +218,11 @@
       "city": "Rome",
       "intent": "hub",
       "region": "Europe",
-      "score": 20.5464802,
+      "score": 22.3711738,
       "links": [
         "Rome-guide",
-        "Rome-travel-guide-travel-guide"
+        "Rome-travel-guide-travel-guide",
+        "New York-cheap-flights-cheap-flights"
       ],
       "visits": 93,
       "created": 1776857547594
@@ -226,7 +231,7 @@
       "city": "Rome",
       "intent": "guide",
       "region": "Europe",
-      "score": 8.1464802,
+      "score": 7.971173799999999,
       "links": [
         "Rome-cheap-flights",
         "Rome-best-time-to-visit",
@@ -239,7 +244,7 @@
       "city": "Rome-cheap-flights",
       "intent": "cheap-flights",
       "region": "Europe",
-      "score": 3.3464802,
+      "score": 3.1711738,
       "links": [],
       "visits": 17,
       "created": 1776857547594
@@ -248,7 +253,7 @@
       "city": "Rome-best-time-to-visit",
       "intent": "best-time-to-visit",
       "region": "Europe",
-      "score": 9.9464802,
+      "score": 9.7711738,
       "links": [],
       "visits": 50,
       "created": 1776857547594
@@ -257,7 +262,7 @@
       "city": "Rome-travel-guide",
       "intent": "travel-guide",
       "region": "Europe",
-      "score": 18.1464802,
+      "score": 17.9711738,
       "links": [],
       "visits": 91,
       "created": 1776857547594
@@ -266,7 +271,7 @@
       "city": "Lisbon",
       "intent": "hub",
       "region": "Europe",
-      "score": 6.7464802,
+      "score": 6.5711737999999995,
       "links": [
         "Lisbon-flights"
       ],
@@ -277,7 +282,7 @@
       "city": "Lisbon",
       "intent": "flights",
       "region": "Europe",
-      "score": 15.1464802,
+      "score": 14.971173799999999,
       "links": [
         "Lisbon-cheap-flights",
         "Lisbon-best-time-to-visit",
@@ -290,7 +295,7 @@
       "city": "Lisbon-cheap-flights",
       "intent": "cheap-flights",
       "region": "Europe",
-      "score": 9.7464802,
+      "score": 9.5711738,
       "links": [],
       "visits": 49,
       "created": 1776857547594
@@ -299,7 +304,7 @@
       "city": "Lisbon-best-time-to-visit",
       "intent": "best-time-to-visit",
       "region": "Europe",
-      "score": 0.5464802,
+      "score": 0.3711738,
       "links": [],
       "visits": 3,
       "created": 1776857547594
@@ -308,7 +313,7 @@
       "city": "Lisbon-travel-guide",
       "intent": "travel-guide",
       "region": "Europe",
-      "score": 1.7464802000000001,
+      "score": 1.5711738,
       "links": [],
       "visits": 9,
       "created": 1776857547594
@@ -343,6 +348,11 @@
     "Paris-flights->Bali-travel-guide-travel-guide",
     "Rome-hub->Rome-travel-guide-travel-guide",
     "Bali-cheap-flights-cheap-flights->New York-travel-guide-travel-guide",
-    "Bali-travel-guide-travel-guide->Lisbon-cheap-flights-cheap-flights"
+    "Bali-travel-guide-travel-guide->Lisbon-cheap-flights-cheap-flights",
+    "New York-hotels->Tokyo-best-time-to-visit-best-time-to-visit",
+    "Paris-flights->Rome-hub",
+    "Rome-hub->New York-cheap-flights-cheap-flights",
+    "Bali-cheap-flights-cheap-flights->Tokyo-travel-guide-travel-guide",
+    "Bali-travel-guide-travel-guide->Paris-flights"
   ]
 }
