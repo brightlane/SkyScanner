@@ -1,49 +1,30 @@
-name: Daily Article Generator and Deployment
+name: Daily Article Generation
 
 on:
   schedule:
-    - cron: "0 8 * * *"   # daily run (8 AM UTC)
-  workflow_dispatch:       # enables Run button
+    - cron: "0 8 * * *"
+  workflow_dispatch:
 
 jobs:
-  generate-and-deploy:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repo
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2. Setup Node
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      # 3. Install dependencies (stable, prevents lockfile churn)
       - name: Install dependencies
         run: npm ci
 
-      # 4. Generate articles
-      - name: Generate content
+      - name: Generate articles
         run: npm run generate
 
-      # 5. Commit safely (FIXES ALL YOUR ERRORS)
-      - name: Commit and push changes
-        run: |
-          echo "Checking for changes..."
-
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
-          # Stage all changes
-          git add -A
-
-          # If nothing to commit → do not fail
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-
-          git commit -m "Automated daily article update"
-          git push
+      # ❌ NO COMMIT HERE ANYMORE
+      - name: Upload artifact (safe handoff)
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-files
+          path: .
