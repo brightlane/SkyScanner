@@ -1,14 +1,28 @@
-# dependencies
+# Node dependencies
 node_modules/
 
-# logs
+# Prevent accidental lockfile inside node_modules
+node_modules/.package-lock.json
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# build output (adjust if needed)
-dist/
-build/
+# Environment variables
+.env
 
 # OS files
 .DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+
+# Cache
+.cache/
+.next/
+
+# Misc
+*.log
