@@ -1,4 +1,4 @@
-name: Daily Article Generation
+name: Daily Article Generator and Deployment
 
 on:
   schedule:
@@ -6,13 +6,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate:
+  generate-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
 
@@ -22,9 +24,19 @@ jobs:
       - name: Generate articles
         run: npm run generate
 
-      # ❌ NO COMMIT HERE ANYMORE
-      - name: Upload artifact (safe handoff)
-        uses: actions/upload-artifact@v4
-        with:
-          name: generated-files
-          path: .
+      - name: Commit and push changes
+        run: |
+          echo "Checking changes..."
+
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Automated article update"
+          git push
