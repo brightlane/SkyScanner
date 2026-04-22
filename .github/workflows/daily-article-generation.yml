@@ -24,10 +24,10 @@ jobs:
       - name: Generate articles
         run: npm run generate
 
-      # 🔥 CRITICAL FIX: remove npm noise BEFORE committing
-      - name: Clean unwanted changes
+      # 🔥 CRITICAL FIX: IGNORE npm file changes completely
+      - name: Remove dependency changes from staging
         run: |
-          git checkout -- package.json package-lock.json || true
+          git restore package.json package-lock.json || true
 
       - name: Commit and push changes
         run: |
@@ -38,6 +38,7 @@ jobs:
 
           git add -A
 
+          # safety check
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
