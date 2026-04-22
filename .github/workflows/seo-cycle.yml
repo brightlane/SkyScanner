@@ -1,0 +1,29 @@
+name: Continuous SEO Cycle
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 minutes (safe max)
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - run: node seo-worker-cluster-v3.js
+
+      - name: Commit generated pages
+        run: |
+          git config user.name "seo-bot"
+          git config user.email "seo@bot.com"
+          git add .
+          git commit -m "seo cycle batch update" || exit 0
+          git push
