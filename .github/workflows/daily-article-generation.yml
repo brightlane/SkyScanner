@@ -3,27 +3,30 @@ name: Daily Article Generator and Deployment
 on:
   schedule:
     - cron: "0 8 * * *"   # runs daily at 8 AM UTC
-  workflow_dispatch:       # allows manual run
+  workflow_dispatch:       # allow manual runs
 
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
+      # ✅ Use npm ci (stable, no random changes)
       - name: Install dependencies
         run: npm ci
 
-      - name: Run generator
-        run: npm run generate   # make sure this script exists
+      # ✅ Run your generator
+      - name: Generate articles
+        run: npm run generate
 
+      # ✅ Safe commit step (WILL NOT FAIL)
       - name: Commit and push changes
         run: |
           echo "Committing and pushing generated pages..."
