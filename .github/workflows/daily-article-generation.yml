@@ -1,34 +1,41 @@
-# .github/workflows/automated-article-generation.yml
-name: Daily Article Generation & Deployment
+name: Daily Article Generator and Deployment
 
 on:
-  # Trigger workflow on push to the main branch and every day at midnight (UTC)
-  push:
-    branches:
-      - main
-  workflow_dispatch:  # Allow manual triggering from the GitHub UI
   schedule:
-    - cron: '0 0 * * *'  # Runs every day at midnight (UTC)
+    - cron: "0 8 * * *"   # runs daily at 8 AM UTC
+  workflow_dispatch:       # allows manual run
 
 jobs:
-  generate-articles:
+  generate-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    # Run article generation script
-    - name: Run article generation script
-      run: node ./generateArticlesWithKeywords.js
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
 
-    # Optional: Skip if not needed, or uncomment if you want to regenerate the sitemap.
-    # - name: Generate Sitemap
-    #   run: node ./generateSitemap.js
+      - name: Install dependencies
+        run: npm ci
 
-    # Example deployment to GitHub Pages
-    - name: Deploy to GitHub Pages
-      run: |
-        # This is an example of how you could deploy content
-        # Ensure you have a `gh-pages` branch or adjust deployment commands accordingly
-        # npx gh-pages -d ./public  # Example deployment command, adjust based on your setup
+      - name: Run generator
+        run: npm run generate   # make sure this script exists
+
+      - name: Commit and push changes
+        run: |
+          echo "Committing and pushing generated pages..."
+
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Automated daily article update"
+            git push
+          fi
