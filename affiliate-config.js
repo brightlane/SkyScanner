@@ -1,27 +1,43 @@
-// affiliate-config.js
-const affiliateId = '21885'; // Your affiliate ID
-const offerId = '29465'; // Your offer ID
+const affiliateId = '21885';
+const offerId = '29465';
 
-// Affiliate base URL (adjust this URL to your actual affiliate network URL format)
 const affiliateBaseUrl = 'https://convert.ctypy.com/aff_c';
 
-// Function to generate dynamic affiliate URL with parameters
-function generateAffiliateUrl(query) {
+// -----------------------------
+// Generate Affiliate URL
+// -----------------------------
+function generateAffiliateUrl(query = '') {
   const encodedQuery = encodeURIComponent(query);
+
   return `${affiliateBaseUrl}?offer_id=${offerId}&aff_id=${affiliateId}&q=${encodedQuery}`;
 }
 
-// Function to inject affiliate URL dynamically in all links
+// -----------------------------
+// Safe Injector (runs reliably)
+// -----------------------------
 function updateAffiliateLinks() {
-  const links = document.querySelectorAll('a.affiliate-link');  // You can customize this selector based on your needs
+  const links = document.querySelectorAll('a[data-affiliate="true"]');
 
   links.forEach(link => {
-    const query = link.getAttribute('data-query'); // Ensure that your HTML links have data-query attributes set
-    if (query) {
-      link.href = generateAffiliateUrl(query); // Update the href with the dynamic affiliate URL
-    }
+    const query =
+      link.dataset.query ||
+      link.textContent.trim() ||
+      'flight deals';
+
+    link.href = generateAffiliateUrl(query);
   });
 }
 
-// Call this function on page load
-window.onload = updateAffiliateLinks;
+// -----------------------------
+// Safe DOM Ready Handler
+// -----------------------------
+function initAffiliateSystem() {
+  updateAffiliateLinks();
+}
+
+// Works in ALL cases (safe + robust)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAffiliateSystem);
+} else {
+  initAffiliateSystem();
+}
