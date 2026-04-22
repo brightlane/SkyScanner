@@ -1,0 +1,336 @@
+{
+  "nodes": {
+    "Tokyo-hub": {
+      "city": "Tokyo",
+      "intent": "hub",
+      "region": "Asia",
+      "score": 1,
+      "links": [
+        "Tokyo-flights"
+      ],
+      "visits": 24,
+      "created": 1776857547594
+    },
+    "Tokyo-flights": {
+      "city": "Tokyo",
+      "intent": "flights",
+      "region": "Asia",
+      "score": 1,
+      "links": [
+        "Tokyo-cheap-flights",
+        "Tokyo-best-time-to-visit",
+        "Tokyo-travel-guide"
+      ],
+      "visits": 24,
+      "created": 1776857547594
+    },
+    "Tokyo-cheap-flights-cheap-flights": {
+      "city": "Tokyo-cheap-flights",
+      "intent": "cheap-flights",
+      "region": "Asia",
+      "score": 1,
+      "links": [],
+      "visits": 29,
+      "created": 1776857547594
+    },
+    "Tokyo-best-time-to-visit-best-time-to-visit": {
+      "city": "Tokyo-best-time-to-visit",
+      "intent": "best-time-to-visit",
+      "region": "Asia",
+      "score": 1,
+      "links": [],
+      "visits": 23,
+      "created": 1776857547594
+    },
+    "Tokyo-travel-guide-travel-guide": {
+      "city": "Tokyo-travel-guide",
+      "intent": "travel-guide",
+      "region": "Asia",
+      "score": 1,
+      "links": [],
+      "visits": 68,
+      "created": 1776857547594
+    },
+    "Paris-hub": {
+      "city": "Paris",
+      "intent": "hub",
+      "region": "Europe",
+      "score": 1,
+      "links": [
+        "Paris-flights"
+      ],
+      "visits": 20,
+      "created": 1776857547594
+    },
+    "Paris-flights": {
+      "city": "Paris",
+      "intent": "flights",
+      "region": "Europe",
+      "score": 1,
+      "links": [
+        "Paris-cheap-flights",
+        "Paris-best-time-to-visit",
+        "Paris-travel-guide"
+      ],
+      "visits": 81,
+      "created": 1776857547594
+    },
+    "Paris-cheap-flights-cheap-flights": {
+      "city": "Paris-cheap-flights",
+      "intent": "cheap-flights",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 42,
+      "created": 1776857547594
+    },
+    "Paris-best-time-to-visit-best-time-to-visit": {
+      "city": "Paris-best-time-to-visit",
+      "intent": "best-time-to-visit",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 72,
+      "created": 1776857547594
+    },
+    "Paris-travel-guide-travel-guide": {
+      "city": "Paris-travel-guide",
+      "intent": "travel-guide",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 88,
+      "created": 1776857547594
+    },
+    "Bali-hub": {
+      "city": "Bali",
+      "intent": "hub",
+      "region": "Asia",
+      "score": 1,
+      "links": [
+        "Bali-budget"
+      ],
+      "visits": 1,
+      "created": 1776857547594
+    },
+    "Bali-budget": {
+      "city": "Bali",
+      "intent": "budget",
+      "region": "Asia",
+      "score": 1,
+      "links": [
+        "Bali-cheap-flights",
+        "Bali-best-time-to-visit",
+        "Bali-travel-guide"
+      ],
+      "visits": 27,
+      "created": 1776857547594
+    },
+    "Bali-cheap-flights-cheap-flights": {
+      "city": "Bali-cheap-flights",
+      "intent": "cheap-flights",
+      "region": "Asia",
+      "score": 1,
+      "links": [],
+      "visits": 92,
+      "created": 1776857547594
+    },
+    "Bali-best-time-to-visit-best-time-to-visit": {
+      "city": "Bali-best-time-to-visit",
+      "intent": "best-time-to-visit",
+      "region": "Asia",
+      "score": 1,
+      "links": [],
+      "visits": 2,
+      "created": 1776857547594
+    },
+    "Bali-travel-guide-travel-guide": {
+      "city": "Bali-travel-guide",
+      "intent": "travel-guide",
+      "region": "Asia",
+      "score": 1,
+      "links": [],
+      "visits": 92,
+      "created": 1776857547594
+    },
+    "New York-hub": {
+      "city": "New York",
+      "intent": "hub",
+      "region": "Americas",
+      "score": 1,
+      "links": [
+        "New York-hotels"
+      ],
+      "visits": 61,
+      "created": 1776857547594
+    },
+    "New York-hotels": {
+      "city": "New York",
+      "intent": "hotels",
+      "region": "Americas",
+      "score": 1,
+      "links": [
+        "New York-cheap-flights",
+        "New York-best-time-to-visit",
+        "New York-travel-guide"
+      ],
+      "visits": 94,
+      "created": 1776857547594
+    },
+    "New York-cheap-flights-cheap-flights": {
+      "city": "New York-cheap-flights",
+      "intent": "cheap-flights",
+      "region": "Americas",
+      "score": 1,
+      "links": [],
+      "visits": 61,
+      "created": 1776857547594
+    },
+    "New York-best-time-to-visit-best-time-to-visit": {
+      "city": "New York-best-time-to-visit",
+      "intent": "best-time-to-visit",
+      "region": "Americas",
+      "score": 1,
+      "links": [],
+      "visits": 33,
+      "created": 1776857547594
+    },
+    "New York-travel-guide-travel-guide": {
+      "city": "New York-travel-guide",
+      "intent": "travel-guide",
+      "region": "Americas",
+      "score": 1,
+      "links": [],
+      "visits": 91,
+      "created": 1776857547594
+    },
+    "Rome-hub": {
+      "city": "Rome",
+      "intent": "hub",
+      "region": "Europe",
+      "score": 1,
+      "links": [
+        "Rome-guide"
+      ],
+      "visits": 93,
+      "created": 1776857547594
+    },
+    "Rome-guide": {
+      "city": "Rome",
+      "intent": "guide",
+      "region": "Europe",
+      "score": 1,
+      "links": [
+        "Rome-cheap-flights",
+        "Rome-best-time-to-visit",
+        "Rome-travel-guide"
+      ],
+      "visits": 11,
+      "created": 1776857547594
+    },
+    "Rome-cheap-flights-cheap-flights": {
+      "city": "Rome-cheap-flights",
+      "intent": "cheap-flights",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 17,
+      "created": 1776857547594
+    },
+    "Rome-best-time-to-visit-best-time-to-visit": {
+      "city": "Rome-best-time-to-visit",
+      "intent": "best-time-to-visit",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 50,
+      "created": 1776857547594
+    },
+    "Rome-travel-guide-travel-guide": {
+      "city": "Rome-travel-guide",
+      "intent": "travel-guide",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 91,
+      "created": 1776857547594
+    },
+    "Lisbon-hub": {
+      "city": "Lisbon",
+      "intent": "hub",
+      "region": "Europe",
+      "score": 1,
+      "links": [
+        "Lisbon-flights"
+      ],
+      "visits": 24,
+      "created": 1776857547594
+    },
+    "Lisbon-flights": {
+      "city": "Lisbon",
+      "intent": "flights",
+      "region": "Europe",
+      "score": 1,
+      "links": [
+        "Lisbon-cheap-flights",
+        "Lisbon-best-time-to-visit",
+        "Lisbon-travel-guide"
+      ],
+      "visits": 46,
+      "created": 1776857547594
+    },
+    "Lisbon-cheap-flights-cheap-flights": {
+      "city": "Lisbon-cheap-flights",
+      "intent": "cheap-flights",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 49,
+      "created": 1776857547594
+    },
+    "Lisbon-best-time-to-visit-best-time-to-visit": {
+      "city": "Lisbon-best-time-to-visit",
+      "intent": "best-time-to-visit",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 3,
+      "created": 1776857547594
+    },
+    "Lisbon-travel-guide-travel-guide": {
+      "city": "Lisbon-travel-guide",
+      "intent": "travel-guide",
+      "region": "Europe",
+      "score": 1,
+      "links": [],
+      "visits": 9,
+      "created": 1776857547594
+    }
+  },
+  "edges": [
+    "Tokyo-hub->Tokyo-flights",
+    "Tokyo-flights->Tokyo-cheap-flights",
+    "Tokyo-flights->Tokyo-best-time-to-visit",
+    "Tokyo-flights->Tokyo-travel-guide",
+    "Paris-hub->Paris-flights",
+    "Paris-flights->Paris-cheap-flights",
+    "Paris-flights->Paris-best-time-to-visit",
+    "Paris-flights->Paris-travel-guide",
+    "Bali-hub->Bali-budget",
+    "Bali-budget->Bali-cheap-flights",
+    "Bali-budget->Bali-best-time-to-visit",
+    "Bali-budget->Bali-travel-guide",
+    "New York-hub->New York-hotels",
+    "New York-hotels->New York-cheap-flights",
+    "New York-hotels->New York-best-time-to-visit",
+    "New York-hotels->New York-travel-guide",
+    "Rome-hub->Rome-guide",
+    "Rome-guide->Rome-cheap-flights",
+    "Rome-guide->Rome-best-time-to-visit",
+    "Rome-guide->Rome-travel-guide",
+    "Lisbon-hub->Lisbon-flights",
+    "Lisbon-flights->Lisbon-cheap-flights",
+    "Lisbon-flights->Lisbon-best-time-to-visit",
+    "Lisbon-flights->Lisbon-travel-guide"
+  ]
+}
