@@ -1,48 +1,20 @@
-name: Daily Article Generator and Deployment
+- name: Commit generated content only
+  run: |
+    echo "Starting commit process..."
 
-on:
-  schedule:
-    - cron: "0 8 * * *"
-  workflow_dispatch:
+    git config user.name "github-actions"
+    git config user.email "github-actions@github.com"
 
-jobs:
-  generate-and-deploy:
-    runs-on: ubuntu-latest
+    # Stage ONLY real output folders used by any generator
+    git add generated-articles pages sitemap.xml *.html *.json *.css || true
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    echo "Checking for changes..."
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
+    # If nothing meaningful changed, exit cleanly
+    if git diff --cached --quiet; then
+      echo "No content changes detected. Skipping commit."
+      exit 0
+    fi
 
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
-      - name: Generate articles
-        run: npm run generate
-
-      # 🔥 CRITICAL FIX: IGNORE npm file changes completely
-      - name: Remove dependency changes from staging
-        run: |
-          git restore package.json package-lock.json || true
-
-      - name: Commit and push changes
-        run: |
-          echo "Checking changes..."
-
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-
-          git add -A
-
-          # safety check
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-
-          git commit -m "Automated article update"
-          git push
+    git commit -m "Daily article generation update"
+    git push
