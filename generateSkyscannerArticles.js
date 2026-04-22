@@ -1,70 +1,37 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-// Sample list of destinations
-const destinations = [
-    "Bali", "Paris", "Tokyo", "New York", "London", "Sydney", "Rome", "Los Angeles", "Bangkok", "Barcelona",
-    "Mexico City", "Greece", "Dubai", "Miami", "Amsterdam", "Prague", "Lisbon", "Cairo", "Montreal", "Italy",
-    "Rio de Janeiro", "Cape Town", "Berlin", "Melbourne", "Lima", "Athens", "Seoul", "Iceland", "Phuket", "Seychelles",
-    "Egypt", "Mexico", "Singapore", "Orlando", "Kyoto", "Machu Picchu", "Madrid", "Dubai", "Seychelles"
+// --------------------------------------------------
+// 1. Ensure output folder exists
+// --------------------------------------------------
+const OUTPUT_DIR = path.join(__dirname, "generated-articles");
+fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+
+// --------------------------------------------------
+// 2. Example article generation loop
+// --------------------------------------------------
+function generateArticle(title, slug, html) {
+  const filePath = path.join(OUTPUT_DIR, `${slug}.html`);
+
+  fs.writeFileSync(filePath, html, "utf8");
+
+  console.log("Generated:", filePath);
+}
+
+// --------------------------------------------------
+// 3. YOUR EXISTING LOGIC GOES HERE
+// --------------------------------------------------
+const articles = [
+  {
+    title: "Sample Travel Article",
+    slug: "sample-travel",
+    html: "<h1>Hello Travel</h1>"
+  }
 ];
 
-// Function to generate travel-related article content with affiliate links
-const generateArticleContent = (destination) => {
-    return `
-    # Best Flights to ${destination}
-
-    Looking to travel to ${destination}? Here's everything you need to know about booking the best flights to ${destination}, including tips for getting great deals, top airlines, and more!
-
-    ## Why Visit ${destination}?
-
-    ${destination} is known for its incredible attractions, stunning landscapes, and vibrant culture. Whether you're visiting for business or leisure, there’s something for everyone.
-
-    ## Best Airlines for ${destination}
-
-    When booking flights to ${destination}, you'll want to choose the right airlines to ensure a comfortable journey. Here are some of the top airlines that fly to ${destination}:
-
-    1. Airline A
-    2. Airline B
-    3. Airline C
-
-    ## How to Find the Cheapest Flights to ${destination}
-
-    Finding the best flight deals to ${destination} can be tricky, but here are some tips:
-    
-    - **Book Early**: The earlier you book, the better the deals you’ll find.
-    - **Use Skyscanner**: Skyscanner is a powerful tool to compare prices from various airlines.
-    - **Be Flexible**: If possible, try to book flights during off-peak seasons to save on airfare.
-
-    ## Conclusion
-
-    Don't wait any longer! Start planning your trip to ${destination} today with the help of Skyscanner.
-
-    *This article contains affiliate links to Skyscanner. By booking through these links, you help support our website at no extra cost to you.*
-    `;
-};
-
-// Main function to generate multiple articles
-const generateArticles = (numArticles) => {
-    const articlesDir = path.join(__dirname, 'generated-articles'); // Directory to save generated articles
-
-    // Check if the directory exists, if not, create it
-    if (!fs.existsSync(articlesDir)) {
-        fs.mkdirSync(articlesDir);
-    }
-
-    // Generate articles for each destination
-    for (let i = 0; i < numArticles; i++) {
-        const destination = destinations[i % destinations.length];  // Use destination in a loop
-        const articleContent = generateArticleContent(destination);
-
-        // Create a filename using the destination name
-        const fileName = `${destination.replace(/ /g, '-').toLowerCase()}.md`;  // Convert spaces to dashes, and to lowercase
-        fs.writeFileSync(path.join(articlesDir, fileName), articleContent);  // Write the article content to a .md file
-        console.log(`Article for "${destination}" generated!`);  // Log the success message
-    }
-};
-
-// Get the number of articles to generate from the command line argument (default is 288)
-const numArticles = process.argv[2] || 288; // Default to 288 if not provided
-generateArticles(numArticles);  // Run the function to generate the articles
+// --------------------------------------------------
+// 4. Write all articles into tracked folder
+// --------------------------------------------------
+articles.forEach(a => {
+  generateArticle(a.title, a.slug, a.html);
+});
