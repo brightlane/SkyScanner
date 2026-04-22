@@ -1,0 +1,24 @@
+name: Deploy Site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.html"
+      - "**.css"
+      - "**.js"
+      - "pages/**"
+      - "generated-articles/**"
+      - "sitemap.xml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
