@@ -1,145 +1,49 @@
-Skip to content
-brightlane
-SkyScanner
-Repository navigation
-Code
-Issues
-Pull requests
-Agents
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Files
-Go to file
-t
-T
-.github/workflows
-daily-article-generation.yml
-daily-feeder-automation.yml
-daily-page-generator.yml
-deploy.yml
-generated-articles
-pages
-.gitignore
-.nojekyll
-404.html
-README.md
-SoftLiteTravelMastery.html
-TravelLogistics.html
-about.html
-affiliate-config.js
-affiliate-links.js
-affiliate.js
-america.html
-asia.html
-authorityenhanced.html
-blog.html
-calculator.html
-calendar.html
-collections.html
-community.html
-compliance.html
-contact.html
-cronJob.sh
-daily-automation.yml
-daily-keyword-article-generator.yml
-deals.html
-deployToGitHub.js
-destinations.html
-eco.html
-enerateSkyscannerArticles.js
-essentials.html
-europe.html
-exit.html
-expand-database.js
-factory.html
-faq.html
-feeder-automation.js
-frontierhub.html
-generate-sitemap.js
-generate.js
-generateArticle.js
-generateArticlesWithKeywords.js
-generateHTMLPages.js
-generateKeywords.js
-generateSkyscannerArticles.js
-generateSkyscannerArticles2.js
-generateSkyscannerArticles3.js
-guide.html
-hub.html
-ileOrganizer.js
-index.html
-initAudit
-keywords.txt
-launch.html
-legacy.html
-logistics.html
-london.html
-los-angeles.html
-manifest.json
-manifest.json:
-map.html
-master-template.html
-master.html
-master_article_generator.py
-new-york.html
-nocturnal.html
-nomad.html
-package-lock.json
-package.json
-packing.html
-paris.html
-privacy.html
-protocol.html
-pulse.html
-quiet.html
-radar.html
-reset.html
-revenue.html
-robots.txt
-rome.html
-routes.html
-sitemap.xml
-solo.html
-stadiumstay.html
-styles.css
-subscribe.html
-surge.html
-sydney.html
-tokyo.html
-tools.html
-translate.html
-travelDatabase
-trending-keywords.json
-vault.html
-vulture-db.json
-vulture-deployment.yml
-vulture-generator.js
-vulture-heartbeat.yml
-vulture.js
-world.html
-SkyScanner/.github
-/workflows/
-brightlane
-brightlane
-Refactor daily article generation workflow
-a86be1f
- · 
-2 minutes ago
-Name	Last commit message	Last commit date
-..
-daily-article-generation.yml
-Refactor daily article generation workflow
-2 minutes ago
-daily-feeder-automation.yml
-Enhance daily feeder automation workflow
-3 days ago
-daily-page-generator.yml
-Add daily article generator workflow for GitHub Actions
-3 days ago
-deploy.yml
-Add GitHub Actions workflow for build and commit
-2 days ago
+name: Daily Article Generator and Deployment
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # daily run (8 AM UTC)
+  workflow_dispatch:       # enables Run button
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      # 3. Install dependencies (stable, prevents lockfile churn)
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Generate articles
+      - name: Generate content
+        run: npm run generate
+
+      # 5. Commit safely (FIXES ALL YOUR ERRORS)
+      - name: Commit and push changes
+        run: |
+          echo "Checking for changes..."
+
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          # Stage all changes
+          git add -A
+
+          # If nothing to commit → do not fail
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Automated daily article update"
+          git push
