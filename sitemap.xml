@@ -1,87 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 🏠 HOME -->
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/index.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
+    <loc>https://brightlane.github.io/SkyScanner/</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
+
+  <!-- ✈️ MAIN DEAL / SEARCH HUB -->
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/stadiumstay.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
+    <loc>https://brightlane.github.io/SkyScanner/search.html</loc>
+    <lastmod>2026-04-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
   </url>
+
+  <!-- 🌍 DESTINATION PAGES -->
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/cheap-flights.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/flight-deals.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/international-flights.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/last-minute-flights.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 💰 CONVERSION / AFFILIATE PAGES -->
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/best-flight-booking.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://brightlane.github.io/SkyScanner/travel-hacks.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 📄 SUPPORT -->
   <url>
     <loc>https://brightlane.github.io/SkyScanner/about.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/blog.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/calculator.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
+
   <url>
     <loc>https://brightlane.github.io/SkyScanner/contact.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
+
+  <!-- ⚠️ ERROR PAGE -->
   <url>
-    <loc>https://brightlane.github.io/SkyScanner/faq.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <loc>https://brightlane.github.io/SkyScanner/404.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/privacy.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/destinations.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/collections.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/routes.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/solo.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/surge.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://brightlane.github.io/SkyScanner/subscribe.html</loc>
-    <lastmod>2026-04-19T04:12:30.298Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
+
 </urlset>
