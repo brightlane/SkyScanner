@@ -1,0 +1,39 @@
+name: SkyScanner Vulture Refresh
+
+on:
+  schedule:
+    # Runs at 04:15 UTC every Monday to save Actions minutes
+    - cron: "15 4 * * 1"
+  workflow_dispatch: # Allows you to run it manually whenever you want
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Vulture Engine
+        run: |
+          # Running all scripts in one step saves "rounding up" minutes
+          node generate.js
+          node generate-sitemap.js
+          echo "Vulture Refresh Complete"
+
+      - name: Deploy to GitHub Pages
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Vulture Heartbeat: SkyScanner Weekly Sync"
+          branch: main
