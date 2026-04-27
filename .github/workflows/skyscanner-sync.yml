@@ -1,0 +1,27 @@
+name: Skyscanner Scrambler Sync
+
+on:
+  workflow_dispatch: # Manual only to prevent deadlock
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build Pages
+        run: python skyscanner-generator.py
+
+      - name: Sync to Repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add skyscanner-pages/*.html
+          git commit -m "Descrambled Skyscanner Update" || echo "No changes"
+          git pull --rebase origin main
+          git push origin main
