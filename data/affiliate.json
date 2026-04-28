@@ -1,0 +1,39 @@
+{
+  "partners": [
+    {
+      "id": "skyscanner-flights-global",
+      "name": "Skyscanner Flights",
+      "pillar": "Travel",
+      "description": "The primary gateway for global 2026 World Cup flight tracking. Compare prices across 1,200+ airlines instantly.",
+      "url": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
+    },
+    {
+      "id": "skyscanner-hotels",
+      "name": "Skyscanner Hotels",
+      "pillar": "Travel",
+      "description": "Beyond flights: integrated hotel search for World Cup host cities. Secure the best rates on central lodging.",
+      "url": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
+    },
+    {
+      "id": "skyscanner-car-hire",
+      "name": "Skyscanner Car Hire",
+      "pillar": "Logistics",
+      "description": "Essential ground logistics for 2026 travelers. Compare car rental deals across all major international airports.",
+      "url": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
+    },
+    {
+      "id": "skyscanner-last-minute",
+      "name": "Skyscanner Last Minute",
+      "pillar": "Travel",
+      "description": "Real-time protocol for last-minute flight availability. Ideal for late-stage 2026 event planning.",
+      "url": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
+    },
+    {
+      "id": "skyscanner-flexible-dates",
+      "name": "Skyscanner Flexible Search",
+      "pillar": "Travel",
+      "description": "Maximize budget efficiency for 2026 travel using Skyscanner's whole-month search technology.",
+      "url": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
+    }
+  ]
+}
