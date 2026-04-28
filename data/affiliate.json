@@ -37,3 +37,14 @@
     }
   ]
 }
+{
+  "protocol": "Skyscanner-Route-Expansion",
+  "base_url": "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885",
+  "locations": [
+    {"city": "London", "code": "LHR", "region": "Europe"},
+    {"city": "New York", "code": "JFK", "region": "North America"},
+    {"city": "Toronto", "code": "YYZ", "region": "North America"},
+    {"city": "Mexico City", "code": "MEX", "region": "North America"},
+    {"city": "Tokyo", "code": "HND", "region": "Asia"}
+  ]
+}
